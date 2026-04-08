@@ -1259,7 +1259,7 @@ export default async function ExamPage({
         </section>
 
         {/* 2. ABOUT THIS EXAM */}
-        <section className="bg-light-gray py-20 lg:py-28">
+        <section className="bg-warm-white py-20 lg:py-28">
           <div className="mx-auto max-w-3xl px-6 lg:px-8">
             <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Sobre esta oposición</span>
             <h2 className="mb-8 text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>
@@ -1273,7 +1273,7 @@ export default async function ExamPage({
         </section>
 
         {/* 2b. WHY PREPARE WITH US */}
-        <section className="bg-warm-white py-20 lg:py-28">
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
             <div className="mb-12 text-center">
               <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Por qué prepararte con nosotros</span>
@@ -1301,7 +1301,7 @@ export default async function ExamPage({
         </section>
 
         {/* 3. EXAM FORMAT — clean vertical layout */}
-        <section className="bg-light-gray py-20 lg:py-28">
+        <section className="bg-warm-white py-20 lg:py-28">
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
             <div className="mb-12 text-center">
               <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Estructura del examen</span>
@@ -1311,7 +1311,7 @@ export default async function ExamPage({
             {/* Exam steps — numbered list */}
             <div className="space-y-4">
               {exam.examFormat.map((item, i) => (
-                <div key={i} className="flex items-start gap-5 rounded-xl bg-white p-6">
+                <div key={i} className="flex items-start gap-5 rounded-xl bg-light-gray p-6">
                   <span
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold"
                     style={{ fontFamily: "var(--font-heading)" }}
@@ -1325,7 +1325,7 @@ export default async function ExamPage({
 
             {/* Requirements — inline below */}
             <div className="mt-10 grid gap-8 md:grid-cols-2">
-              <div className="rounded-xl bg-white p-8">
+              <div className="rounded-xl bg-light-gray p-8">
                 <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Requisitos lingüísticos</h3>
                 <ul className="space-y-3">
                   {exam.requirements.map((req, i) => (
@@ -1336,7 +1336,7 @@ export default async function ExamPage({
                   ))}
                 </ul>
               </div>
-              <div className="rounded-xl bg-white p-8">
+              <div className="rounded-xl bg-light-gray p-8">
                 <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Idiomas de la prueba</h3>
                 <div className="flex flex-wrap gap-3">
                   {exam.languages.map((lang) => (
@@ -1407,7 +1407,7 @@ export default async function ExamPage({
         </section>
 
         {/* 8. FAQ */}
-        <section className="bg-light-gray py-20 lg:py-28">
+        <section className="bg-warm-white py-20 lg:py-28">
           <div className="mx-auto max-w-3xl px-6 lg:px-8">
             <div className="mb-12 text-center">
               <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>FAQ</span>
@@ -1451,7 +1451,7 @@ export default async function ExamPage({
             <div className="flex justify-center gap-6">
               <Link
                 href="/contacto"
-                className="rounded-xl bg-gold-pale px-10 py-4 text-lg font-bold text-gold-dark transition-transform hover:scale-105"
+                className="rounded-xl bg-gold px-10 py-4 text-lg font-bold text-navy transition-transform hover:scale-105 hover:bg-gold-hover"
               >
                 Reservar diagnóstico
               </Link>
