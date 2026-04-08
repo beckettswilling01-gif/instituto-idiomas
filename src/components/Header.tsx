@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import NavHeader from "@/components/ui/nav-header";
 
 const oposicionesDropdown = [
   { label: "Carrera Diplomática", href: "/oposiciones/carrera-diplomatica" },
@@ -13,46 +12,25 @@ const oposicionesDropdown = [
   { label: "Ayudante de Archivos, Bibliotecas y Museos", href: "/oposiciones/ayudante-archivos-bibliotecas-museos" },
 ] as const;
 
-const navItems = [
-  { label: "Inicio", href: "/" },
+const navItems: { label: string; href: string; hasDropdown?: boolean }[] = [
   { label: "Sobre Nosotros", href: "/sobre-nosotros" },
-  { label: "Oposiciones", href: "/oposiciones" },
+  { label: "Oposiciones", href: "/oposiciones", hasDropdown: true },
   { label: "Idiomas", href: "/idiomas" },
   { label: "Metodología", href: "/metodologia" },
   { label: "Programas", href: "/programas" },
   { label: "Contacto", href: "/contacto" },
 ];
 
-const mobileLinks = [
-  { label: "Inicio", href: "/", hasDropdown: false },
-  { label: "Sobre Nosotros", href: "/sobre-nosotros", hasDropdown: false },
-  { label: "Oposiciones", href: "/oposiciones", hasDropdown: true },
-  { label: "Idiomas", href: "/idiomas", hasDropdown: false },
-  { label: "Metodología", href: "/metodologia", hasDropdown: false },
-  { label: "Programas", href: "/programas", hasDropdown: false },
-  { label: "Contacto", href: "/contacto", hasDropdown: false },
-];
-
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileOposExpanded, setMobileOposExpanded] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLLIElement>(null);
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -81,202 +59,213 @@ export default function Header() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-warm-white/95 backdrop-blur-md shadow-sm border-b border-light-gray"
-            : "bg-warm-white border-b border-transparent"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8">
-          {/* Brand */}
-          <Link href="/" className="shrink-0">
-            <span
-              className="text-xl font-semibold tracking-tight text-navy lg:text-2xl"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              Instituto Diplomático
-              <span className="block text-sm font-normal tracking-wide text-slate-blue lg:text-base">
-                de Idiomas
-              </span>
-            </span>
-          </Link>
+      {/* Floating dark pill header — Acely style */}
+      <header className="fixed left-0 right-0 z-50 px-4 pt-2.5">
+        <div className="mx-auto max-w-[1264px]">
+          <div className="flex w-full items-center justify-between rounded-full bg-navy py-3 pl-6 pr-4 shadow-lg lg:py-3.5 lg:pl-8 lg:pr-3.5">
 
-          {/* Desktop navigation — NavHeader pill component */}
-          <div className="hidden xl:flex items-center">
-            <div
-              ref={dropdownRef}
-              className="relative"
-              onMouseLeave={handleDropdownLeave}
-            >
-              <NavHeader
-                items={navItems}
-                onTabHover={(href) => {
-                  if (href === "/oposiciones") {
-                    handleDropdownEnter();
-                  } else {
-                    setDropdownOpen(false);
-                  }
-                }}
-                onTabLeave={() => {
-                  handleDropdownLeave();
-                }}
-              />
+            {/* Brand */}
+            <div className="flex items-center gap-6 lg:gap-8">
+              <Link href="/" className="shrink-0">
+                <span
+                  className="text-lg font-semibold tracking-tight text-white lg:text-xl"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  Instituto Diplomático
+                  <span className="ml-1.5 text-xs font-normal tracking-wide text-white/60 lg:text-sm">
+                    de Idiomas
+                  </span>
+                </span>
+              </Link>
 
-              {/* Oposiciones dropdown — appears when hovering the "Oposiciones" tab */}
-              <div
-                className={`absolute left-1/2 top-full z-50 w-[340px] -translate-x-1/2 pt-3 transition-all duration-200 ${
-                  dropdownOpen
-                    ? "pointer-events-auto translate-y-0 opacity-100"
-                    : "pointer-events-none -translate-y-1 opacity-0"
-                }`}
-              >
-                <div className="rounded-lg border border-light-gray bg-white shadow-lg">
-                  <div className="border-b border-light-gray px-5 py-3">
-                    <p
-                      className="text-xs font-semibold uppercase tracking-[0.15em] text-gold"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      Oposiciones que preparamos
-                    </p>
-                  </div>
-                  <div className="py-2">
-                    {oposicionesDropdown.map((exam) => (
-                      <Link
-                        key={exam.href}
-                        href={exam.href}
-                        className="block px-5 py-2.5 text-sm text-navy/80 transition-colors hover:bg-light-gray hover:text-navy"
+              {/* Desktop nav */}
+              <nav className="hidden items-center gap-1 xl:flex" aria-label="Main">
+                <ul className="flex items-center gap-1">
+                  {navItems.map((item) =>
+                    item.hasDropdown ? (
+                      <li
+                        key={item.href}
+                        className="group/item relative"
+                        ref={dropdownRef}
+                        onMouseEnter={handleDropdownEnter}
+                        onMouseLeave={handleDropdownLeave}
                       >
-                        {exam.label}
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="border-t border-light-gray px-5 py-3">
-                    <Link
-                      href="/oposiciones"
-                      className="text-xs font-semibold text-gold transition-colors hover:text-gold-hover"
-                    >
-                      Ver todas las oposiciones &rarr;
-                    </Link>
-                  </div>
-                </div>
-              </div>
+                        <Link
+                          href={item.href}
+                          className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                        >
+                          {item.label}
+                          <svg
+                            className="h-3 w-3 shrink-0 opacity-90"
+                            viewBox="0 0 12 12"
+                            fill="currentColor"
+                          >
+                            <path d="M6 9L2 4h8L6 9z" />
+                          </svg>
+                        </Link>
+
+                        {/* Dropdown */}
+                        <div
+                          className={`absolute left-0 top-full z-50 pt-1 transition-all duration-200 ${
+                            dropdownOpen
+                              ? "visible translate-y-0 opacity-100"
+                              : "invisible translate-y-1 opacity-0"
+                          }`}
+                        >
+                          <div className="min-w-[300px] overflow-hidden rounded-xl bg-white py-2 shadow-xl">
+                            <ul>
+                              {oposicionesDropdown.map((exam) => (
+                                <li key={exam.href}>
+                                  <Link
+                                    href={exam.href}
+                                    className="block px-5 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-light-gray"
+                                  >
+                                    {exam.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                            <div className="border-t border-light-gray px-5 py-2.5">
+                              <Link
+                                href="/oposiciones"
+                                className="text-xs font-semibold text-gold transition-colors hover:text-gold-hover"
+                              >
+                                Ver todas las oposiciones &rarr;
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ) : (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </nav>
             </div>
-          </div>
 
-          {/* CTA + hamburger */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/contacto"
-              className="hidden rounded-sm bg-gold px-5 py-2.5 text-sm font-semibold text-navy shadow-sm transition-colors hover:bg-gold-hover sm:inline-block"
-            >
-              Solicitar diagnóstico
-            </Link>
+            {/* Right side: CTA + hamburger */}
+            <div className="ml-auto flex items-center gap-2">
+              <Link
+                href="/contacto"
+                className="inline-flex items-center justify-center rounded-full bg-lime-pale px-4 py-2.5 text-sm font-medium text-forest transition-all hover:scale-105 hover:brightness-90 lg:px-5 lg:py-3 lg:text-base"
+              >
+                Solicitar diagnóstico
+              </Link>
 
-            {/* Hamburger */}
-            <button
-              type="button"
-              aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-              className="relative z-60 flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
-              onClick={() => setMobileOpen((prev) => !prev)}
-            >
-              <span
-                className={`block h-0.5 w-6 rounded bg-navy transition-transform duration-300 ${
-                  mobileOpen ? "translate-y-2 rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-6 rounded bg-navy transition-opacity duration-300 ${
-                  mobileOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-6 rounded bg-navy transition-transform duration-300 ${
-                  mobileOpen ? "-translate-y-2 -rotate-45" : ""
-                }`}
-              />
-            </button>
+              {/* Hamburger */}
+              <button
+                type="button"
+                aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+                className="ml-2 flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-white transition-all hover:rounded-full hover:bg-white/10 xl:hidden"
+                onClick={() => setMobileOpen((prev) => !prev)}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <line
+                    x1="1" y1="6" x2="23" y2="6"
+                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                    className="origin-center transition-transform duration-200"
+                    style={mobileOpen ? { transform: "translateY(6px) rotate(45deg)" } : {}}
+                  />
+                  <line
+                    x1="1" y1="12" x2="23" y2="12"
+                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                    className="origin-center transition-all duration-200"
+                    style={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+                  />
+                  <line
+                    x1="1" y1="18" x2="23" y2="18"
+                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                    className="origin-center transition-transform duration-200"
+                    style={mobileOpen ? { transform: "translateY(-6px) rotate(-45deg)" } : {}}
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto bg-warm-white transition-opacity duration-300 xl:hidden ${
-          mobileOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-40 xl:hidden ${mobileOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        aria-hidden={!mobileOpen}
       >
-        <nav className="flex flex-1 flex-col items-center justify-center gap-6 py-24">
-          {mobileLinks.map((link) =>
-            link.hasDropdown ? (
-              <div key={link.href} className="flex flex-col items-center">
-                <button
-                  type="button"
-                  onClick={() => setMobileOposExpanded((prev) => !prev)}
-                  className="flex items-center gap-2 text-2xl font-medium text-navy transition-colors hover:text-gold"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {link.label}
-                  <svg
-                    className={`h-5 w-5 transition-transform duration-200 ${mobileOposExpanded ? "rotate-180" : ""}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                {mobileOposExpanded && (
-                  <div className="mt-3 flex flex-col items-center gap-2">
-                    {oposicionesDropdown.map((exam) => (
-                      <Link
-                        key={exam.href}
-                        href={exam.href}
-                        onClick={closeMobile}
-                        className="text-base text-slate-blue transition-colors hover:text-gold"
-                      >
-                        {exam.label}
-                      </Link>
-                    ))}
-                    <Link
-                      href="/oposiciones"
-                      onClick={closeMobile}
-                      className="mt-1 text-sm font-semibold text-gold"
+        <div
+          className={`absolute inset-0 flex flex-col bg-white pt-20 transition-transform duration-300 ease-out ${
+            mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <nav className="flex-1 overflow-auto px-6 py-8" aria-label="Main">
+            <ul className="space-y-1">
+              {navItems.map((item) =>
+                item.hasDropdown ? (
+                  <li key={item.href}>
+                    <button
+                      type="button"
+                      onClick={() => setMobileOposExpanded((prev) => !prev)}
+                      className="flex w-full items-center justify-between -mx-2 px-4 py-3 text-sm font-medium text-navy transition-colors hover:bg-light-gray rounded-lg"
                     >
-                      Ver todas &rarr;
+                      {item.label}
+                      <svg
+                        className={`h-4 w-4 transition-transform duration-200 ${mobileOposExpanded ? "rotate-180" : ""}`}
+                        viewBox="0 0 12 12"
+                        fill="currentColor"
+                      >
+                        <path d="M6 9L2 4h8L6 9z" />
+                      </svg>
+                    </button>
+                    {mobileOposExpanded && (
+                      <ul className="ml-4 space-y-0.5 pb-2">
+                        {oposicionesDropdown.map((exam) => (
+                          <li key={exam.href}>
+                            <Link
+                              href={exam.href}
+                              onClick={closeMobile}
+                              className="block px-4 py-2.5 text-sm text-slate-blue transition-colors hover:text-navy hover:bg-light-gray rounded-lg"
+                            >
+                              {exam.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ) : (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={closeMobile}
+                      className="block -mx-2 px-4 py-3 text-sm font-medium text-navy transition-colors hover:bg-light-gray rounded-lg"
+                    >
+                      {item.label}
                     </Link>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={closeMobile}
-                className="text-2xl font-medium text-navy transition-colors hover:text-gold"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                {link.label}
-              </Link>
-            )
-          )}
-
-          <Link
-            href="/contacto"
-            onClick={closeMobile}
-            className="mt-4 rounded-sm bg-gold px-8 py-3 text-lg font-semibold text-navy transition-colors hover:bg-gold-hover"
-          >
-            Solicitar diagnóstico
-          </Link>
-        </nav>
+                  </li>
+                )
+              )}
+              <li>
+                <Link
+                  href="/contacto"
+                  onClick={closeMobile}
+                  className="mt-4 block rounded-full bg-lime-pale px-6 py-3 text-center text-sm font-medium text-forest"
+                >
+                  Solicitar diagnóstico
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
 
-      {/* Spacer so content doesn't hide behind fixed header */}
-      <div className="h-[84px] lg:h-[92px]" aria-hidden="true" />
+      {/* Spacer for fixed header */}
+      <div className="h-[72px] lg:h-[80px]" aria-hidden="true" />
     </>
   );
 }

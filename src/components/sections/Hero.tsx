@@ -2,80 +2,52 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="bg-warm-white py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left column — text */}
-          <div>
-            <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              INSTITUTO DE PREPARACIÓN LINGÜÍSTICA · MADRID
-            </p>
-
-            <h1 className="mt-6 font-[family-name:var(--font-heading)] text-4xl leading-[1.1] text-navy sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem]">
+    <section className="relative bg-navy px-6 text-white lg:px-12">
+      <div className="mx-auto max-w-[1200px] pb-16 pt-16 md:pb-24 md:pt-24">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_auto] lg:gap-16">
+          {/* Left — text */}
+          <div className="flex w-full max-w-[800px] flex-col items-center text-center lg:items-start lg:text-left">
+            <h1
+              className="text-4xl font-normal leading-[1] text-white md:text-[56px] md:leading-[1]"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Supera la prueba de idiomas en tu oposición
             </h1>
 
-            <p className="mt-6 max-w-xl font-[family-name:var(--font-body)] text-lg leading-relaxed text-slate-blue lg:text-xl">
+            <p
+              className="mt-6 text-lg leading-relaxed text-white/80"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
               Preparación específica para oposiciones de alto nivel: Carrera
               Diplomática, Técnico Comercial del Estado, SOIVRE y más.
             </p>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
               <Link
                 href="/contacto"
-                className="inline-block rounded-sm bg-navy px-8 py-4 text-center font-[family-name:var(--font-body)] text-sm font-semibold uppercase tracking-wider text-warm-white transition-colors hover:bg-slate-blue"
+                className="inline-flex items-center justify-center rounded-full bg-lime-pale px-5 py-3 text-base font-medium text-forest transition-all hover:scale-110 hover:brightness-90 md:px-10 md:py-5 md:text-xl"
               >
                 Solicitar diagnóstico
               </Link>
               <Link
                 href="/metodologia"
-                className="inline-block rounded-sm border-2 border-navy px-8 py-4 text-center font-[family-name:var(--font-body)] text-sm font-semibold uppercase tracking-wider text-navy transition-colors hover:bg-navy hover:text-warm-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/40 px-5 py-3 text-base font-medium text-white transition-all hover:scale-105 hover:bg-white/10 md:px-8 md:py-5 md:text-lg"
               >
                 Ver metodología
               </Link>
             </div>
-
-            <p className="mt-8 font-[family-name:var(--font-body)] text-sm tracking-wide text-slate-blue/60">
-              Carrera Diplomática · Técnico Comercial · SOIVRE · Archivos y
-              Bibliotecas
-            </p>
           </div>
 
-          {/* Right column — institutional visual */}
-          <div className="flex flex-col">
-            <div className="rounded-lg bg-navy p-8 lg:p-10">
-              <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Preparación especializada
-              </p>
-
-              <div className="mt-6 space-y-4">
-                {[
-                  "7 Idiomas",
-                  "6 Oposiciones",
-                  "Plan Personalizado",
-                  "Simulaciones Reales",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <span className="text-gold" aria-hidden="true">
-                      &#10003;
-                    </span>
-                    <span className="font-[family-name:var(--font-body)] text-base text-white">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="-mt-4 ml-6 rounded-lg border border-light-gray bg-light-gray p-5 lg:ml-10">
-              <div className="flex items-baseline gap-3">
-                <span className="font-[family-name:var(--font-heading)] text-3xl font-bold text-gold">
-                  100%
-                </span>
-                <span className="font-[family-name:var(--font-body)] text-sm text-navy">
-                  Enfoque en tu examen específico
-                </span>
-              </div>
+          {/* Right — image */}
+          <div className="flex w-full justify-center lg:justify-end">
+            <div className="relative w-full overflow-hidden rounded-2xl" style={{ maxWidth: 450 }}>
+              <img
+                src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80"
+                alt="Edificio institucional en Madrid"
+                className="h-auto w-full object-cover"
+                width={900}
+                height={750}
+              />
             </div>
           </div>
         </div>

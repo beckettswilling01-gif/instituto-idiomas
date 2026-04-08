@@ -30,7 +30,7 @@ export default function FinalCTA() {
           <div className="mt-10">
             <Link
               href="/contacto"
-              className="inline-flex items-center gap-2 rounded-lg bg-gold px-10 py-4 font-[family-name:var(--font-body)] text-base font-semibold text-navy transition-colors hover:bg-gold-hover"
+              className="inline-flex items-center gap-2 rounded-full bg-lime-pale px-10 py-4 font-[family-name:var(--font-body)] text-base font-semibold text-forest transition-all hover:scale-110 hover:brightness-90"
             >
               Reserva tu sesión de diagnóstico
               <ArrowRightIcon className="h-4 w-4" />
