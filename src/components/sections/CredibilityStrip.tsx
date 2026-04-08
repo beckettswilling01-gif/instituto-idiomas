@@ -1,9 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-const ease = [0.22, 1, 0.36, 1] as const;
-
 const statements = [
   "Preparación exclusiva para oposiciones de alto nivel",
   "7 idiomas con enfoque en pruebas de Estado",
@@ -14,13 +8,7 @@ const statements = [
 export default function CredibilityStrip() {
   return (
     <section className="border-b border-light-gray border-t-2 border-t-gold/30 bg-warm-white">
-      <motion.div
-        initial={{ opacity: 0, y: 6 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, ease }}
-        className="mx-auto max-w-6xl px-6 py-6"
-      >
+      <div className="mx-auto max-w-6xl px-6 py-6">
         {/* Desktop: horizontal row with vertical dividers */}
         <div className="hidden md:grid md:grid-cols-4">
           {statements.map((statement, index) => (
@@ -56,7 +44,7 @@ export default function CredibilityStrip() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,120 +1,106 @@
-"use client";
+import {
+  CalendarCheck,
+  GraduationCap,
+  FileText,
+  Mic,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
+interface Benefit {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-const languages = [
+const benefits: Benefit[] = [
   {
-    code: "EN",
-    name: "Inglés",
-    slug: "ingles",
+    icon: CalendarCheck,
+    title: "Planificación personalizada",
     description:
-      "El idioma más demandado en oposiciones del Estado",
+      "Tu plan de estudio se diseña desde la fecha de examen hacia atrás, adaptado a tu ritmo y disponibilidad.",
   },
   {
-    code: "FR",
-    name: "Francés",
-    slug: "frances",
+    icon: GraduationCap,
+    title: "Mentores especializados",
     description:
-      "Esencial para la Carrera Diplomática y cuerpos europeos",
+      "Aprende de profesionales en activo que ya aprobaron. Nuestros formadores conocen el examen desde dentro.",
   },
   {
-    code: "DE",
-    name: "Alemán",
-    slug: "aleman",
+    icon: FileText,
+    title: "Simulacros reales",
     description:
-      "Diferenciación lingüística para candidatos ambiciosos",
+      "Simulaciones completas en condiciones reales. Reproducimos la presión de la sala del Tribunal.",
   },
   {
-    code: "IT",
-    name: "Italiano",
-    slug: "italiano",
+    icon: Mic,
+    title: "Preparación oral e idiomas",
     description:
-      "Preparación específica para pruebas de nivel avanzado",
+      "Entrenamiento intensivo para presentaciones orales y exámenes técnicos de inglés, francés y alemán.",
   },
   {
-    code: "PT",
-    name: "Portugués",
-    slug: "portugues",
+    icon: ShieldCheck,
+    title: "Seguimiento semanal",
     description:
-      "Competencia lingüística para relaciones iberoamericanas",
+      "Check-ins semanales para monitorizar avances, identificar debilidades y mantener el impulso.",
   },
   {
-    code: "AR",
-    name: "Árabe",
-    slug: "arabe",
+    icon: Users,
+    title: "Únete a la elite",
     description:
-      "Formación especializada para el servicio exterior",
-  },
-  {
-    code: "ZH",
-    name: "Chino",
-    slug: "chino",
-    description:
-      "Preparación estratégica en el idioma del futuro",
+      "Nuestros candidatos se sitúan consistentemente en el 10% superior de su convocatoria.",
   },
 ];
 
 export default function LanguagesGrid() {
   return (
-    <section className="relative bg-light-gray py-20 lg:py-28">
+    <section className="relative bg-warm-white py-20 lg:py-28">
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section intro */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease }}
-          className="mx-auto mb-16 max-w-2xl text-center"
-        >
-          <p className="font-[family-name:var(--font-body)] text-sm font-semibold uppercase tracking-[0.2em] text-gold">
-            Idiomas
+        <div className="mx-auto mb-16 max-w-2xl text-center">
+          <p
+            className="mb-4 text-sm font-bold uppercase tracking-widest text-gold"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Excelencia garantizada
           </p>
-          <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl">
-            Siete idiomas, un solo objetivo: tu plaza
+          <h2
+            className="text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-5xl"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            El camino hacia tu plaza.
           </h2>
-          <p className="mt-5 font-[family-name:var(--font-body)] text-lg leading-relaxed text-slate-blue/70">
-            Ofrecemos preparación especializada en los siete idiomas más
-            relevantes para las oposiciones al servicio público en España,
-            adaptada a las exigencias reales de cada convocatoria.
-          </p>
-        </motion.div>
+        </div>
 
-        {/* Languages grid */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {languages.map((lang, i) => (
-            <motion.div
-              key={lang.slug}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.06,
-                ease,
-              }}
-            >
-              <Link
-                href={`/idiomas/${lang.slug}`}
-                className="group block rounded-xl border border-light-gray border-l-2 border-l-gold/40 bg-white p-6 text-left transition-all hover:border-l-gold hover:shadow-md"
+        {/* Benefits grid */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((benefit) => {
+            const Icon = benefit.icon;
+            return (
+              <div
+                key={benefit.title}
+                className="rounded-2xl border-l-4 border-navy bg-white p-8 shadow-sm"
               >
-                <div className="mb-3 flex items-baseline gap-3">
-                  <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-gold">
-                    {lang.code}
-                  </span>
-                  <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-navy">
-                    {lang.name}
-                  </h3>
-                </div>
-
-                <p className="font-[family-name:var(--font-body)] text-sm leading-relaxed text-slate-blue/60">
-                  {lang.description}
+                <Icon
+                  className="mb-6 h-10 w-10 text-slate-blue"
+                  strokeWidth={1.5}
+                />
+                <h3
+                  className="mb-4 text-xl font-bold text-navy"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {benefit.title}
+                </h3>
+                <p
+                  className="text-slate-blue"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  {benefit.description}
                 </p>
-              </Link>
-            </motion.div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

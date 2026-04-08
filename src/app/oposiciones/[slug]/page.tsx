@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FinalCTA from "@/components/sections/FinalCTA";
 import { ExamFAQ } from "@/components/sections/ExamFAQ";
 
 /* ------------------------------------------------------------------ */
@@ -15,6 +14,8 @@ interface ExamData {
   fullName: string;
   category: string;
   heroSubtitle: string;
+  heroImage: string;
+  heroQuote: string;
   description: string[];
   languages: string[];
   examFormat: string[];
@@ -50,6 +51,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo Superior",
     heroSubtitle:
       "La oposición más prestigiosa del Estado exige un dominio lingüístico excepcional. Prepárate con quienes conocen cada detalle del examen.",
+    heroImage: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
+    heroQuote: "La tutoría no se trata de enseñar datos; se trata de transferir la mirada del diplomático.",
     description: [
       "La Carrera Diplomática es, sin duda, una de las oposiciones más prestigiosas y exigentes del Estado español. El componente lingüístico ocupa un lugar central en el proceso selectivo: los aspirantes deben acreditar un dominio avanzado de al menos dos idiomas extranjeros, siendo obligatorios el inglés y el francés. La prueba de idiomas evalúa no solo la competencia gramatical, sino la capacidad de producir textos diplomáticos, traducir documentos oficiales y mantener una conversación fluida sobre asuntos internacionales.",
       "El examen de inglés incluye una traducción directa e inversa de textos de actualidad internacional, un resumen escrito en lengua inglesa y una conversación ante tribunal sobre temas de política exterior, derecho internacional y relaciones bilaterales. El francés sigue un formato análogo, con especial atención a la terminología propia de los organismos internacionales francófonos y la diplomacia multilateral.",
@@ -225,6 +228,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo Superior",
     heroSubtitle:
       "El dominio de idiomas económicos y comerciales es la clave diferencial de esta oposición de élite. Entrena con los mejores especialistas.",
+    heroImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    heroQuote: "La intersección del rigor matemático y la finura diplomática.",
     description: [
       "El Cuerpo de Técnicos Comerciales y Economistas del Estado es uno de los cuerpos superiores más selectivos de la Administración General del Estado. Sus miembros desempeñan funciones clave en la promoción del comercio exterior español, la política económica internacional y la representación comercial de España en el mundo. El dominio de idiomas no es un complemento: es un requisito esencial para el ejercicio profesional diario.",
       "La prueba de idiomas exige competencia avanzada en al menos un idioma obligatorio (inglés) y valora positivamente un segundo idioma (francés o alemán). El examen incluye ejercicios de traducción de textos económicos y comerciales, análisis de documentación especializada y una prueba oral en la que el opositor debe demostrar su capacidad para argumentar y negociar en lengua extranjera sobre cuestiones de política comercial, macroeconomía y regulación del comercio internacional.",
@@ -390,6 +395,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo de Gestión",
     heroSubtitle:
       "Accede al cuerpo de gestión del comercio exterior español con una preparación lingüística que marca la diferencia frente al tribunal.",
+    heroImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+    heroQuote: "Dominar el comercio internacional desde la precisión del idioma.",
     description: [
       "El Cuerpo de Diplomados Comerciales del Estado constituye el nivel de gestión dentro de la estructura del comercio exterior español. Sus integrantes trabajan en las Oficinas Económicas y Comerciales de España en el extranjero, en la Secretaría de Estado de Comercio y en organismos vinculados a la internacionalización de la empresa española. El manejo competente de idiomas es fundamental para la labor diaria de estos funcionarios.",
       "La prueba de idiomas del proceso selectivo incluye un ejercicio de traducción directa e inversa de textos relacionados con el comercio exterior, la economía internacional y la actividad empresarial. También se realiza una prueba oral en la que el aspirante debe demostrar fluidez conversacional y dominio de la terminología comercial en al menos un idioma extranjero (inglés obligatorio, francés recomendado).",
@@ -549,6 +556,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo de Gestión",
     heroSubtitle:
       "Normativa técnica, reglamentos europeos y documentación aduanera: domina los idiomas del comercio exterior regulado.",
+    heroImage: "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=800&q=80",
+    heroQuote: "Arquitectos de la integridad del comercio exterior de España.",
     description: [
       "El Cuerpo de Inspectores del SOIVRE desempeña funciones esenciales en el control de calidad y la inspección de los productos españoles destinados a la exportación, así como en la vigilancia de las importaciones. Sus miembros trabajan en estrecho contacto con normativa internacional, reglamentos de la Unión Europea y estándares de calidad globales, lo que hace imprescindible un sólido dominio de idiomas extranjeros.",
       "La prueba lingüística del proceso selectivo evalúa la capacidad del aspirante para comprender y traducir textos técnicos relacionados con normativas de calidad, reglamentos fitosanitarios, documentación aduanera y regulación del comercio internacional. El inglés es el idioma principal, aunque el francés tiene relevancia especial dado el peso de la normativa comunitaria redactada en este idioma.",
@@ -719,6 +728,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo Técnico",
     heroSubtitle:
       "Documentación técnica, informes de laboratorio y normativa de certificación: la precisión lingüística que exige la ingeniería de inspección.",
+    heroImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+    heroQuote: "El Ingeniero del SOIVRE no solo inspecciona; protege los estándares del comercio europeo.",
     description: [
       "El Cuerpo de Ingenieros Técnicos del SOIVRE reúne a profesionales con formación técnica e ingenieril que desempeñan labores de inspección, ensayo y certificación de productos en el ámbito del comercio exterior. Su trabajo implica el manejo cotidiano de documentación técnica en inglés y, con frecuencia, en francés, así como la comunicación con organismos de normalización y laboratorios internacionales.",
       "La prueba de idiomas en esta oposición tiene un marcado carácter técnico. Los textos propuestos para traducción suelen versar sobre especificaciones de producto, informes de laboratorio, protocolos de ensayo, normativa de seguridad y certificaciones internacionales. El candidato debe demostrar no solo corrección lingüística, sino también precisión terminológica en un contexto altamente especializado.",
@@ -885,6 +896,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo de Gestión",
     heroSubtitle:
       "Textos culturales, catálogos internacionales y normativa archivística: la preparación lingüística humanística que necesitas para aprobar.",
+    heroImage: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80",
+    heroQuote: "Preservar la memoria de una nación comienza con el dominio de sus lenguas.",
     description: [
       "El Cuerpo de Ayudantes de Archivos, Bibliotecas y Museos agrupa a los profesionales que custodian, catalogan y difunden el patrimonio documental, bibliográfico y museístico de España. Su labor exige el manejo de fuentes en múltiples idiomas, desde manuscritos medievales en latín hasta catálogos internacionales en inglés, francés, alemán e italiano. La prueba de idiomas refleja esta diversidad lingüística y el carácter humanístico de la profesión.",
       "El examen lingüístico consiste habitualmente en la traducción directa de un texto de carácter cultural, histórico o artístico, así como preguntas de comprensión lectora sobre documentación bibliotecaria o archivística en lengua extranjera. A diferencia de otras oposiciones del ámbito comercial, aquí se valora especialmente la capacidad de interpretar textos académicos, catálogos de museos, descripciones archivísticas normalizadas (ISAD-G, ISAAR) y bibliografía especializada.",
@@ -1098,417 +1111,180 @@ export default async function ExamPage({
     <>
       <Header />
       <main>
-        {/* -------------------------------------------------------- */}
-        {/*  1. HERO                                                  */}
-        {/* -------------------------------------------------------- */}
-        <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              {/* Left — copy */}
-              <div>
-                <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+        {/* 1. HERO — Asymmetric editorial layout */}
+        <section className="bg-warm-white px-6 py-16 lg:px-12 lg:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <span className="mb-4 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>
                   {exam.category}
-                </p>
-
-                <h1 className="mt-4 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-navy sm:text-4xl lg:text-5xl">
+                </span>
+                <h1 className="mb-8 text-4xl font-extrabold leading-[1.1] tracking-tight text-navy md:text-6xl lg:text-7xl" style={{ fontFamily: "var(--font-heading)" }}>
                   {exam.title}
                 </h1>
-
-                <p className="mt-6 font-[family-name:var(--font-body)] text-lg leading-relaxed text-slate-blue">
+                <p className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-blue md:text-xl" style={{ fontFamily: "var(--font-body)" }}>
                   {exam.heroSubtitle}
                 </p>
-
-                {/* CTAs */}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <Link
-                    href="/contacto"
-                    className="inline-block bg-navy px-8 py-4 rounded-sm font-[family-name:var(--font-body)] text-sm font-semibold uppercase tracking-wider text-warm-white transition-colors hover:bg-slate-blue"
-                  >
-                    Solicitar diagn&oacute;stico
-                  </Link>
-                  <Link
-                    href="/metodologia"
-                    className="inline-block border-2 border-navy px-8 py-4 rounded-sm font-[family-name:var(--font-body)] text-sm font-semibold uppercase tracking-wider text-navy transition-colors hover:bg-navy hover:text-warm-white"
-                  >
-                    Ver metodolog&iacute;a
-                  </Link>
-                </div>
-
-                {/* Trust line */}
-                <p className="mt-8 font-[family-name:var(--font-body)] text-sm text-slate-blue/70">
-                  Idiomas disponibles:{" "}
-                  <span className="font-semibold text-navy">
-                    {exam.languages.join(" · ")}
-                  </span>
-                </p>
-              </div>
-
-              {/* Right — decorative exam card */}
-              <div className="rounded-lg bg-navy p-8 lg:p-10 shadow-xl">
-                <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                  Ficha del examen
-                </p>
-                <h2 className="mt-3 font-[family-name:var(--font-heading)] text-xl font-bold text-white lg:text-2xl">
-                  {exam.fullName}
-                </h2>
-
-                <div className="mt-8 space-y-5">
-                  {/* Nivel */}
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/15 font-[family-name:var(--font-body)] text-sm font-bold text-gold">
-                      N
-                    </span>
-                    <div>
-                      <p className="font-[family-name:var(--font-body)] text-xs uppercase tracking-wider text-white/50">
-                        Nivel requerido
-                      </p>
-                      <p className="mt-0.5 font-[family-name:var(--font-body)] text-base font-semibold text-white">
-                        {exam.requirements[0]}
-                      </p>
+                <div className="flex items-center gap-8">
+                  {exam.stats.map((stat, i) => (
+                    <div key={i} className="flex flex-col">
+                      <span className="text-3xl font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{stat.value}</span>
+                      <span className="text-xs font-semibold uppercase tracking-widest text-slate-blue/60">{stat.label}</span>
+                      {i < exam.stats.length - 1 && (
+                        <div className="absolute" />
+                      )}
                     </div>
-                  </div>
-                  {/* Idiomas */}
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/15 font-[family-name:var(--font-body)] text-sm font-bold text-gold">
-                      I
-                    </span>
-                    <div>
-                      <p className="font-[family-name:var(--font-body)] text-xs uppercase tracking-wider text-white/50">
-                        Idiomas del examen
-                      </p>
-                      <p className="mt-0.5 font-[family-name:var(--font-body)] text-base font-semibold text-white">
-                        {exam.languages.join(", ")}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Pruebas */}
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/15 font-[family-name:var(--font-body)] text-sm font-bold text-gold">
-                      P
-                    </span>
-                    <div>
-                      <p className="font-[family-name:var(--font-body)] text-xs uppercase tracking-wider text-white/50">
-                        Pruebas ling&uuml;&iacute;sticas
-                      </p>
-                      <p className="mt-0.5 font-[family-name:var(--font-body)] text-base font-semibold text-white">
-                        {exam.examFormat.length} ejercicios
-                      </p>
-                    </div>
-                  </div>
-                  {/* Categoría */}
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/15 font-[family-name:var(--font-body)] text-sm font-bold text-gold">
-                      C
-                    </span>
-                    <div>
-                      <p className="font-[family-name:var(--font-body)] text-xs uppercase tracking-wider text-white/50">
-                        Categor&iacute;a
-                      </p>
-                      <p className="mt-0.5 font-[family-name:var(--font-body)] text-base font-semibold text-white">
-                        {exam.category}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* -------------------------------------------------------- */}
-        {/*  2. STATS STRIP                                           */}
-        {/* -------------------------------------------------------- */}
-        <section className="bg-navy py-14 lg:py-16">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-              {exam.stats.map((stat, i) => (
-                <div key={i} className="text-center">
-                  <p className="font-[family-name:var(--font-heading)] text-3xl font-bold text-gold lg:text-4xl">
-                    {stat.value}
-                  </p>
-                  <p className="mt-2 font-[family-name:var(--font-body)] text-sm text-white/70">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* -------------------------------------------------------- */}
-        {/*  3. ABOUT THIS EXAM                                       */}
-        {/* -------------------------------------------------------- */}
-        <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2">
-              {/* Left — description */}
-              <div>
-                <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                  Informaci&oacute;n
-                </p>
-                <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-                  Sobre esta oposici&oacute;n
-                </h2>
-
-                <div className="mt-8 space-y-6">
-                  <p className="font-[family-name:var(--font-body)] text-base leading-relaxed text-slate-blue">
-                    {exam.description[0]}
-                  </p>
-                  <p className="font-[family-name:var(--font-body)] text-base leading-relaxed text-slate-blue">
-                    {exam.description[1]}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right — requirements card */}
-              <div className="rounded-lg border border-light-gray bg-white p-6 lg:p-8 self-start">
-                <h3 className="font-[family-name:var(--font-heading)] text-lg text-navy">
-                  Requisitos ling&uuml;&iacute;sticos
-                </h3>
-                <ul className="mt-5 space-y-3">
-                  {exam.requirements.map((req, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                      <span className="font-[family-name:var(--font-body)] text-sm leading-relaxed text-slate-blue">
-                        {req}
-                      </span>
-                    </li>
                   ))}
-                </ul>
-
-                <div className="mt-8 border-t border-light-gray pt-6">
-                  <h3 className="font-[family-name:var(--font-heading)] text-lg text-navy">
-                    Idiomas del examen
-                  </h3>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {exam.languages.map((lang) => (
-                      <span
-                        key={lang}
-                        className="rounded-sm bg-light-gray px-3 py-1.5 font-[family-name:var(--font-body)] text-xs font-semibold text-navy"
-                      >
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
+                </div>
+              </div>
+              <div className="relative lg:col-span-5">
+                <div className="aspect-[4/5] overflow-hidden rounded-full shadow-2xl">
+                  <img
+                    src={exam.heroImage}
+                    alt={exam.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-8 -left-8 max-w-xs rounded-xl border-l-4 border-gold bg-white/90 p-6 shadow-xl backdrop-blur-md">
+                  <p className="text-sm font-medium italic text-navy" style={{ fontFamily: "var(--font-body)" }}>
+                    &ldquo;{exam.heroQuote}&rdquo;
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* -------------------------------------------------------- */}
-        {/*  4. WHY PREPARE WITH US                                   */}
-        {/* -------------------------------------------------------- */}
+        {/* 2. ABOUT + REQUIREMENTS — two-column */}
         <section className="bg-light-gray py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="text-center">
-              <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Ventajas
-              </p>
-              <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-                &iquest;Por qu&eacute; prepararte con nosotros?
-              </h2>
-            </div>
-
-            <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {exam.whyPrepare.map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg border border-light-gray bg-white p-6 lg:p-8"
-                >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold/15 font-[family-name:var(--font-heading)] text-lg font-bold text-gold">
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-4 font-[family-name:var(--font-heading)] text-lg text-navy">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 font-[family-name:var(--font-body)] text-sm leading-relaxed text-slate-blue">
-                    {item.description}
-                  </p>
+            <div className="grid gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-5">
+                <span className="mb-2 block text-sm font-semibold text-gold" style={{ fontFamily: "var(--font-body)" }}>Misión institucional</span>
+                <h2 className="mb-6 text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Sobre esta oposición</h2>
+                <div className="space-y-6 text-lg leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
+                  <p>{exam.description[0]}</p>
+                  <p>{exam.description[1]}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* -------------------------------------------------------- */}
-        {/*  5. EXAM FORMAT                                           */}
-        {/* -------------------------------------------------------- */}
-        <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              Formato
-            </p>
-            <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-              Formato del examen de idiomas
-            </h2>
-
-            <div className="mt-14 grid gap-12 lg:grid-cols-5">
-              {/* Left — numbered list (3 cols) */}
-              <div className="space-y-4 lg:col-span-3">
-                {exam.examFormat.map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-4 rounded-lg border border-light-gray bg-white p-5"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy font-[family-name:var(--font-body)] text-sm font-bold text-gold">
-                      {i + 1}
+              </div>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-7">
+                {exam.whyPrepare.slice(0, 4).map((item, i) => (
+                  <div key={i} className="rounded-xl bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+                    <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold" style={{ fontFamily: "var(--font-heading)" }}>
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="font-[family-name:var(--font-body)] text-base leading-relaxed text-slate-blue">
-                      {item}
-                    </span>
+                    <h3 className="mb-2 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item.description}</p>
                   </div>
                 ))}
               </div>
-
-              {/* Right — highlighted box (2 cols) */}
-              <div className="rounded-lg border-2 border-gold/30 bg-gold/5 p-6 lg:col-span-2 lg:p-8 self-start">
-                <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                  Nuestra preparaci&oacute;n
-                </p>
-                <h3 className="mt-3 font-[family-name:var(--font-heading)] text-lg text-navy">
-                  C&oacute;mo te preparamos para este formato
-                </h3>
-                <p className="mt-4 font-[family-name:var(--font-body)] text-sm leading-relaxed text-slate-blue">
-                  {exam.description[2]}
-                </p>
-                <Link
-                  href="/contacto"
-                  className="mt-6 inline-block bg-navy px-6 py-3 rounded-sm font-[family-name:var(--font-body)] text-sm font-semibold uppercase tracking-wider text-warm-white transition-colors hover:bg-slate-blue"
-                >
-                  Solicitar informaci&oacute;n
-                </Link>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* -------------------------------------------------------- */}
-        {/*  6. HOW WE PREPARE YOU                                    */}
-        {/* -------------------------------------------------------- */}
-        <section className="bg-light-gray py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="text-center">
-              <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Metodolog&iacute;a
-              </p>
-              <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-                C&oacute;mo te preparamos
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-body)] text-base leading-relaxed text-slate-blue">
-                Cada elemento de nuestro programa est&aacute; dise&ntilde;ado para replicar y superar las exigencias de la prueba de idiomas de esta oposici&oacute;n.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {exam.preparationFeatures.map((feature, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg border border-light-gray bg-white p-6 lg:p-8"
-                >
-                  <div className="mb-4 h-1 w-12 rounded-full bg-gold" />
-                  <h3 className="font-[family-name:var(--font-heading)] text-lg text-navy">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-3 font-[family-name:var(--font-body)] text-sm leading-relaxed text-slate-blue">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* -------------------------------------------------------- */}
-        {/*  7. LANGUAGES AVAILABLE                                   */}
-        {/* -------------------------------------------------------- */}
+        {/* 3. EXAM FORMAT — bento grid */}
         <section className="bg-warm-white py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              Idiomas
-            </p>
-            <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-              Idiomas disponibles para esta oposici&oacute;n
-            </h2>
-
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {exam.languages.map((lang) => (
-                <Link
-                  key={lang}
-                  href={`/idiomas/${languageSlugMap[lang] || lang.toLowerCase()}`}
-                  className="group flex flex-col rounded-lg border border-light-gray bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-md"
-                >
-                  <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold text-navy">
-                    {lang}
-                  </h3>
-                  <p className="mt-1 font-[family-name:var(--font-body)] text-sm text-slate-blue">
-                    Preparaci&oacute;n espec&iacute;fica
+            <div className="mb-12 flex items-end justify-between">
+              <div>
+                <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Estructura del examen</span>
+                <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Formato de la prueba de idiomas</h2>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* Main card */}
+              <div className="rounded-xl bg-light-gray p-10 md:col-span-1">
+                <h3 className="mb-4 text-2xl font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Pruebas del examen</h3>
+                <div className="space-y-4">
+                  {exam.examFormat.map((item, i) => (
+                    <div key={i} className="flex items-start gap-4 rounded-xl bg-white p-5 border-l-4 border-navy">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold">
+                        {i + 1}
+                      </span>
+                      <span className="text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Side cards */}
+              <div className="flex flex-col gap-6">
+                <div className="rounded-xl bg-navy p-10 text-white">
+                  <h3 className="mb-4 text-2xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>Nuestra preparación</h3>
+                  <p className="mb-6 leading-relaxed text-white/70" style={{ fontFamily: "var(--font-body)" }}>
+                    {exam.description[2]}
                   </p>
-                  <span className="mt-4 font-[family-name:var(--font-body)] text-sm font-semibold text-gold transition-colors group-hover:text-gold-hover">
-                    Ver programa &rarr;
-                  </span>
-                </Link>
+                  <div className="flex flex-wrap gap-2">
+                    {exam.languages.map((lang) => (
+                      <span key={lang} className="rounded-lg bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-widest">{lang}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="rounded-xl border border-light-gray bg-white p-8">
+                  <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Requisitos lingüísticos</h3>
+                  <ul className="space-y-3">
+                    {exam.requirements.map((req, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm font-medium text-slate-blue">
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                        {req}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. PREPARATION FEATURES */}
+        <section className="bg-light-gray py-20 lg:py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mb-16 text-center">
+              <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Metodología</span>
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Cómo te preparamos</h2>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {exam.preparationFeatures.map((feature, i) => (
+                <div key={i} className="rounded-xl border-t-2 border-gold/30 bg-white p-8 transition-all hover:border-gold/60 hover:shadow-md">
+                  <div className="mb-4 h-1 w-12 rounded-full bg-gold" />
+                  <h3 className="mb-3 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{feature.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{feature.description}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* -------------------------------------------------------- */}
-        {/*  8. COMPARISON SECTION                                    */}
-        {/* -------------------------------------------------------- */}
-        <section className="bg-light-gray py-20 lg:py-28">
+        {/* 5. COMPARISON TABLE */}
+        <section className="bg-warm-white py-20 lg:py-28">
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
-            <div className="text-center">
-              <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Comparativa
-              </p>
-              <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-                La diferencia
-              </h2>
+            <div className="mb-12 text-center">
+              <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Comparativa</span>
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>La diferencia</h2>
             </div>
-
-            <div className="mt-14 overflow-hidden rounded-lg border border-light-gray bg-white">
-              {/* Header row */}
+            <div className="overflow-hidden rounded-xl border border-light-gray bg-white">
               <div className="grid grid-cols-3 border-b border-light-gray bg-light-gray/50">
                 <div className="p-4 lg:p-5">
-                  <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-wider text-slate-blue/60">
-                    Aspecto
-                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-blue/60">Aspecto</p>
                 </div>
                 <div className="border-l border-light-gray p-4 lg:p-5">
-                  <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-wider text-slate-blue/60">
-                    Academia generalista
-                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-blue/60">Academia generalista</p>
                 </div>
                 <div className="border-l border-light-gray bg-navy/5 p-4 lg:p-5">
-                  <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-wider text-navy">
-                    Instituto Diplom&aacute;tico de Idiomas
-                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-navy">Instituto Diplomático</p>
                 </div>
               </div>
-
-              {/* Data rows */}
               {exam.comparison.map((row, i) => (
-                <div
-                  key={i}
-                  className={`grid grid-cols-3 ${i < exam.comparison.length - 1 ? "border-b border-light-gray" : ""}`}
-                >
+                <div key={i} className={`grid grid-cols-3 ${i < exam.comparison.length - 1 ? "border-b border-light-gray" : ""}`}>
                   <div className="p-4 lg:p-5">
-                    <p className="font-[family-name:var(--font-body)] text-sm font-semibold text-navy">
-                      {row.aspect}
-                    </p>
+                    <p className="text-sm font-semibold text-navy">{row.aspect}</p>
                   </div>
                   <div className="flex items-start gap-2 border-l border-light-gray p-4 lg:p-5">
                     <span className="mt-0.5 shrink-0 text-red-400">&#10007;</span>
-                    <p className="font-[family-name:var(--font-body)] text-sm text-slate-blue/70">
-                      {row.generic}
-                    </p>
+                    <p className="text-sm text-slate-blue/70">{row.generic}</p>
                   </div>
                   <div className="flex items-start gap-2 border-l border-light-gray bg-navy/5 p-4 lg:p-5">
                     <span className="mt-0.5 shrink-0 text-gold">&#10003;</span>
-                    <p className="font-[family-name:var(--font-body)] text-sm font-medium text-navy">
-                      {row.ours}
-                    </p>
+                    <p className="text-sm font-medium text-navy">{row.ours}</p>
                   </div>
                 </div>
               ))}
@@ -1516,95 +1292,105 @@ export default async function ExamPage({
           </div>
         </section>
 
-        {/* -------------------------------------------------------- */}
-        {/*  9. TESTIMONIAL BANNER                                    */}
-        {/* -------------------------------------------------------- */}
+        {/* 6. TESTIMONIAL */}
         <section className="bg-navy py-20 lg:py-28">
           <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-            <svg
-              className="mx-auto h-10 w-10 text-gold/40"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
+            <svg className="mx-auto h-10 w-10 text-gold/40" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M11.3 2.8C6.1 5.1 3 9.2 3 14c0 3.3 2.4 6 5.4 6 2.6 0 4.6-2 4.6-4.4 0-2.5-1.8-4.2-4.1-4.2-.5 0-1 .1-1.2.2.6-3.2 3.2-6.4 6.2-8l-2.6-0.8zm10.3 0C16.4 5.1 13.3 9.2 13.3 14c0 3.3 2.4 6 5.4 6 2.6 0 4.6-2 4.6-4.4 0-2.5-1.8-4.2-4.1-4.2-.5 0-1 .1-1.2.2.6-3.2 3.2-6.4 6.2-8l-2.6-0.8z" />
             </svg>
             <blockquote className="mt-8">
-              <p className="font-[family-name:var(--font-heading)] text-xl leading-relaxed text-white italic lg:text-2xl">
+              <p className="text-xl italic leading-relaxed text-white lg:text-2xl" style={{ fontFamily: "var(--font-heading)" }}>
                 &ldquo;{exam.testimonial.quote}&rdquo;
               </p>
             </blockquote>
             <div className="mt-8">
-              <p className="font-[family-name:var(--font-body)] text-base font-semibold text-gold">
-                {exam.testimonial.name}
-              </p>
-              <p className="mt-1 font-[family-name:var(--font-body)] text-sm text-white/60">
-                {exam.testimonial.detail}
-              </p>
+              <p className="text-base font-semibold text-gold">{exam.testimonial.name}</p>
+              <p className="mt-1 text-sm text-white/60">{exam.testimonial.detail}</p>
             </div>
           </div>
         </section>
 
-        {/* -------------------------------------------------------- */}
-        {/*  10. FAQ SECTION                                          */}
-        {/* -------------------------------------------------------- */}
+        {/* 7. LANGUAGES AVAILABLE */}
         <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-3xl px-6 lg:px-8">
-            <div className="text-center">
-              <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                FAQ
-              </p>
-              <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-                Preguntas frecuentes
-              </h2>
-            </div>
-
-            <div className="mt-12">
-              <ExamFAQ items={exam.faq} />
-            </div>
-          </div>
-        </section>
-
-        {/* -------------------------------------------------------- */}
-        {/*  11. RELATED EXAMS                                        */}
-        {/* -------------------------------------------------------- */}
-        <section className="bg-light-gray py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="text-center">
-              <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Otras oposiciones
-              </p>
-              <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl leading-snug text-navy lg:text-3xl">
-                Otras oposiciones que preparamos
-              </h2>
-            </div>
-
-            <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {exam.relatedExams.map((related) => (
+            <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Idiomas</span>
+            <h2 className="mb-10 text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>
+              Idiomas disponibles para esta oposición
+            </h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {exam.languages.map((lang) => (
                 <Link
-                  key={related.slug}
-                  href={`/oposiciones/${related.slug}`}
-                  className="group rounded-lg border border-light-gray bg-white p-6 lg:p-8 transition-all hover:-translate-y-1 hover:shadow-md"
+                  key={lang}
+                  href={`/idiomas/${languageSlugMap[lang] || lang.toLowerCase()}`}
+                  className="group flex flex-col rounded-xl border border-light-gray bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-md"
                 >
-                  <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                    {examData[related.slug]?.category ?? "Oposición"}
-                  </p>
-                  <h3 className="mt-3 font-[family-name:var(--font-heading)] text-lg text-navy">
-                    {related.title}
-                  </h3>
-                  <span className="mt-4 inline-block font-[family-name:var(--font-body)] text-sm font-semibold text-gold transition-colors group-hover:text-gold-hover">
-                    Ver programa &rarr;
-                  </span>
+                  <h3 className="text-xl font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{lang}</h3>
+                  <p className="mt-1 text-sm text-slate-blue">Preparación específica</p>
+                  <span className="mt-4 text-sm font-semibold text-gold transition-colors group-hover:text-gold-hover">Ver programa &rarr;</span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* -------------------------------------------------------- */}
-        {/*  12. FINAL CTA                                            */}
-        {/* -------------------------------------------------------- */}
-        <FinalCTA />
+        {/* 8. FAQ */}
+        <section className="bg-light-gray py-20 lg:py-28">
+          <div className="mx-auto max-w-3xl px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>FAQ</span>
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Preguntas frecuentes</h2>
+            </div>
+            <ExamFAQ items={exam.faq} />
+          </div>
+        </section>
+
+        {/* 9. RELATED EXAMS */}
+        <section className="bg-warm-white py-20 lg:py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Otras oposiciones que preparamos</h2>
+            </div>
+            <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {exam.relatedExams.map((related) => (
+                <Link
+                  key={related.slug}
+                  href={`/oposiciones/${related.slug}`}
+                  className="group rounded-xl border border-light-gray bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-md"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gold">{examData[related.slug]?.category ?? "Oposición"}</p>
+                  <h3 className="mt-3 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{related.title}</h3>
+                  <span className="mt-4 inline-block text-sm font-semibold text-gold transition-colors group-hover:text-gold-hover">Ver programa &rarr;</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 10. CTA */}
+        <section className="bg-navy py-20 lg:py-28">
+          <div className="relative mx-auto max-w-3xl px-6 text-center lg:px-8">
+            <h2 className="mb-6 text-3xl font-bold text-white lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>
+              ¿Preparado para dar el paso?
+            </h2>
+            <p className="mb-10 text-lg text-white/70" style={{ fontFamily: "var(--font-body)" }}>
+              Solicita una sesión de diagnóstico con nuestros especialistas y traza tu camino hacia la plaza.
+            </p>
+            <div className="flex justify-center gap-6">
+              <Link
+                href="/contacto"
+                className="rounded-xl bg-lime-pale px-10 py-4 text-lg font-bold text-forest transition-transform hover:scale-105"
+              >
+                Reservar diagnóstico
+              </Link>
+              <Link
+                href="/metodologia"
+                className="rounded-xl border border-white/20 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-md transition-colors hover:bg-white/20"
+              >
+                Ver metodología
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
