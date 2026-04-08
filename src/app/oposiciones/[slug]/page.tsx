@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ExamFAQ } from "@/components/sections/ExamFAQ";
+import PreparationTabs from "@/components/sections/PreparationTabs";
 
 /* ------------------------------------------------------------------ */
 /*  Data types                                                         */
@@ -22,7 +23,13 @@ interface ExamData {
   requirements: string[];
   stats: { value: string; label: string }[];
   whyPrepare: { title: string; description: string }[];
-  preparationFeatures: { title: string; description: string }[];
+  preparationFeatures: {
+    title: string;
+    description: string;
+    stat: string;
+    statLabel: string;
+    capabilities: { text: string; detail: string }[];
+  }[];
   faq: { question: string; answer: string }[];
   relatedExams: { title: string; slug: string }[];
   testimonial: { quote: string; name: string; detail: string };
@@ -113,34 +120,64 @@ const examData: Record<string, ExamData> = {
     ],
     preparationFeatures: [
       {
-        title: "Traducción directa cronometrada",
-        description:
-          "Sesiones semanales de traducción de textos diplomáticos y de prensa internacional bajo condiciones de tiempo reales del examen.",
+        title: "Traducción directa e inversa",
+        stat: "2x",
+        statLabel: "sesiones de traducción por semana",
+        description: "Práctica intensiva de traducción en ambas direcciones con textos diplomáticos, prensa internacional y documentos del BOE bajo condiciones cronometradas reales del examen.",
+        capabilities: [
+          { text: "Textos de prensa internacional y comunicados oficiales", detail: "Trabajamos con fuentes reales: Le Monde Diplomatique, The Economist, resoluciones de la ONU y comunicados del MAEC." },
+          { text: "Traducción cronometrada en condiciones de examen", detail: "Cada sesión replica los tiempos exactos de la prueba para desarrollar velocidad y precisión bajo presión." },
+          { text: "Corrección detallada de cada traducción", detail: "Retroalimentación sobre léxico, registro, estilo diplomático y errores de transferencia lingüística." },
+          { text: "Textos del BOE y tratados bilaterales", detail: "Práctica con el tipo exacto de textos jurídico-diplomáticos que aparecen en el examen." },
+        ],
       },
       {
-        title: "Traducción inversa de alto nivel",
-        description:
-          "Práctica intensiva de traducción español-inglés y español-francés con textos del BOE, comunicados oficiales y artículos de fondo.",
+        title: "Preparación oral ante tribunal",
+        stat: "15-20",
+        statLabel: "minutos por idioma ante tribunal simulado",
+        description: "Entrevistas simuladas sobre política exterior, derecho internacional y relaciones bilaterales con profesionales del sector diplomático que conocen los criterios del tribunal.",
+        capabilities: [
+          { text: "Simulacros con exdiplomáticos", detail: "Nuestros formadores de oral incluyen profesionales en activo y retirados del servicio exterior español." },
+          { text: "Temas de actualidad internacional", detail: "Preparación sobre conflictos geopolíticos, cumbres diplomáticas, debates del Consejo de Seguridad y tratados recientes." },
+          { text: "Evaluación de fluidez y registro", detail: "Se valora no solo la corrección gramatical sino el registro diplomático, la riqueza léxica y la capacidad argumentativa." },
+          { text: "Grabación y análisis de cada sesión", detail: "Cada simulacro se graba para que puedas revisar tu desempeño y medir tu progreso objetivo." },
+        ],
       },
       {
-        title: "Taller de resumen analítico",
-        description:
-          "Técnicas de síntesis y redacción de resúmenes estructurados en lengua extranjera, siguiendo los criterios evaluadores del tribunal.",
+        title: "Resumen analítico",
+        stat: "100%",
+        statLabel: "formato oficial del tribunal",
+        description: "Técnicas de síntesis y redacción de resúmenes estructurados en lengua extranjera, siguiendo los criterios exactos de evaluación del tribunal.",
+        capabilities: [
+          { text: "Técnicas de identificación de ideas clave", detail: "Métodos para extraer la estructura argumentativa de textos complejos en tiempo limitado." },
+          { text: "Redacción en registro formal", detail: "Entrenamiento en el tono, estructura y convenciones del resumen académico-diplomático." },
+          { text: "Criterios de evaluación del tribunal", detail: "Conocemos y enseñamos los baremos exactos que aplica el tribunal: coherencia, concisión, fidelidad al original." },
+          { text: "Práctica con textos de convocatorias anteriores", detail: "Trabajamos con los textos reales que se han propuesto en años anteriores." },
+        ],
       },
       {
-        title: "Preparación oral con exdiplomáticos",
-        description:
-          "Entrevistas simuladas sobre política exterior, derecho internacional y relaciones bilaterales con profesionales del sector.",
-      },
-      {
-        title: "Vocabulario diplomático especializado",
-        description:
-          "Glosarios temáticos de organizaciones internacionales, derecho de los tratados, protocolo y correspondencia diplomática.",
+        title: "Vocabulario diplomático",
+        stat: "+2,000",
+        statLabel: "términos especializados por idioma",
+        description: "Glosarios temáticos de organizaciones internacionales, derecho de los tratados, protocolo y correspondencia diplomática en inglés y francés.",
+        capabilities: [
+          { text: "Glosario de derecho internacional", detail: "Terminología de tratados, convenciones, protocolos y mecanismos de resolución de controversias." },
+          { text: "Vocabulario de organizaciones internacionales", detail: "Léxico específico de ONU, OTAN, OSCE, UE y organismos especializados." },
+          { text: "Registro y protocolo diplomático", detail: "Fórmulas de cortesía, tratamientos, correspondencia oficial y lenguaje de negociación." },
+          { text: "Actualización con cada convocatoria", detail: "Incorporamos terminología nueva según la agenda internacional del momento." },
+        ],
       },
       {
         title: "Seguimiento individualizado",
-        description:
-          "Plan de trabajo personalizado con evaluación continua, informes de progreso y ajuste de objetivos según la convocatoria.",
+        stat: "Semanal",
+        statLabel: "evaluación y ajuste de tu plan",
+        description: "Plan de trabajo personalizado con evaluación continua, informes de progreso y ajuste de objetivos alineados con tu fecha de examen.",
+        capabilities: [
+          { text: "Informes de progreso por destrezas", detail: "Cada semana recibes un informe con tu evolución en traducción, oral, comprensión y vocabulario." },
+          { text: "Plan adaptado a tu calendario", detail: "Si trabajas, estudias otra oposición o tienes compromisos, el plan se ajusta sin perder efectividad." },
+          { text: "Objetivos medibles por fase", detail: "Hitos claros (nivel B2 consolidado, primera simulación completa, etc.) para que veas tu avance real." },
+          { text: "Acceso a banco de ejercicios", detail: "Material de práctica autónoma entre sesiones para mantener el ritmo." },
+        ],
       },
     ],
     faq: [
@@ -287,33 +324,51 @@ const examData: Record<string, ExamData> = {
     preparationFeatures: [
       {
         title: "Traducción económica especializada",
-        description:
-          "Sesiones de traducción directa e inversa con textos de comercio exterior, macroeconomía y política monetaria del BCE.",
+        stat: "2x",
+        statLabel: "sesiones semanales de traducción",
+        description: "Traducción directa e inversa con textos de comercio exterior, macroeconomía y política monetaria del BCE.",
+        capabilities: [
+          { text: "Textos de instituciones económicas internacionales", detail: "Informes del BCE, FMI, OMC y Comisión Europea en formato original." },
+          { text: "Traducción cronometrada con baremos reales", detail: "Cada ejercicio replica los tiempos y criterios de corrección del tribunal." },
+          { text: "Corrección de precisión terminológica", detail: "Retroalimentación centrada en léxico económico-financiero y registro institucional." },
+          { text: "Textos de convocatorias anteriores", detail: "Práctica con los textos que realmente han aparecido en exámenes previos." },
+        ],
       },
       {
-        title: "Comprensión analítica de textos",
-        description:
-          "Práctica de lectura crítica y resumen de informes institucionales, estadísticas de comercio y análisis de coyuntura económica.",
+        title: "Oratoria comercial",
+        stat: "20 min",
+        statLabel: "por simulacro de exposición oral",
+        description: "Presentaciones orales sobre temas comerciales: defensa de posiciones arancelarias, análisis de mercados y propuestas de internacionalización.",
+        capabilities: [
+          { text: "Simulacros de exposición ante panel", detail: "Reproducciones del formato oral con evaluadores que conocen los criterios del tribunal." },
+          { text: "Temas de comercio internacional actual", detail: "Preparación sobre guerra comercial, acuerdos de libre comercio, sanciones y política arancelaria." },
+          { text: "Técnicas de argumentación económica", detail: "Cómo estructurar un argumento comercial con datos, contexto y propuesta en idioma extranjero." },
+          { text: "Grabación y análisis de desempeño", detail: "Revisión de cada simulacro para identificar puntos de mejora concretos." },
+        ],
       },
       {
-        title: "Oratoria comercial en inglés",
-        description:
-          "Entrenamiento de presentaciones orales sobre temas comerciales: defensa de posiciones arancelarias, análisis de mercados y propuestas de internacionalización.",
+        title: "Vocabulario de negociación",
+        stat: "+1,500",
+        statLabel: "términos comerciales especializados",
+        description: "Léxico de negociaciones comerciales: Incoterms, cláusulas contractuales, mecanismos de resolución de controversias y tratados de libre comercio.",
+        capabilities: [
+          { text: "Glosario de comercio internacional", detail: "Incoterms, aranceles, dumping, contingentes, licencias de exportación." },
+          { text: "Terminología de negociación multilateral", detail: "Rondas de la OMC, acuerdos preferenciales, cláusulas de salvaguardia." },
+          { text: "Registro formal económico", detail: "Fórmulas y convenciones del lenguaje económico-institucional en inglés, francés y alemán." },
+          { text: "Actualización según agenda comercial", detail: "Incorporamos términos nuevos según las negociaciones y acuerdos del momento." },
+        ],
       },
       {
-        title: "Vocabulario de negociación internacional",
-        description:
-          "Dominio del léxico de negociaciones comerciales: cláusulas contractuales, Incoterms, mecanismos de resolución de controversias y tratados de libre comercio.",
-      },
-      {
-        title: "Simulacros cronometrados",
-        description:
-          "Pruebas completas bajo condiciones reales de tiempo y formato, con evaluación detallada y plan de mejora después de cada simulacro.",
-      },
-      {
-        title: "Módulo de francés o alemán comercial",
-        description:
-          "Preparación del segundo idioma con enfoque en terminología comercial y económica específica para la oposición.",
+        title: "Simulacros y seguimiento",
+        stat: "Quincenal",
+        statLabel: "simulacros completos de examen",
+        description: "Pruebas completas bajo condiciones reales y seguimiento individualizado con informes de progreso por destrezas.",
+        capabilities: [
+          { text: "Pruebas completas cronometradas", detail: "Traducción + comprensión + oral en una sola sesión, replicando el formato del examen." },
+          { text: "Informe detallado por destrezas", detail: "Puntuación estimada, análisis de errores y plan de mejora tras cada simulacro." },
+          { text: "Seguimiento semanal personalizado", detail: "Ajuste del plan según evolución, con hitos medibles hacia tu fecha de examen." },
+          { text: "Módulo de segundo idioma", detail: "Preparación de francés o alemán comercial como segundo idioma obligatorio." },
+        ],
       },
     ],
     faq: [
@@ -449,34 +504,40 @@ const examData: Record<string, ExamData> = {
     ],
     preparationFeatures: [
       {
-        title: "Traducción de textos ICEX",
-        description:
-          "Práctica intensiva con informes de mercado, estudios sectoriales y documentación de internacionalización empresarial.",
+        title: "Traducción comercial ICEX",
+        stat: "2x",
+        statLabel: "sesiones semanales de traducción",
+        description: "Práctica intensiva con informes de mercado, estudios sectoriales y documentación de internacionalización empresarial del ICEX.",
+        capabilities: [
+          { text: "Informes de mercado y estudios sectoriales", detail: "Textos reales de las Oficinas Comerciales sobre análisis de mercados exteriores." },
+          { text: "Traducción cronometrada bidireccional", detail: "Directa e inversa con los tiempos exactos del examen." },
+          { text: "Corrección de registro y terminología", detail: "Retroalimentación sobre léxico comercial, gramática y adecuación al contexto institucional." },
+          { text: "Correspondencia comercial oficial", detail: "Dominio del formato de las comunicaciones de las Oficinas Comerciales en el exterior." },
+        ],
       },
       {
-        title: "Correspondencia comercial institucional",
-        description:
-          "Dominio del formato y registro de la correspondencia oficial de las Oficinas Comerciales en el exterior.",
+        title: "Preparación oral comercial",
+        stat: "15 min",
+        statLabel: "por simulacro oral",
+        description: "Conversación guiada sobre comercio exterior, estrategia de mercado y relaciones económicas bilaterales ante panel evaluador.",
+        capabilities: [
+          { text: "Temas de comercio exterior actual", detail: "Exportación, ferias internacionales, licitaciones públicas y estrategia de internacionalización." },
+          { text: "Defensa de posiciones ante panel", detail: "Simulacros que replican el formato oral con evaluadores especializados." },
+          { text: "Vocabulario de internacionalización", detail: "Glosarios de exportación, implantación en mercados y cooperación económica bilateral." },
+          { text: "Grabación y análisis", detail: "Revisión detallada de cada simulacro oral para medir progreso." },
+        ],
       },
       {
-        title: "Vocabulario de internacionalización",
-        description:
-          "Glosarios específicos de exportación, implantación en mercados exteriores, ferias internacionales y licitaciones públicas.",
-      },
-      {
-        title: "Entrenamiento oral temático",
-        description:
-          "Sesiones de conversación guiada sobre comercio exterior, estrategia de mercado y relaciones económicas bilaterales.",
-      },
-      {
-        title: "Corrección analítica de traducciones",
-        description:
-          "Cada traducción recibe retroalimentación detallada sobre léxico, gramática, registro y adecuación terminológica.",
-      },
-      {
-        title: "Pruebas de progreso mensual",
-        description:
-          "Evaluaciones periódicas que simulan las condiciones del examen y miden tu avance en todas las destrezas.",
+        title: "Simulacros y seguimiento",
+        stat: "Mensual",
+        statLabel: "evaluaciones completas de progreso",
+        description: "Evaluaciones periódicas en condiciones de examen con informe detallado y ajuste continuo del plan de preparación.",
+        capabilities: [
+          { text: "Pruebas completas cronometradas", detail: "Simulacros que replican traducción + comprensión + oral en una sesión." },
+          { text: "Informes de progreso por destrezas", detail: "Análisis desglosado de tu evolución en cada área evaluada." },
+          { text: "Plan adaptado a tu calendario", detail: "Ajuste semanal según tu disponibilidad y proximidad del examen." },
+          { text: "Material de práctica autónoma", detail: "Ejercicios complementarios para mantener el ritmo entre sesiones." },
+        ],
       },
     ],
     faq: [
@@ -616,34 +677,40 @@ const examData: Record<string, ExamData> = {
     ],
     preparationFeatures: [
       {
-        title: "Traducción de reglamentos CE",
-        description:
-          "Práctica sistemática de traducción de reglamentos europeos de seguridad alimentaria, fitosanitarios y de calidad industrial.",
-      },
-      {
-        title: "Vocabulario de inspección y aduanas",
-        description:
-          "Dominio del léxico de certificados de conformidad, controles de calidad, etiquetado, trazabilidad y documentación aduanera.",
-      },
-      {
-        title: "Comprensión de normas ISO",
-        description:
-          "Lectura y análisis de normas internacionales de gestión de calidad (ISO 9001), seguridad alimentaria (ISO 22000) y medio ambiente (ISO 14001).",
+        title: "Traducción de reglamentos europeos",
+        stat: "2x",
+        statLabel: "sesiones semanales de traducción normativa",
+        description: "Traducción de reglamentos CE de seguridad alimentaria, fitosanitarios y calidad industrial. Directa e inversa con informes de inspección y certificados.",
+        capabilities: [
+          { text: "Reglamentos europeos en formato original", detail: "Textos de seguridad alimentaria, fitosanitarios y de calidad industrial de la CE." },
+          { text: "Actas de inspección y no conformidad", detail: "Traducción inversa de documentación técnica de inspección." },
+          { text: "Certificados de exportación", detail: "Práctica con la documentación real que manejan los inspectores del SOIVRE." },
+          { text: "Corrección de precisión terminológica", detail: "Retroalimentación centrada en léxico técnico de inspección y comercio exterior." },
+        ],
       },
       {
         title: "Exposición técnica oral",
-        description:
-          "Entrenamiento para la prueba oral: presentación de informes de inspección, explicación de procedimientos y argumentación sobre incumplimientos.",
+        stat: "15 min",
+        statLabel: "por simulacro de exposición oral",
+        description: "Presentación de informes de inspección, explicación de procedimientos y argumentación sobre incumplimientos ante panel evaluador.",
+        capabilities: [
+          { text: "Simulacros de presentación técnica", detail: "Reproducción del formato oral con temas de inspección y control de calidad." },
+          { text: "Argumentación sobre incumplimientos", detail: "Cómo defender conclusiones de inspección con evidencia técnica en idioma extranjero." },
+          { text: "Vocabulario de inspección y aduanas", detail: "Certificados de conformidad, controles de calidad, etiquetado, trazabilidad." },
+          { text: "Normas ISO en idioma original", detail: "Comprensión de ISO 9001, ISO 22000 e ISO 14001 en inglés y francés." },
+        ],
       },
       {
-        title: "Traducción inversa de informes",
-        description:
-          "Práctica de traducción español-inglés de actas de inspección, informes de no conformidad y certificados de exportación.",
-      },
-      {
-        title: "Lectura comprensiva de legislación",
-        description:
-          "Técnicas de comprensión rápida de textos legislativos extensos en inglés y francés, identificando las disposiciones clave.",
+        title: "Legislación y seguimiento",
+        stat: "Semanal",
+        statLabel: "evaluación y ajuste del plan",
+        description: "Comprensión rápida de textos legislativos extensos en inglés y francés, más seguimiento individualizado con informes de progreso.",
+        capabilities: [
+          { text: "Lectura comprensiva cronometrada", detail: "Técnicas de identificación rápida de disposiciones clave en textos normativos extensos." },
+          { text: "Simulacros completos de examen", detail: "Pruebas integrales que replican traducción + comprensión + oral en condiciones reales." },
+          { text: "Informes de progreso por destrezas", detail: "Análisis desglosado de tu evolución tras cada evaluación." },
+          { text: "Plan adaptado a tu convocatoria", detail: "Ajuste continuo según calendario de examen y disponibilidad." },
+        ],
       },
     ],
     faq: [
@@ -784,34 +851,40 @@ const examData: Record<string, ExamData> = {
     ],
     preparationFeatures: [
       {
-        title: "Traducción de normas ISO bilingües",
-        description:
-          "Práctica con las versiones oficiales bilingües de normas ISO para desarrollar precisión en la traducción de textos normativos.",
+        title: "Traducción técnica y normativa",
+        stat: "2x",
+        statLabel: "sesiones semanales de traducción técnica",
+        description: "Normas ISO bilingües, informes de laboratorio, fichas técnicas y hojas de seguridad en inglés y francés.",
+        capabilities: [
+          { text: "Normas ISO en versión bilingüe", detail: "Práctica con versiones oficiales para desarrollar precisión en traducción normativa." },
+          { text: "Informes de laboratorio y ensayos", detail: "Certificados de análisis, protocolos de prueba y resultados de laboratorios internacionales." },
+          { text: "Fichas técnicas y hojas SDS", detail: "Lectura, comprensión y traducción de especificaciones de materiales y producto." },
+          { text: "Corrección de precisión técnica", detail: "Retroalimentación centrada en terminología de certificación, marcado CE y auditorías." },
+        ],
       },
       {
-        title: "Informes de laboratorio en inglés",
-        description:
-          "Comprensión y traducción de resultados de ensayos, certificados de análisis y protocolos de prueba de laboratorios internacionales.",
+        title: "Comunicación técnica oral y escrita",
+        stat: "15 min",
+        statLabel: "por simulacro de exposición oral",
+        description: "Redacción de comunicaciones con organismos de normalización y exposición oral técnica ante panel evaluador.",
+        capabilities: [
+          { text: "Correspondencia con ISO, CEN, AENOR", detail: "Práctica de redacción de comunicaciones técnicas formales con organismos internacionales." },
+          { text: "Vocabulario de certificación de producto", detail: "Acreditación, marcado CE, declaraciones de conformidad, auditorías de calidad." },
+          { text: "Simulacros de exposición oral técnica", detail: "Presentación de informes técnicos y argumentación sobre resultados de ensayo." },
+          { text: "Grabación y análisis de desempeño", detail: "Revisión de cada simulacro para identificar áreas de mejora." },
+        ],
       },
       {
-        title: "Vocabulario de certificación",
-        description:
-          "Dominio del léxico de acreditación, certificación de producto, marcado CE, declaraciones de conformidad y auditorías de calidad.",
-      },
-      {
-        title: "Especificaciones técnicas de producto",
-        description:
-          "Lectura, comprensión y traducción de fichas técnicas, hojas de seguridad (SDS) y especificaciones de materiales.",
-      },
-      {
-        title: "Correspondencia con organismos internacionales",
-        description:
-          "Práctica de redacción de comunicaciones técnicas con organismos de normalización (ISO, CEN, AENOR) y laboratorios acreditados.",
-      },
-      {
-        title: "Simulacros de examen completo",
-        description:
-          "Pruebas integrales que replican las condiciones del examen: traducción cronometrada, comprensión lectora y exposición oral técnica.",
+        title: "Simulacros y seguimiento",
+        stat: "Quincenal",
+        statLabel: "simulacros completos de examen",
+        description: "Pruebas integrales en condiciones reales: traducción cronometrada, comprensión lectora y exposición oral técnica.",
+        capabilities: [
+          { text: "Pruebas completas cronometradas", detail: "Traducción + comprensión + oral en una sesión, replicando el formato del examen." },
+          { text: "Informe detallado por destrezas", detail: "Puntuación estimada y análisis de errores tras cada simulacro." },
+          { text: "Plan adaptado a tu calendario", detail: "Ajuste semanal según disponibilidad y proximidad del examen." },
+          { text: "Material de práctica autónoma", detail: "Ejercicios complementarios para reforzar entre sesiones." },
+        ],
       },
     ],
     faq: [
@@ -958,34 +1031,40 @@ const examData: Record<string, ExamData> = {
     ],
     preparationFeatures: [
       {
-        title: "Traducción de textos artísticos e históricos",
-        description:
-          "Práctica con catálogos de exposiciones, artículos de revistas de historia del arte, descripciones museográficas y textos de crítica artística.",
+        title: "Traducción artística y archivística",
+        stat: "2x",
+        statLabel: "sesiones semanales de traducción cultural",
+        description: "Catálogos de exposiciones, descripciones museográficas, documentación archivística normalizada y textos de crítica artística en inglés, francés e italiano.",
+        capabilities: [
+          { text: "Catálogos y textos museográficos", detail: "Traducción de catálogos de exposiciones, artículos de historia del arte y crítica artística." },
+          { text: "Documentación archivística normalizada", detail: "Cuadros de clasificación, descripciones ISAD(G) y guías de archivo en idioma original." },
+          { text: "Textos del ICOM y la IFLA", detail: "Documentos oficiales del Consejo Internacional de Museos y la Federación de Bibliotecarios." },
+          { text: "Corrección de registro cultural", detail: "Retroalimentación sobre léxico patrimonial, registro académico y precisión terminológica." },
+        ],
       },
       {
-        title: "Comprensión de documentación archivística",
-        description:
-          "Lectura y análisis de cuadros de clasificación, descripciones archivísticas normalizadas y guías de archivo en idioma original.",
+        title: "Vocabulario de biblioteconomía y museos",
+        stat: "+1,200",
+        statLabel: "términos patrimoniales especializados",
+        description: "Terminología de catalogación (MARC, RDA), gestión de colecciones, préstamo interbibliotecario, museografía y conservación.",
+        capabilities: [
+          { text: "Catalogación y gestión de colecciones", detail: "MARC, RDA, préstamo interbibliotecario, servicios de referencia en inglés y francés." },
+          { text: "Conservación y restauración", detail: "Léxico de conservación preventiva, restauración de documentos y gestión de patrimonio." },
+          { text: "Museografía y exposiciones", detail: "Terminología de diseño expositivo, mediación cultural y educación en museos." },
+          { text: "Módulo de italiano o alemán cultural", detail: "Tercer o cuarto idioma con enfoque en museos italianos, archivos germanos y publicaciones académicas." },
+        ],
       },
       {
-        title: "Vocabulario de biblioteconomía",
-        description:
-          "Terminología de catalogación (MARC, RDA), gestión de colecciones, préstamo interbibliotecario y servicios de referencia en inglés y francés.",
-      },
-      {
-        title: "Textos del ICOM y la IFLA",
-        description:
-          "Trabajo con documentos oficiales del Consejo Internacional de Museos y la Federación Internacional de Asociaciones de Bibliotecarios.",
-      },
-      {
-        title: "Módulo de italiano o alemán cultural",
-        description:
-          "Preparación específica del tercer o cuarto idioma con enfoque en textos del ámbito cultural: museos italianos, archivos germanos, publicaciones académicas.",
-      },
-      {
-        title: "Comprensión lectora cronometrada",
-        description:
-          "Ejercicios de lectura rápida y comprensión de textos extensos en condiciones de examen, con técnicas de identificación de información clave.",
+        title: "Simulacros y seguimiento",
+        stat: "Mensual",
+        statLabel: "evaluaciones completas de progreso",
+        description: "Comprensión lectora cronometrada, simulacros completos y seguimiento individualizado con informes de progreso.",
+        capabilities: [
+          { text: "Comprensión lectora cronometrada", detail: "Técnicas de lectura rápida e identificación de información clave en textos extensos." },
+          { text: "Simulacros completos de examen", detail: "Pruebas integrales: traducción + comprensión + oral en condiciones reales." },
+          { text: "Informes de progreso por destrezas", detail: "Análisis desglosado de tu evolución en cada área evaluada." },
+          { text: "Plan adaptado a tu calendario", detail: "Ajuste continuo según disponibilidad y proximidad del examen." },
+        ],
       },
     ],
     faq: [
@@ -1179,136 +1258,41 @@ export default async function ExamPage({
           </div>
         </section>
 
-        {/* 2. ABOUT + REQUIREMENTS — two-column */}
+        {/* 2. ABOUT THIS EXAM */}
         <section className="bg-light-gray py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-12">
-              <div className="lg:col-span-5">
-                <span className="mb-2 block text-sm font-semibold text-gold" style={{ fontFamily: "var(--font-body)" }}>Misión institucional</span>
-                <h2 className="mb-6 text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Sobre esta oposición</h2>
-                <div className="space-y-6 text-lg leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
-                  <p>{exam.description[0]}</p>
-                  <p>{exam.description[1]}</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-7">
-                {exam.whyPrepare.slice(0, 4).map((item, i) => (
-                  <div key={i} className="rounded-xl bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
-                    <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold" style={{ fontFamily: "var(--font-heading)" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="mb-2 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item.description}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="mx-auto max-w-3xl px-6 lg:px-8">
+            <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Sobre esta oposición</span>
+            <h2 className="mb-8 text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>
+              {exam.title}
+            </h2>
+            <div className="space-y-6 text-base leading-relaxed text-slate-blue md:text-lg" style={{ fontFamily: "var(--font-body)" }}>
+              <p>{exam.description[0]}</p>
+              <p>{exam.description[1]}</p>
             </div>
           </div>
         </section>
 
-        {/* 3. EXAM FORMAT — bento grid */}
-        <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mb-12 flex items-end justify-between">
-              <div>
-                <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Estructura del examen</span>
-                <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Formato de la prueba de idiomas</h2>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {/* Main card */}
-              <div className="rounded-xl bg-light-gray p-10 md:col-span-1">
-                <h3 className="mb-4 text-2xl font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Pruebas del examen</h3>
-                <div className="space-y-4">
-                  {exam.examFormat.map((item, i) => (
-                    <div key={i} className="flex items-start gap-4 rounded-xl bg-white p-5 border-l-4 border-navy">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold">
-                        {i + 1}
-                      </span>
-                      <span className="text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {/* Side cards */}
-              <div className="flex flex-col gap-6">
-                <div className="rounded-xl bg-navy p-10 text-white">
-                  <h3 className="mb-4 text-2xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>Nuestra preparación</h3>
-                  <p className="mb-6 leading-relaxed text-white/70" style={{ fontFamily: "var(--font-body)" }}>
-                    {exam.description[2]}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {exam.languages.map((lang) => (
-                      <span key={lang} className="rounded-lg bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-widest">{lang}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="rounded-xl border border-light-gray bg-white p-8">
-                  <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Requisitos lingüísticos</h3>
-                  <ul className="space-y-3">
-                    {exam.requirements.map((req, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm font-medium text-slate-blue">
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                        {req}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. PREPARATION FEATURES */}
-        <section className="bg-light-gray py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mb-16 text-center">
-              <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Metodología</span>
-              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Cómo te preparamos</h2>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {exam.preparationFeatures.map((feature, i) => (
-                <div key={i} className="rounded-xl border-t-2 border-gold/30 bg-white p-8 transition-all hover:border-gold/60 hover:shadow-md">
-                  <div className="mb-4 h-1 w-12 rounded-full bg-gold" />
-                  <h3 className="mb-3 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{feature.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{feature.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 5. COMPARISON TABLE */}
+        {/* 2b. WHY PREPARE WITH US */}
         <section className="bg-warm-white py-20 lg:py-28">
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
             <div className="mb-12 text-center">
-              <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Comparativa</span>
-              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>La diferencia</h2>
+              <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Por qué prepararte con nosotros</span>
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>
+                Lo que nos diferencia en esta oposición
+              </h2>
             </div>
-            <div className="overflow-hidden rounded-xl border border-light-gray bg-white">
-              <div className="grid grid-cols-3 border-b border-light-gray bg-light-gray/50">
-                <div className="p-4 lg:p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-blue/60">Aspecto</p>
-                </div>
-                <div className="border-l border-light-gray p-4 lg:p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-blue/60">Academia generalista</p>
-                </div>
-                <div className="border-l border-light-gray bg-navy/5 p-4 lg:p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-navy">Instituto Diplomático</p>
-                </div>
-              </div>
-              {exam.comparison.map((row, i) => (
-                <div key={i} className={`grid grid-cols-3 ${i < exam.comparison.length - 1 ? "border-b border-light-gray" : ""}`}>
-                  <div className="p-4 lg:p-5">
-                    <p className="text-sm font-semibold text-navy">{row.aspect}</p>
-                  </div>
-                  <div className="flex items-start gap-2 border-l border-light-gray p-4 lg:p-5">
-                    <span className="mt-0.5 shrink-0 text-red-400">&#10007;</span>
-                    <p className="text-sm text-slate-blue/70">{row.generic}</p>
-                  </div>
-                  <div className="flex items-start gap-2 border-l border-light-gray bg-navy/5 p-4 lg:p-5">
-                    <span className="mt-0.5 shrink-0 text-gold">&#10003;</span>
-                    <p className="text-sm font-medium text-navy">{row.ours}</p>
+            <div className="space-y-6">
+              {exam.whyPrepare.map((item, i) => (
+                <div key={i} className="flex gap-6 rounded-xl bg-light-gray p-6 lg:p-8">
+                  <span
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -1316,7 +1300,72 @@ export default async function ExamPage({
           </div>
         </section>
 
-        {/* 6. TESTIMONIAL */}
+        {/* 3. EXAM FORMAT — clean vertical layout */}
+        <section className="bg-light-gray py-20 lg:py-28">
+          <div className="mx-auto max-w-5xl px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Estructura del examen</span>
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Formato de la prueba de idiomas</h2>
+            </div>
+
+            {/* Exam steps — numbered list */}
+            <div className="space-y-4">
+              {exam.examFormat.map((item, i) => (
+                <div key={i} className="flex items-start gap-5 rounded-xl bg-white p-6">
+                  <span
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {i + 1}
+                  </span>
+                  <p className="pt-1 text-base leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Requirements — inline below */}
+            <div className="mt-10 grid gap-8 md:grid-cols-2">
+              <div className="rounded-xl bg-white p-8">
+                <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Requisitos lingüísticos</h3>
+                <ul className="space-y-3">
+                  {exam.requirements.map((req, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                      {req}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-xl bg-white p-8">
+                <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Idiomas de la prueba</h3>
+                <div className="flex flex-wrap gap-3">
+                  {exam.languages.map((lang) => (
+                    <span key={lang} className="rounded-lg bg-navy px-5 py-2.5 text-sm font-bold text-gold">{lang}</span>
+                  ))}
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
+                  {exam.description[2]}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. PREPARATION — click-through tabs */}
+        <section className="bg-warm-white py-20 lg:py-28">
+          <div className="mx-auto max-w-5xl px-6 lg:px-8">
+            <div className="mb-14">
+              <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Metodología</span>
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Cómo te preparamos</h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
+                Cada área de preparación tiene su propio enfoque, materiales y criterios de evaluación. Explora cada una.
+              </p>
+            </div>
+            <PreparationTabs tabs={exam.preparationFeatures} />
+          </div>
+        </section>
+
+        {/* 5. TESTIMONIAL */}
         <section className="bg-navy py-20 lg:py-28">
           <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
             <svg className="mx-auto h-10 w-10 text-gold/40" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
