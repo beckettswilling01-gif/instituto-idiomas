@@ -26,9 +26,9 @@ export default function Hero() {
               className="mt-6 max-w-lg text-lg leading-relaxed text-slate-blue md:text-xl"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Preparación 1:1 en 7 idiomas para las oposiciones más exigentes
-              de España. En Madrid o en remoto. Metodología inversa desde el
-              examen.
+              Preparación lingüística especializada para 6 oposiciones del
+              Estado. Materiales reales, simulacros de tribunal y seguimiento
+              experto. En Madrid o en remoto.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">

@@ -122,6 +122,17 @@ export const ExpandingCards = React.forwardRef<
             <p className="w-full max-w-xs text-sm text-white/80 opacity-0 transition-all duration-300 delay-225 ease-out group-data-[active=true]:opacity-100">
               {item.description}
             </p>
+
+            {item.linkHref && (
+              <a
+                href={item.linkHref}
+                className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-white opacity-0 transition-all duration-300 delay-300 ease-out hover:text-white/80 group-data-[active=true]:opacity-100"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Ver programa
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            )}
           </article>
         </li>
       ))}
