@@ -17,33 +17,33 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "El Instituto Diplomático convirtió un caos de material en un camino claro y estratégico. No habría aprobado el examen oral sin su entrenamiento de simulación.",
+      "Después de dos años preparándome por mi cuenta sin éxito en francés, acudí al Instituto Diplomático. En ocho meses, no solo aprobé los idiomas sino que obtuve una de las mejores puntuaciones de mi promoción. La clave fue la preparación oral: las simulaciones de tribunal me dieron una seguridad que nunca habría conseguido sola.",
+    name: "Marta R. L.",
+    role: "Diplomática en activo · Promoción 2024",
+    exam: "Carrera Diplomática",
+    language: "Francés",
+  },
+  {
+    quote:
+      "Lo que más valoro es que cada ejercicio tenía un propósito directo — no había relleno. Cada traducción, cada redacción, cada simulacro estaba calibrado para lo que iba a encontrar en el examen. Cuando llegué a la prueba, sentí que ya lo había hecho diez veces antes.",
     name: "Elena R.",
-    role: "Economista del Estado (Promoción 2023)",
+    role: "Economista del Estado · Promoción 2023",
     exam: "Técnico Comercial",
     language: "Inglés",
   },
   {
     quote:
-      "Empecé sin experiencia en derecho administrativo. Mi mentor me guió en cada obstáculo. Hoy sirvo en la misión diplomática de España.",
+      "Empecé con un francés que no llegaba al B2 y un trabajo a jornada completa. Mi mentor diseñó un plan realista que compaginé con todo. En 14 meses pasé de nivel intermedio a aprobar la prueba oral ante tribunal con nota. Hoy sirvo en la misión diplomática de España en Ginebra.",
     name: "Javier M.",
-    role: "Carrera Diplomática (Promoción 2022)",
+    role: "Diplomático en servicio exterior · Promoción 2022",
     exam: "Carrera Diplomática",
     language: "Francés",
   },
   {
     quote:
-      "La preparación en francés fue excepcional. Cada sesión estaba diseñada para reproducir exactamente lo que encontré en el examen real.",
-    name: "Marta R. L.",
-    role: "Diplomática en servicio (Promoción 2024)",
-    exam: "Carrera Diplomática",
-    language: "Francés",
-  },
-  {
-    quote:
-      "Lo que más valoro es la honestidad del diagnóstico inicial. Me dijeron exactamente dónde estaba y qué necesitaba. Sin rodeos, sin falsas promesas.",
+      "La honestidad del diagnóstico inicial fue decisiva. Me dijeron exactamente dónde estaba, qué necesitaba y cuánto tiempo me iba a llevar. Sin rodeos, sin falsas promesas. Esa claridad me permitió planificar mi preparación con confianza. Las correcciones eran duras pero precisas.",
     name: "Carlos G.",
-    role: "Inspector SOIVRE (Promoción 2023)",
+    role: "Inspector del SOIVRE · Promoción 2023",
     exam: "Inspector SOIVRE",
     language: "Inglés",
   },
