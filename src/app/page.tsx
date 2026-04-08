@@ -63,7 +63,7 @@ export default function Home() {
         {/* Feature 3: Tribunal simulation */}
         <FeatureShowcase
           kicker="Simulacros de examen"
-          headline="Reproductemos las condiciones exactas del día de la prueba."
+          headline="Reproducimos las condiciones exactas del día de la prueba."
           description="Simulaciones completas con los mismos tiempos, el mismo formato y la misma presión que encontrarás ante el tribunal. Cada simulacro es corregido por especialistas que conocen los criterios de evaluación reales. Sabrás exactamente qué esperar."
           bullets={[
             "Pruebas completas cronometradas en condiciones reales",

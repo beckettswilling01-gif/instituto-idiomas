@@ -1,8 +1,8 @@
 const statements = [
-  "Preparación exclusiva para oposiciones de alto nivel",
-  "7 idiomas con enfoque en pruebas de Estado",
-  "Programas a medida para cada convocatoria",
-  "Formación presencial y online desde Madrid",
+  "6 oposiciones cubiertas",
+  "7 idiomas especializados",
+  "92% tasa de aprobados",
+  "+200 candidatos formados",
 ];
 
 export default function CredibilityStrip() {
