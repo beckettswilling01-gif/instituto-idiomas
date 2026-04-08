@@ -7,7 +7,18 @@ const navigation = [
   { label: "Idiomas", href: "/idiomas" },
   { label: "Metodología", href: "/metodologia" },
   { label: "Programas", href: "/programas" },
+  { label: "Resultados", href: "/resultados" },
   { label: "Contacto", href: "/contacto" },
+] as const;
+
+const idiomas = [
+  { label: "Inglés", href: "/idiomas/ingles" },
+  { label: "Francés", href: "/idiomas/frances" },
+  { label: "Alemán", href: "/idiomas/aleman" },
+  { label: "Italiano", href: "/idiomas/italiano" },
+  { label: "Portugués", href: "/idiomas/portugues" },
+  { label: "Árabe", href: "/idiomas/arabe" },
+  { label: "Chino", href: "/idiomas/chino" },
 ] as const;
 
 const oposiciones = [
@@ -45,12 +56,12 @@ export default function Footer() {
               </span>
             </p>
 
-            <p className="mt-4 text-sm leading-relaxed text-white/60">
+            <p className="mt-4 text-sm leading-relaxed text-white/80">
               Centro de referencia en Madrid para la preparación lingüística de
               oposiciones al servicio exterior y la administración del Estado.
             </p>
 
-            <p className="mt-3 text-sm leading-relaxed text-white/60">
+            <p className="mt-3 text-sm leading-relaxed text-white/80">
               Formación de excelencia con metodología propia, resultados
               contrastados y atención personalizada.
             </p>
@@ -69,7 +80,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-white/80 transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -91,7 +102,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-white/80 transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -108,7 +119,7 @@ export default function Footer() {
             >
               Contacto
             </h3>
-            <address className="space-y-3 not-italic text-sm text-white/60">
+            <address className="space-y-3 not-italic text-sm text-white/80">
               <p className="leading-relaxed">
                 Calle de Ejemplo, 42
                 <br />
@@ -136,7 +147,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-14 flex flex-col items-center gap-4 border-t border-white/10 pt-8 sm:flex-row sm:justify-between">
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/60">
             &copy; {currentYear} Instituto Diplomático de Idiomas. Todos los
             derechos reservados.
           </p>
@@ -144,13 +155,13 @@ export default function Footer() {
           <div className="flex gap-6">
             <Link
               href="/aviso-legal"
-              className="text-xs text-white/40 transition-colors hover:text-white/70"
+              className="text-xs text-white/60 transition-colors hover:text-white/70"
             >
               Aviso Legal
             </Link>
             <Link
               href="/politica-de-privacidad"
-              className="text-xs text-white/40 transition-colors hover:text-white/70"
+              className="text-xs text-white/60 transition-colors hover:text-white/70"
             >
               Política de Privacidad
             </Link>

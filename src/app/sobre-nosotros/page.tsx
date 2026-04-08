@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FinalCTA from "@/components/sections/FinalCTA";
+import DiagnosticCTA from "@/components/sections/DiagnosticCTA";
 
 export const metadata: Metadata = {
   title:
@@ -202,7 +202,7 @@ export default function SobreNosotros() {
         </section>
 
         {/* ── Final CTA ── */}
-        <FinalCTA />
+        <DiagnosticCTA />
       </main>
       <Footer />
     </>

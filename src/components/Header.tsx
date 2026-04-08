@@ -12,20 +12,25 @@ const oposicionesDropdown = [
   { label: "Ayudante de Archivos, Bibliotecas y Museos", href: "/oposiciones/ayudante-archivos-bibliotecas-museos" },
 ] as const;
 
-const navItems: { label: string; href: string; hasDropdown?: boolean }[] = [
-  { label: "Sobre Nosotros", href: "/sobre-nosotros" },
-  { label: "Oposiciones", href: "/oposiciones", hasDropdown: true },
-  { label: "Idiomas", href: "/idiomas" },
+type DropdownKey = "oposiciones";
+
+const navItems: { label: string; href: string; dropdownKey?: DropdownKey }[] = [
+  { label: "Oposiciones", href: "/oposiciones", dropdownKey: "oposiciones" },
   { label: "Metodología", href: "/metodologia" },
   { label: "Programas", href: "/programas" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Resultados", href: "/resultados" },
+  { label: "Sobre Nosotros", href: "/sobre-nosotros" },
 ];
+
+const dropdowns: Record<DropdownKey, { items: readonly { label: string; href: string }[]; viewAllLabel: string; viewAllHref: string }> = {
+  oposiciones: { items: oposicionesDropdown, viewAllLabel: "Ver todas las oposiciones", viewAllHref: "/oposiciones" },
+};
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileOposExpanded, setMobileOposExpanded] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLLIElement>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<DropdownKey | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
+  const dropdownRefs = useRef<Record<string, HTMLLIElement | null>>({});
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -35,9 +40,10 @@ export default function Header() {
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
+      const clickedInside = Object.values(dropdownRefs.current).some(
+        (ref) => ref && ref.contains(e.target as Node)
+      );
+      if (!clickedInside) setOpenDropdown(null);
     };
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
@@ -45,16 +51,16 @@ export default function Header() {
 
   const closeMobile = useCallback(() => {
     setMobileOpen(false);
-    setMobileOposExpanded(false);
+    setMobileExpanded(null);
   }, []);
 
-  const handleDropdownEnter = useCallback(() => {
+  const handleDropdownEnter = useCallback((key: DropdownKey) => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
-    setDropdownOpen(true);
+    setOpenDropdown(key);
   }, []);
 
   const handleDropdownLeave = useCallback(() => {
-    dropdownTimeout.current = setTimeout(() => setDropdownOpen(false), 150);
+    dropdownTimeout.current = setTimeout(() => setOpenDropdown(null), 150);
   }, []);
 
   return (
@@ -82,12 +88,12 @@ export default function Header() {
               <nav className="hidden items-center gap-1 xl:flex" aria-label="Main">
                 <ul className="flex items-center gap-1">
                   {navItems.map((item) =>
-                    item.hasDropdown ? (
+                    item.dropdownKey ? (
                       <li
                         key={item.href}
                         className="group/item relative"
-                        ref={dropdownRef}
-                        onMouseEnter={handleDropdownEnter}
+                        ref={(el) => { dropdownRefs.current[item.dropdownKey!] = el; }}
+                        onMouseEnter={() => handleDropdownEnter(item.dropdownKey!)}
                         onMouseLeave={handleDropdownLeave}
                       >
                         <Link
@@ -107,30 +113,30 @@ export default function Header() {
                         {/* Dropdown */}
                         <div
                           className={`absolute left-0 top-full z-50 pt-1 transition-all duration-200 ${
-                            dropdownOpen
+                            openDropdown === item.dropdownKey
                               ? "visible translate-y-0 opacity-100"
                               : "invisible translate-y-1 opacity-0"
                           }`}
                         >
                           <div className="min-w-[300px] overflow-hidden rounded-xl bg-white py-2 shadow-xl">
                             <ul>
-                              {oposicionesDropdown.map((exam) => (
-                                <li key={exam.href}>
+                              {dropdowns[item.dropdownKey!].items.map((dd) => (
+                                <li key={dd.href}>
                                   <Link
-                                    href={exam.href}
+                                    href={dd.href}
                                     className="block px-5 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-light-gray"
                                   >
-                                    {exam.label}
+                                    {dd.label}
                                   </Link>
                                 </li>
                               ))}
                             </ul>
                             <div className="border-t border-light-gray px-5 py-2.5">
                               <Link
-                                href="/oposiciones"
+                                href={dropdowns[item.dropdownKey!].viewAllHref}
                                 className="text-xs font-semibold text-gold transition-colors hover:text-gold-hover"
                               >
-                                Ver todas las oposiciones &rarr;
+                                {dropdowns[item.dropdownKey!].viewAllLabel} &rarr;
                               </Link>
                             </div>
                           </div>
@@ -155,7 +161,7 @@ export default function Header() {
             <div className="ml-auto flex items-center gap-2">
               <Link
                 href="/contacto"
-                className="inline-flex items-center justify-center rounded-full bg-lime-pale px-4 py-2.5 text-sm font-medium text-forest transition-all hover:scale-105 hover:brightness-90 lg:px-5 lg:py-3 lg:text-base"
+                className="inline-flex items-center justify-center rounded-full bg-gold px-4 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 hover:brightness-90 lg:px-5 lg:py-3 lg:text-base"
               >
                 Solicitar diagnóstico
               </Link>
@@ -206,32 +212,32 @@ export default function Header() {
           <nav className="flex-1 overflow-auto px-6 py-8" aria-label="Main">
             <ul className="space-y-1">
               {navItems.map((item) =>
-                item.hasDropdown ? (
+                item.dropdownKey ? (
                   <li key={item.href}>
                     <button
                       type="button"
-                      onClick={() => setMobileOposExpanded((prev) => !prev)}
+                      onClick={() => setMobileExpanded((prev) => prev === item.dropdownKey ? null : item.dropdownKey!)}
                       className="flex w-full items-center justify-between -mx-2 px-4 py-3 text-sm font-medium text-navy transition-colors hover:bg-light-gray rounded-lg"
                     >
                       {item.label}
                       <svg
-                        className={`h-4 w-4 transition-transform duration-200 ${mobileOposExpanded ? "rotate-180" : ""}`}
+                        className={`h-4 w-4 transition-transform duration-200 ${mobileExpanded === item.dropdownKey ? "rotate-180" : ""}`}
                         viewBox="0 0 12 12"
                         fill="currentColor"
                       >
                         <path d="M6 9L2 4h8L6 9z" />
                       </svg>
                     </button>
-                    {mobileOposExpanded && (
+                    {mobileExpanded === item.dropdownKey && (
                       <ul className="ml-4 space-y-0.5 pb-2">
-                        {oposicionesDropdown.map((exam) => (
-                          <li key={exam.href}>
+                        {dropdowns[item.dropdownKey!].items.map((dd) => (
+                          <li key={dd.href}>
                             <Link
-                              href={exam.href}
+                              href={dd.href}
                               onClick={closeMobile}
                               className="block px-4 py-2.5 text-sm text-slate-blue transition-colors hover:text-navy hover:bg-light-gray rounded-lg"
                             >
-                              {exam.label}
+                              {dd.label}
                             </Link>
                           </li>
                         ))}
@@ -254,7 +260,7 @@ export default function Header() {
                 <Link
                   href="/contacto"
                   onClick={closeMobile}
-                  className="mt-4 block rounded-full bg-lime-pale px-6 py-3 text-center text-sm font-medium text-forest"
+                  className="mt-4 block rounded-full bg-gold px-6 py-3 text-center text-sm font-medium text-white"
                 >
                   Solicitar diagnóstico
                 </Link>

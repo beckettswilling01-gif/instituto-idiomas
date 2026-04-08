@@ -51,7 +51,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo Superior",
     heroSubtitle:
       "La oposición más prestigiosa del Estado exige un dominio lingüístico excepcional. Prepárate con quienes conocen cada detalle del examen.",
-    heroImage: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80",
+    // HIGGSFIELD PROMPT: The ornate entrance hall of the Palacio de Santa Cruz in Madrid, seat of the Spanish Ministry of Foreign Affairs. Marble floors, high ceilings with chandeliers, diplomatic flags lining a corridor. Warm natural light streaming through tall windows. Grand, institutional, aspirational. Architectural photography, symmetrical composition.
+    heroImage: "/images/exams/carrera-diplomatica.jpg",
     heroQuote: "La tutoría no se trata de enseñar datos; se trata de transferir la mirada del diplomático.",
     description: [
       "La Carrera Diplomática es, sin duda, una de las oposiciones más prestigiosas y exigentes del Estado español. El componente lingüístico ocupa un lugar central en el proceso selectivo: los aspirantes deben acreditar un dominio avanzado de al menos dos idiomas extranjeros, siendo obligatorios el inglés y el francés. La prueba de idiomas evalúa no solo la competencia gramatical, sino la capacidad de producir textos diplomáticos, traducir documentos oficiales y mantener una conversación fluida sobre asuntos internacionales.",
@@ -228,7 +229,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo Superior",
     heroSubtitle:
       "El dominio de idiomas económicos y comerciales es la clave diferencial de esta oposición de élite. Entrena con los mejores especialistas.",
-    heroImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    // HIGGSFIELD PROMPT: A modern Spanish government office interior with clean lines, a large conference table, and floor-to-ceiling windows overlooking a Madrid cityscape. Documents and economic reports neatly arranged. Professional, precise, contemporary. Warm tones, architectural interior photography.
+    heroImage: "/images/exams/tecnico-comercial.jpg",
     heroQuote: "La intersección del rigor matemático y la finura diplomática.",
     description: [
       "El Cuerpo de Técnicos Comerciales y Economistas del Estado es uno de los cuerpos superiores más selectivos de la Administración General del Estado. Sus miembros desempeñan funciones clave en la promoción del comercio exterior español, la política económica internacional y la representación comercial de España en el mundo. El dominio de idiomas no es un complemento: es un requisito esencial para el ejercicio profesional diario.",
@@ -395,7 +397,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo de Gestión",
     heroSubtitle:
       "Accede al cuerpo de gestión del comercio exterior español con una preparación lingüística que marca la diferencia frente al tribunal.",
-    heroImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+    // HIGGSFIELD PROMPT: An aerial view of a busy Mediterranean port with container ships and cranes, seen from a high office window in a Spanish trade ministry building. Documents and a laptop on the windowsill in the foreground. The intersection of commerce and diplomacy. Warm, golden hour light.
+    heroImage: "/images/exams/diplomado-comercial.jpg",
     heroQuote: "Dominar el comercio internacional desde la precisión del idioma.",
     description: [
       "El Cuerpo de Diplomados Comerciales del Estado constituye el nivel de gestión dentro de la estructura del comercio exterior español. Sus integrantes trabajan en las Oficinas Económicas y Comerciales de España en el extranjero, en la Secretaría de Estado de Comercio y en organismos vinculados a la internacionalización de la empresa española. El manejo competente de idiomas es fundamental para la labor diaria de estos funcionarios.",
@@ -556,7 +559,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo de Gestión",
     heroSubtitle:
       "Normativa técnica, reglamentos europeos y documentación aduanera: domina los idiomas del comercio exterior regulado.",
-    heroImage: "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=800&q=80",
+    // HIGGSFIELD PROMPT: Close-up of official inspection documents with a Spanish government seal, a magnifying glass, and a stamp on a polished wooden desk. Crisp, authoritative detail shot. Warm lighting, shallow depth of field. The precision and rigor of quality control.
+    heroImage: "/images/exams/inspector-soivre.jpg",
     heroQuote: "Arquitectos de la integridad del comercio exterior de España.",
     description: [
       "El Cuerpo de Inspectores del SOIVRE desempeña funciones esenciales en el control de calidad y la inspección de los productos españoles destinados a la exportación, así como en la vigilancia de las importaciones. Sus miembros trabajan en estrecho contacto con normativa internacional, reglamentos de la Unión Europea y estándares de calidad globales, lo que hace imprescindible un sólido dominio de idiomas extranjeros.",
@@ -728,7 +732,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo Técnico",
     heroSubtitle:
       "Documentación técnica, informes de laboratorio y normativa de certificación: la precisión lingüística que exige la ingeniería de inspección.",
-    heroImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+    // HIGGSFIELD PROMPT: A professional laboratory or technical inspection facility with precision instruments, quality control charts on the wall, and a clipboard with inspection forms. Clean, well-lit, institutional. The technical side of state service. Cool whites with warm accent lighting.
+    heroImage: "/images/exams/ingeniero-soivre.jpg",
     heroQuote: "El Ingeniero del SOIVRE no solo inspecciona; protege los estándares del comercio europeo.",
     description: [
       "El Cuerpo de Ingenieros Técnicos del SOIVRE reúne a profesionales con formación técnica e ingenieril que desempeñan labores de inspección, ensayo y certificación de productos en el ámbito del comercio exterior. Su trabajo implica el manejo cotidiano de documentación técnica en inglés y, con frecuencia, en francés, así como la comunicación con organismos de normalización y laboratorios internacionales.",
@@ -896,7 +901,8 @@ const examData: Record<string, ExamData> = {
     category: "Cuerpo de Gestión",
     heroSubtitle:
       "Textos culturales, catálogos internacionales y normativa archivística: la preparación lingüística humanística que necesitas para aprobar.",
-    heroImage: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80",
+    // HIGGSFIELD PROMPT: The interior of a grand Spanish library — the Biblioteca Nacional de Espana aesthetic. Rows of leather-bound books on dark wood shelves, reading lamps casting warm pools of light, ornate ceiling details visible above. Quiet, scholarly, timeless. Warm amber tones, architectural photography.
+    heroImage: "/images/exams/archivos-bibliotecas.jpg",
     heroQuote: "Preservar la memoria de una nación comienza con el dominio de sus lenguas.",
     description: [
       "El Cuerpo de Ayudantes de Archivos, Bibliotecas y Museos agrupa a los profesionales que custodian, catalogan y difunden el patrimonio documental, bibliográfico y museístico de España. Su labor exige el manejo de fuentes en múltiples idiomas, desde manuscritos medievales en latín hasta catálogos internacionales en inglés, francés, alemán e italiano. La prueba de idiomas refleja esta diversidad lingüística y el carácter humanístico de la profesión.",
@@ -1139,11 +1145,10 @@ export default async function ExamPage({
               </div>
               <div className="relative lg:col-span-5">
                 <div className="aspect-[4/5] overflow-hidden rounded-full shadow-2xl">
-                  <img
-                    src={exam.heroImage}
-                    alt={exam.title}
-                    className="h-full w-full object-cover"
-                  />
+                  {/* Image placeholder — see Higgsfield prompts in heroImage comments */}
+                  <div className="flex h-full w-full items-center justify-center bg-light-gray text-center text-sm text-slate-blue/40">
+                    <span className="max-w-[160px]">Imagen: {exam.title}</span>
+                  </div>
                 </div>
                 <div className="absolute -bottom-8 -left-8 max-w-xs rounded-xl border-l-4 border-gold bg-white/90 p-6 shadow-xl backdrop-blur-md">
                   <p className="text-sm font-medium italic text-navy" style={{ fontFamily: "var(--font-body)" }}>
@@ -1151,6 +1156,20 @@ export default async function ExamPage({
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 1b. DIFFICULTY FUNNEL — compact inline */}
+        <section className="bg-navy py-14 lg:py-16">
+          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+            <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
+              {exam.stats.map((stat, i) => (
+                <div key={i}>
+                  <span className="text-2xl font-bold text-gold md:text-3xl" style={{ fontFamily: "var(--font-heading)" }}>{stat.value}</span>
+                  <p className="mt-1 text-xs text-white/70" style={{ fontFamily: "var(--font-body)" }}>{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1378,7 +1397,7 @@ export default async function ExamPage({
             <div className="flex justify-center gap-6">
               <Link
                 href="/contacto"
-                className="rounded-xl bg-lime-pale px-10 py-4 text-lg font-bold text-forest transition-transform hover:scale-105"
+                className="rounded-xl bg-gold-pale px-10 py-4 text-lg font-bold text-gold-dark transition-transform hover:scale-105"
               >
                 Reservar diagnóstico
               </Link>

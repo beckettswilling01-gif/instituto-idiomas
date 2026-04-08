@@ -11,24 +11,24 @@ export default function Hero() {
               className="mb-6 inline-block rounded-full bg-gold/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-gold-hover"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Preparación de Elite
+              Preparación lingüística para oposiciones
             </span>
 
             <h1
               className="text-4xl font-bold leading-[1.1] tracking-tight text-navy md:text-[56px]"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              Domina el idioma que tu oposición{" "}
-              <span className="text-slate-blue">exige.</span>
+              Tu carrera diplomática empieza con las{" "}
+              <span className="text-slate-blue">palabras exactas.</span>
             </h1>
 
             <p
               className="mt-6 max-w-lg text-lg leading-relaxed text-slate-blue md:text-xl"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Preparación lingüística 1:1 para las oposiciones más competitivas
-              de España. Online o presencial. Diseñada para futuros servidores
-              del Estado.
+              Preparación 1:1 en 7 idiomas para las oposiciones más exigentes
+              de España. En Madrid o en remoto. Metodología inversa desde el
+              examen.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -52,25 +52,29 @@ export default function Hero() {
                 </svg>
               </Link>
               <Link
-                href="/programas"
+                href="/metodologia"
                 className="inline-flex items-center justify-center rounded-xl border border-light-gray bg-white px-8 py-4 text-center text-lg font-bold text-navy transition-colors hover:bg-light-gray"
               >
-                Ver programas
+                Descubre nuestra metodología
               </Link>
             </div>
+
+            <p
+              className="mt-6 text-sm text-slate-blue/60"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Presencial u online · 30 min · Sin compromiso
+            </p>
           </div>
 
-          {/* Right — image */}
+          {/* Right — image placeholder */}
           <div className="relative">
             <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
             <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-700 hover:rotate-0 lg:rotate-2">
-              <img
-                src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80"
-                alt="Edificio institucional en Madrid"
-                className="aspect-[4/5] w-full object-cover"
-                width={900}
-                height={1125}
-              />
+              {/* HIGGSFIELD PROMPT: Exterior of a grand neoclassical government building in Madrid at golden hour. Warm sunlight casting long shadows across ornate stone columns and a wrought-iron balcony. Spanish flag subtly visible. Shot from a low angle looking up, emphasizing authority and aspiration. Cinematic, editorial photography style, shallow depth of field, warm amber tones. */}
+              <div className="flex aspect-[4/5] w-full items-center justify-center bg-light-gray text-center text-sm text-slate-blue/40">
+                <span className="max-w-[200px]">Imagen: Edificio diplomático en Madrid</span>
+              </div>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FinalCTA from "@/components/sections/FinalCTA";
+import DiagnosticCTA from "@/components/sections/DiagnosticCTA";
 
 export const metadata: Metadata = {
   title: "Idiomas | Instituto Diplomático de Idiomas",
@@ -156,7 +156,7 @@ export default function IdiomasPage() {
           </div>
         </section>
 
-        <FinalCTA />
+        <DiagnosticCTA />
       </main>
       <Footer />
     </>

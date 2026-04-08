@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FinalCTA from "@/components/sections/FinalCTA";
+import DiagnosticCTA from "@/components/sections/DiagnosticCTA";
 import { MetodologiaFAQ } from "@/components/sections/MetodologiaFAQ";
 
 export const metadata: Metadata = {
@@ -248,7 +248,7 @@ export default function MetodologiaPage() {
           </div>
         </section>
 
-        <FinalCTA />
+        <DiagnosticCTA />
       </main>
       <Footer />
     </>

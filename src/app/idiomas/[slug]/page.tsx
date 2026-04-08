@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FinalCTA from "@/components/sections/FinalCTA";
+import DiagnosticCTA from "@/components/sections/DiagnosticCTA";
 
 /* ------------------------------------------------------------------ */
 /*  Language data                                                      */
@@ -387,7 +387,7 @@ export default async function LanguagePage({
           </div>
         </section>
 
-        <FinalCTA />
+        <DiagnosticCTA />
       </main>
       <Footer />
     </>

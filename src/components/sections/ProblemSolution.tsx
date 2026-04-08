@@ -10,21 +10,21 @@ interface PainPoint {
 const painPoints: PainPoint[] = [
   {
     icon: AlertCircle,
-    title: "Ciclos de estudio ineficientes",
+    title: "Preparación lingüística genérica",
     detail:
-      "Centrarse en horas de estudio en lugar de simulaciones activas y preparación específica para el formato real del examen.",
+      "Academias que enseñan un B2 estándar, no el C1 diplomático que exige tu tribunal.",
   },
   {
     icon: Ban,
     title: "Sin dominio de la prueba oral",
     detail:
-      "Un conocimiento escrito excepcional fracasa si no puedes defenderlo ante el Tribunal con fluidez y precisión.",
+      "Saber el idioma no basta si no puedes defenderlo con fluidez y registro ante un panel evaluador.",
   },
   {
     icon: TrendingDown,
-    title: "Aislamiento competitivo",
+    title: "Sin simulaciones reales",
     detail:
-      "Estudiar solo, sin retroalimentación profesional, genera puntos ciegos que no se detectan hasta el día del examen.",
+      "Estudiar sin reproducir las condiciones exactas del examen genera una confianza falsa que se desmorona el día de la prueba.",
   },
 ];
 
@@ -39,17 +39,17 @@ export default function ProblemSolution() {
               className="mb-6 text-3xl font-bold text-navy lg:text-4xl"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              Por qué el 95% de los candidatos suspende.
+              La mayoría no suspende por falta de nivel. Suspende por falta de método.
             </h2>
 
             <p
               className="mb-8 text-lg leading-relaxed text-slate-blue"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Las oposiciones de élite no son solo conocimiento: son una prueba
-              de resistencia psicológica y precisión estratégica. La mayoría
-              suspende porque trata la preparación lingüística como una
-              asignatura más, no como una competición profesional.
+              Las oposiciones de élite exigen más que un buen nivel de idiomas.
+              Exigen vocabulario diplomático, registro formal, traducción
+              cronometrada y fluidez ante tribunal. La preparación convencional
+              no cubre nada de esto.
             </p>
 
             <div className="space-y-6">
@@ -81,38 +81,28 @@ export default function ProblemSolution() {
             </div>
           </div>
 
-          {/* Right — 95% stat card */}
-          <div className="relative order-1 overflow-hidden rounded-2xl bg-navy p-12 text-white shadow-xl md:order-2">
-            <div className="pointer-events-none absolute right-0 top-0 p-4 opacity-10">
-              <svg
-                className="h-24 w-24"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1}
+          {/* Right — image + stat */}
+          <div className="relative order-1 overflow-hidden rounded-2xl md:order-2">
+            {/* HIGGSFIELD PROMPT: A young professional sitting alone at a wooden desk in a dimly lit library, surrounded by stacks of open law books and scattered notes. Head resting on hand, looking slightly overwhelmed but determined. Warm, desaturated tones. Shot from slightly above, editorial portrait style. Soft natural light from a window. The mood is "before the breakthrough." */}
+            <div className="flex aspect-[4/3] w-full items-center justify-center bg-light-gray text-center text-sm text-slate-blue/40">
+              <span className="max-w-[200px]">Imagen: Candidato estudiando</span>
+            </div>
+
+            {/* Floating stat card */}
+            <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-navy/95 p-6 text-white backdrop-blur-sm">
+              <div
+                className="mb-2 text-4xl font-extrabold text-gold"
+                style={{ fontFamily: "var(--font-heading)" }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
-                />
-              </svg>
+                95%
+              </div>
+              <p
+                className="text-sm leading-snug opacity-80"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                Tasa de suspenso sin preparación lingüística estructurada.
+              </p>
             </div>
-
-            <div
-              className="mb-4 text-6xl font-extrabold text-gold"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              95%
-            </div>
-
-            <p
-              className="text-2xl font-light leading-tight opacity-90"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Tasa media de suspenso en candidatos que se presentan a oposiciones
-              de élite sin preparación lingüística estructurada.
-            </p>
           </div>
         </div>
       </div>
