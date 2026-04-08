@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const funnelSteps = [
-  { label: "Candidatos inscritos", value: "2,400", width: "100%" },
-  { label: "Se presentan al examen", value: "1,800", width: "75%" },
-  { label: "Superan la fase escrita", value: "320", width: "30%" },
-  { label: "Superan la prueba de idiomas", value: "90", width: "12%" },
-  { label: "Obtienen plaza", value: "25", width: "6%" },
+  { label: "Candidatos inscritos", value: "2,400", numeric: 2400 },
+  { label: "Se presentan al examen", value: "1,800", numeric: 1800 },
+  { label: "Superan la fase escrita", value: "320", numeric: 320 },
+  { label: "Superan la prueba de idiomas", value: "90", numeric: 90 },
+  { label: "Obtienen plaza", value: "25", numeric: 25 },
 ];
+
+const max = funnelSteps[0].numeric;
 
 export default function DifficultyFunnel() {
   return (
@@ -41,40 +43,49 @@ export default function DifficultyFunnel() {
           </p>
         </motion.div>
 
-        {/* Funnel visualization */}
-        <div className="mx-auto mt-14 max-w-2xl space-y-3">
-          {funnelSteps.map((step, i) => (
-            <motion.div
-              key={step.label}
-              initial={{ opacity: 0, scaleX: 0 }}
-              whileInView={{ opacity: 1, scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.5, ease }}
-              style={{ width: step.width, originX: 0.5 }}
-              className="mx-auto"
-            >
-              <div
-                className={`flex items-center justify-between rounded-lg px-5 py-3.5 ${
-                  i === funnelSteps.length - 1
-                    ? "bg-gold text-navy"
-                    : "bg-white/10 text-white"
-                }`}
+        {/* Horizontal bar chart */}
+        <div className="mx-auto mt-14 max-w-3xl space-y-5">
+          {funnelSteps.map((step, i) => {
+            const pct = Math.max((step.numeric / max) * 100, 8);
+            const isLast = i === funnelSteps.length - 1;
+
+            return (
+              <motion.div
+                key={step.label}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5, ease }}
               >
-                <span
-                  className="text-sm font-medium"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  {step.label}
-                </span>
-                <span
-                  className="text-lg font-bold"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {step.value}
-                </span>
-              </div>
-            </motion.div>
-          ))}
+                {/* Label row */}
+                <div className="mb-2 flex items-baseline justify-between">
+                  <span
+                    className="text-sm font-medium text-white/70"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    {step.label}
+                  </span>
+                  <span
+                    className={`text-lg font-bold ${isLast ? "text-gold" : "text-white"}`}
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {step.value}
+                  </span>
+                </div>
+
+                {/* Bar */}
+                <div className="h-3 w-full overflow-hidden rounded-full bg-white/5">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${pct}%` }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 + 0.2, duration: 0.7, ease }}
+                    className={`h-full rounded-full ${isLast ? "bg-gold" : "bg-white/20"}`}
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Fail rate callout */}
@@ -83,7 +94,7 @@ export default function DifficultyFunnel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.7, duration: 0.5, ease }}
-          className="mt-12 text-center"
+          className="mt-14 text-center"
         >
           <div className="inline-flex items-baseline gap-3">
             <span
