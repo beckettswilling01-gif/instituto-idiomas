@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/sections/FinalCTA";
+import { MetodologiaFAQ } from "@/components/sections/MetodologiaFAQ";
 
 export const metadata: Metadata = {
   title: "Metodología | Instituto Diplomático de Idiomas",
@@ -243,39 +244,7 @@ export default function MetodologiaPage() {
               </h2>
             </div>
 
-            <div className="mx-auto max-w-3xl space-y-4">
-              {faqs.map((faq) => (
-                <details
-                  key={faq.question}
-                  className="group rounded-lg border border-light-gray bg-white transition-shadow duration-300 hover:shadow-sm"
-                >
-                  <summary className="flex cursor-pointer items-center justify-between px-6 py-5 font-[family-name:var(--font-heading)] text-base font-semibold text-navy lg:text-lg [&::-webkit-details-marker]:hidden list-none">
-                    <span className="pr-4">{faq.question}</span>
-                    <span className="shrink-0 text-gold transition-transform duration-300 group-open:rotate-45">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                      </svg>
-                    </span>
-                  </summary>
-                  <div className="px-6 pb-6">
-                    <p className="font-[family-name:var(--font-body)] text-sm leading-relaxed text-slate-blue/70">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </details>
-              ))}
-            </div>
+            <MetodologiaFAQ faqs={faqs} />
           </div>
         </section>
 

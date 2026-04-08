@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
 import CredibilityStrip from "@/components/sections/CredibilityStrip";
 import ProblemSolution from "@/components/sections/ProblemSolution";
-import ExamsGrid from "@/components/sections/ExamsGrid";
+import ExamsCarousel from "@/components/sections/ExamsCarousel";
 import LanguagesGrid from "@/components/sections/LanguagesGrid";
 import Methodology from "@/components/sections/Methodology";
 import Differentiation from "@/components/sections/Differentiation";
@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         <CredibilityStrip />
         <ProblemSolution />
-        <ExamsGrid />
+        <ExamsCarousel />
         <LanguagesGrid />
         <Methodology />
         <Differentiation />

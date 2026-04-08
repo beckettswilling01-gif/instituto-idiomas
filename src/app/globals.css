@@ -5,11 +5,43 @@
   --color-slate-blue: #2C4A6B;
   --color-warm-white: #FAF9F6;
   --color-light-gray: #F0F2F5;
-  --color-gold: #C8A96A;
-  --color-gold-hover: #B8964F;
+  --color-gold: #84CC16;
+  --color-gold-hover: #65A30D;
 
   --font-heading: "Playfair Display", ui-serif, Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-border: #E5E7EB;
+  --color-input: #E5E7EB;
+  --color-ring: #84CC16;
+  --color-background: #FAF9F6;
+  --color-foreground: #0B1F3B;
+  --color-primary: #0B1F3B;
+  --color-primary-foreground: #FAF9F6;
+  --color-secondary: #F0F2F5;
+  --color-secondary-foreground: #0B1F3B;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #FFFFFF;
+  --color-muted: #F0F2F5;
+  --color-muted-foreground: #6B7280;
+  --color-accent: #F0F2F5;
+  --color-accent-foreground: #0B1F3B;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #0B1F3B;
+  --color-ring-offset-background: #FAF9F6;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
 }
 
 /*

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/sections/FinalCTA";
+import { ExamFAQ } from "@/components/sections/ExamFAQ";
 
 /* ------------------------------------------------------------------ */
 /*  Data types                                                         */
@@ -1558,27 +1559,8 @@ export default async function ExamPage({
               </h2>
             </div>
 
-            <div className="mt-12 space-y-4">
-              {exam.faq.map((item, i) => (
-                <details
-                  key={i}
-                  className="group rounded-lg border border-light-gray bg-white [&_summary::-webkit-details-marker]:hidden"
-                >
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 p-5 lg:p-6">
-                    <span className="font-[family-name:var(--font-body)] text-base font-semibold text-navy">
-                      {item.question}
-                    </span>
-                    <span className="shrink-0 font-[family-name:var(--font-body)] text-xl leading-none text-gold transition-transform group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <div className="border-t border-light-gray px-5 pb-5 pt-4 lg:px-6 lg:pb-6">
-                    <p className="font-[family-name:var(--font-body)] text-sm leading-relaxed text-slate-blue">
-                      {item.answer}
-                    </p>
-                  </div>
-                </details>
-              ))}
+            <div className="mt-12">
+              <ExamFAQ items={exam.faq} />
             </div>
           </div>
         </section>
