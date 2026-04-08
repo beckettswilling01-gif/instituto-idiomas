@@ -1,0 +1,62 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const statements = [
+  "Preparación exclusiva para oposiciones de alto nivel",
+  "7 idiomas con enfoque en pruebas de Estado",
+  "Programas a medida para cada convocatoria",
+  "Formación presencial y online desde Madrid",
+];
+
+export default function CredibilityStrip() {
+  return (
+    <section className="border-b border-light-gray border-t-2 border-t-gold/30 bg-warm-white">
+      <motion.div
+        initial={{ opacity: 0, y: 6 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6, ease }}
+        className="mx-auto max-w-6xl px-6 py-6"
+      >
+        {/* Desktop: horizontal row with vertical dividers */}
+        <div className="hidden md:grid md:grid-cols-4">
+          {statements.map((statement, index) => (
+            <div
+              key={index}
+              className={`flex items-center justify-center px-6 text-center${
+                index < statements.length - 1
+                  ? " border-r border-light-gray"
+                  : ""
+              }`}
+            >
+              <p className="font-[family-name:var(--font-body)] text-sm font-medium leading-snug text-slate-blue">
+                {statement}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: stacked with horizontal dividers */}
+        <div className="flex flex-col md:hidden">
+          {statements.map((statement, index) => (
+            <div
+              key={index}
+              className={`py-4 text-center${
+                index < statements.length - 1
+                  ? " border-b border-light-gray"
+                  : ""
+              }`}
+            >
+              <p className="font-[family-name:var(--font-body)] text-sm font-medium leading-snug text-slate-blue">
+                {statement}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
