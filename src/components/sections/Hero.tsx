@@ -71,10 +71,11 @@ export default function Hero() {
           <div className="relative">
             <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
             <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-700 hover:rotate-0 lg:rotate-2">
-              {/* HIGGSFIELD PROMPT: Exterior of a grand neoclassical government building in Madrid at golden hour. Warm sunlight casting long shadows across ornate stone columns and a wrought-iron balcony. Spanish flag subtly visible. Shot from a low angle looking up, emphasizing authority and aspiration. Cinematic, editorial photography style, shallow depth of field, warm amber tones. */}
-              <div className="flex aspect-[4/5] w-full items-center justify-center bg-light-gray text-center text-sm text-slate-blue/40">
-                <span className="max-w-[200px]">Imagen: Edificio diplomático en Madrid</span>
-              </div>
+              <img
+                src="/images/hero.png"
+                alt="Edificio diplomático en Madrid"
+                className="aspect-[4/5] w-full object-cover"
+              />
             </div>
           </div>
         </div>

@@ -16,6 +16,7 @@ interface FeatureShowcaseProps {
   description: string;
   stats?: Stat[];
   bullets?: string[];
+  imageSrc?: string;
   imagePlaceholder: string;
   imagePrompt: string;
   reverse?: boolean;
@@ -29,6 +30,7 @@ export default function FeatureShowcase({
   description,
   stats,
   bullets,
+  imageSrc,
   imagePlaceholder,
   imagePrompt,
   reverse = false,
@@ -120,10 +122,17 @@ export default function FeatureShowcase({
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease, delay: 0.1 }}
           >
-            {/* HIGGSFIELD PROMPT: {imagePrompt} */}
-            <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl bg-light-gray text-center text-sm text-slate-blue/40">
-              <span className="max-w-[240px]">{imagePlaceholder}</span>
-            </div>
+            {imageSrc ? (
+              <img
+                src={imageSrc}
+                alt={imagePlaceholder}
+                className="aspect-[4/3] w-full rounded-2xl object-cover"
+              />
+            ) : (
+              <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl bg-light-gray text-center text-sm text-slate-blue/40">
+                <span className="max-w-[240px]">{imagePlaceholder}</span>
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

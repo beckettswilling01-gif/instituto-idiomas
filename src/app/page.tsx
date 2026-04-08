@@ -33,8 +33,9 @@ export default function Home() {
             { value: "6", label: "oposiciones cubiertas" },
             { value: "7", label: "idiomas disponibles" },
           ]}
-          imagePlaceholder="Imagen: Materiales de examen y formatos oficiales"
-          imagePrompt="A desk covered with official-looking exam papers, translation exercises, and diplomatic documents. A red pen with corrections visible. Close-up, editorial, warm amber lighting. The precision of exam-specific preparation."
+          imageSrc="/images/feature-exam-prep.png"
+          imagePlaceholder="Materiales de examen y formatos oficiales"
+          imagePrompt=""
         />
 
         {/* Feature 2: Personalized plan */}
@@ -54,8 +55,9 @@ export default function Home() {
             { value: "30 min", label: "diagnóstico gratuito" },
             { value: "4", label: "formatos de programa" },
           ]}
-          imagePlaceholder="Imagen: Plan de estudio personalizado con calendario"
-          imagePrompt="A bird's-eye view of a desk covered with a custom study plan — color-coded timeline, language workbooks, exam format guides, and sticky notes. A hand is placing the final piece. Organized, intentional, bespoke. Warm overhead lighting, flat-lay photography style."
+          imageSrc="/images/feature-plan.png"
+          imagePlaceholder="Plan de estudio personalizado con calendario"
+          imagePrompt=""
         />
 
         {/* Feature 3: Tribunal simulation */}
@@ -73,8 +75,9 @@ export default function Home() {
             { value: "100%", label: "formato real del examen" },
             { value: "Cada 2", label: "semanas en programa intensivo" },
           ]}
-          imagePlaceholder="Imagen: Sala de simulación de examen con tribunal"
-          imagePrompt="A formal examination room setup — a single desk facing a panel of three empty chairs (the tribunal). Official-looking timer on the wall. An exam paper and pen on the desk. The gravity and realism of a simulated exam. Dramatic, slightly cinematic lighting, empty and anticipatory."
+          imageSrc="/images/feature-simulation.png"
+          imagePlaceholder="Sala de simulación de examen con tribunal"
+          imagePrompt=""
         />
 
         {/* Feature 4: Expert feedback & tracking */}
@@ -94,8 +97,9 @@ export default function Home() {
             { value: "92%", label: "tasa de aprobados" },
             { value: "Top 10%", label: "posición media de nuestros candidatos" },
           ]}
-          imagePlaceholder="Imagen: Tutor corrigiendo ejercicios con candidato"
-          imagePrompt="A student and tutor working intensely side by side at a desk, reviewing a translation exercise. Red pen corrections visible on the paper. Both are focused and engaged. Warm, intimate, the feeling of deep practice. Editorial portrait style, natural light."
+          imageSrc="/images/feature-tracking.png"
+          imagePlaceholder="Tutor corrigiendo ejercicios con candidato"
+          imagePrompt=""
         />
 
         <ExamsExpandingCards />
