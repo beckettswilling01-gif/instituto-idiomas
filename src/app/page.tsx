@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
-import CredibilityStrip from "@/components/sections/CredibilityStrip";
 import DifficultyFunnel from "@/components/sections/DifficultyFunnel";
 import FeatureShowcase from "@/components/sections/FeatureShowcase";
 import ExamsExpandingCards from "@/components/sections/ExamsExpandingCards";
@@ -15,7 +14,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <CredibilityStrip />
         <DifficultyFunnel />
 
         {/* Feature 1: What you get — exam materials + simulations */}
