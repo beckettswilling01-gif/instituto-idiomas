@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DiagnosticCTA from "@/components/sections/DiagnosticCTA";
 
 export const metadata: Metadata = {
   title: "Oposiciones que Preparamos | Instituto Diplomático de Idiomas",
@@ -137,7 +136,6 @@ export default function OposicionesPage() {
           </div>
         </section>
 
-        <DiagnosticCTA />
       </main>
       <Footer />
     </>

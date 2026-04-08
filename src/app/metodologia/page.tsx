@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DiagnosticCTA from "@/components/sections/DiagnosticCTA";
 import { MetodologiaFAQ } from "@/components/sections/MetodologiaFAQ";
 
 export const metadata: Metadata = {
@@ -115,37 +114,17 @@ export default function MetodologiaPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section
-          className="relative w-full py-24 md:py-32 lg:py-40 overflow-hidden"
-          style={{
-            background: `
-              radial-gradient(ellipse 80% 60% at 20% 80%, rgba(44, 74, 107, 0.4) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 50% at 80% 20%, rgba(44, 74, 107, 0.3) 0%, transparent 60%),
-              radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 80%),
-              linear-gradient(135deg, #0B1F3B 0%, #1a3455 40%, #2C4A6B 100%)
-            `,
-          }}
-        >
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-
-          <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-            <div className="mx-auto mb-8 h-px w-20 bg-gold" />
-
+        <section className="bg-navy py-20 lg:py-28">
+          <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
             <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.3em] text-gold">
               Metodología
             </p>
 
-            <h1 className="mt-8 font-[family-name:var(--font-heading)] text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl md:text-6xl">
+            <h1 className="mt-5 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
               Un sistema probado, diseñado para resultados
             </h1>
 
-            <p className="mx-auto mt-8 max-w-2xl font-[family-name:var(--font-body)] text-lg leading-relaxed text-white/70 md:text-xl">
+            <p className="mx-auto mt-6 max-w-2xl font-[family-name:var(--font-body)] text-base leading-relaxed text-white/80 md:text-lg">
               Nuestra metodología ha sido perfeccionada durante años de
               experiencia preparando candidatos para las pruebas de idiomas más
               exigentes del panorama público español. Cada fase del proceso está
@@ -248,7 +227,6 @@ export default function MetodologiaPage() {
           </div>
         </section>
 
-        <DiagnosticCTA />
       </main>
       <Footer />
     </>
