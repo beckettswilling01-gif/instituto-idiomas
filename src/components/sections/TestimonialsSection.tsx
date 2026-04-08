@@ -79,8 +79,8 @@ export default function TestimonialsSection() {
           </h2>
         </motion.div>
 
-        {/* Stats bar */}
-        <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
+        {/* Stats bar — full width with gold dividers */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -88,7 +88,9 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.4, ease }}
-              className="text-center"
+              className={`flex flex-col items-center justify-center px-6 py-8 text-center${
+                i < stats.length - 1 ? " border-r border-gold/30" : ""
+              }${i < 2 ? " border-b border-gold/30 md:border-b-0" : ""}`}
             >
               <div
                 className="text-3xl font-bold text-gold md:text-4xl"
@@ -96,7 +98,7 @@ export default function TestimonialsSection() {
               >
                 {stat.value}
               </div>
-              <p className="mt-2 text-sm text-white/60" style={{ fontFamily: "var(--font-body)" }}>
+              <p className="mt-2 text-xs uppercase tracking-widest text-white/70" style={{ fontFamily: "var(--font-body)" }}>
                 {stat.label}
               </p>
             </motion.div>

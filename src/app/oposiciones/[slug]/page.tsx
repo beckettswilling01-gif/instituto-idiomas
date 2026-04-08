@@ -1160,14 +1160,19 @@ export default async function ExamPage({
           </div>
         </section>
 
-        {/* 1b. DIFFICULTY FUNNEL — compact inline */}
-        <section className="bg-navy py-14 lg:py-16">
-          <div className="mx-auto max-w-4xl px-6 lg:px-8">
-            <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
+        {/* 1b. STATS BAR — full-width with gold dividers */}
+        <section className="bg-navy">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-2 md:grid-cols-4">
               {exam.stats.map((stat, i) => (
-                <div key={i}>
-                  <span className="text-2xl font-bold text-gold md:text-3xl" style={{ fontFamily: "var(--font-heading)" }}>{stat.value}</span>
-                  <p className="mt-1 text-xs text-white/70" style={{ fontFamily: "var(--font-body)" }}>{stat.label}</p>
+                <div
+                  key={i}
+                  className={`flex flex-col items-center justify-center px-6 py-10 text-center${
+                    i < exam.stats.length - 1 ? " border-r border-gold/30" : ""
+                  }${i < 2 ? " border-b border-gold/30 md:border-b-0" : ""}`}
+                >
+                  <span className="text-3xl font-bold text-gold md:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>{stat.value}</span>
+                  <p className="mt-2 text-xs uppercase tracking-widest text-white/70" style={{ fontFamily: "var(--font-body)" }}>{stat.label}</p>
                 </div>
               ))}
             </div>
