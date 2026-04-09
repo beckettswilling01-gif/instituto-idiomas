@@ -85,13 +85,12 @@ const examFunnels: ExamFunnel[] = [
   },
 ];
 
-// Slice colors for pie segments — gold for survivors, progressively faded for eliminated
 const sliceColors = [
-  "#ffdea5",     // Obtienen plaza (gold)
-  "rgba(255,222,165,0.6)",  // Superan idiomas
-  "rgba(255,222,165,0.3)",  // Superan escrita
-  "rgba(255,255,255,0.15)", // Se presentan
-  "rgba(255,255,255,0.06)", // No se presentan
+  "#ffdea5",
+  "rgba(255,222,165,0.6)",
+  "rgba(255,222,165,0.3)",
+  "rgba(255,255,255,0.15)",
+  "rgba(255,255,255,0.06)",
 ];
 
 const legendItems = [
@@ -102,81 +101,81 @@ const legendItems = [
   { color: "bg-white/[0.06]", label: "No se presentan" },
 ];
 
-function PieChart({ exam, index }: { exam: ExamFunnel; index: number }) {
+function arcPath(
+  cx: number,
+  cy: number,
+  outerR: number,
+  innerR: number,
+  startAngle: number,
+  endAngle: number,
+): string {
+  // Clamp to avoid full-circle issues
+  const delta = Math.min(endAngle - startAngle, 359.99);
+  const end = startAngle + delta;
+
+  const startRad = (startAngle * Math.PI) / 180;
+  const endRad = (end * Math.PI) / 180;
+
+  const outerX1 = cx + outerR * Math.cos(startRad);
+  const outerY1 = cy + outerR * Math.sin(startRad);
+  const outerX2 = cx + outerR * Math.cos(endRad);
+  const outerY2 = cy + outerR * Math.sin(endRad);
+
+  const innerX1 = cx + innerR * Math.cos(endRad);
+  const innerY1 = cy + innerR * Math.sin(endRad);
+  const innerX2 = cx + innerR * Math.cos(startRad);
+  const innerY2 = cy + innerR * Math.sin(startRad);
+
+  const largeArc = delta > 180 ? 1 : 0;
+
+  return [
+    `M ${outerX1} ${outerY1}`,
+    `A ${outerR} ${outerR} 0 ${largeArc} 1 ${outerX2} ${outerY2}`,
+    `L ${innerX1} ${innerY1}`,
+    `A ${innerR} ${innerR} 0 ${largeArc} 0 ${innerX2} ${innerY2}`,
+    "Z",
+  ].join(" ");
+}
+
+function DonutChart({ exam, index }: { exam: ExamFunnel; index: number }) {
   const total = exam.steps[0].value;
   const finalValue = exam.steps[exam.steps.length - 1].value;
 
-  // Build slices from the steps (reversed so gold draws first / on top visually)
-  // Each slice = the number of people at that stage minus the next stage
-  const slices: { label: string; value: number; pct: number }[] = [];
+  const slices = [
+    { pct: exam.steps[4].value / total },
+    { pct: (exam.steps[3].value - exam.steps[4].value) / total },
+    { pct: (exam.steps[2].value - exam.steps[3].value) / total },
+    { pct: (exam.steps[1].value - exam.steps[2].value) / total },
+    { pct: (exam.steps[0].value - exam.steps[1].value) / total },
+  ];
 
-  // "Obtienen plaza" slice
-  slices.push({
-    label: exam.steps[4].label,
-    value: exam.steps[4].value,
-    pct: exam.steps[4].value / total,
-  });
-  // "Superan idiomas" (but didn't get plaza)
-  slices.push({
-    label: exam.steps[3].label,
-    value: exam.steps[3].value - exam.steps[4].value,
-    pct: (exam.steps[3].value - exam.steps[4].value) / total,
-  });
-  // "Superan escrita" (but failed idiomas)
-  slices.push({
-    label: exam.steps[2].label,
-    value: exam.steps[2].value - exam.steps[3].value,
-    pct: (exam.steps[2].value - exam.steps[3].value) / total,
-  });
-  // "Se presentan" (but failed escrita)
-  slices.push({
-    label: exam.steps[1].label,
-    value: exam.steps[1].value - exam.steps[2].value,
-    pct: (exam.steps[1].value - exam.steps[2].value) / total,
-  });
-  // "No se presentan"
-  slices.push({
-    label: "No se presentan",
-    value: exam.steps[0].value - exam.steps[1].value,
-    pct: (exam.steps[0].value - exam.steps[1].value) / total,
-  });
-
-  // Build SVG conic gradient via individual arc paths
-  const size = 120;
+  const size = 180;
   const cx = size / 2;
   const cy = size / 2;
-  const r = size / 2 - 2;
+  const outerR = 86;
+  const innerR = 56;
 
-  let cumAngle = -90; // start from top
+  let cumAngle = -90;
 
   const paths = slices.map((slice, i) => {
     const angle = slice.pct * 360;
     const startAngle = cumAngle;
-    const endAngle = cumAngle + angle;
-    cumAngle = endAngle;
+    cumAngle += angle;
 
-    const startRad = (startAngle * Math.PI) / 180;
-    const endRad = (endAngle * Math.PI) / 180;
+    if (angle < 0.5) return null;
 
-    const x1 = cx + r * Math.cos(startRad);
-    const y1 = cy + r * Math.sin(startRad);
-    const x2 = cx + r * Math.cos(endRad);
-    const y2 = cy + r * Math.sin(endRad);
-
-    const largeArc = angle > 180 ? 1 : 0;
-
-    const d = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+    const d = arcPath(cx, cy, outerR, innerR, startAngle, startAngle + angle);
 
     return (
       <motion.path
-        key={slice.label}
+        key={i}
         d={d}
         fill={sliceColors[i]}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{
-          delay: index * 0.1 + i * 0.08,
+          delay: index * 0.1 + i * 0.06,
           duration: 0.4,
           ease,
         }}
@@ -192,26 +191,25 @@ function PieChart({ exam, index }: { exam: ExamFunnel; index: number }) {
       transition={{ delay: index * 0.1, duration: 0.5, ease }}
       className="flex flex-col items-center"
     >
-      {/* Pie chart */}
       <div className="relative">
         <svg
           width={size}
           height={size}
           viewBox={`0 0 ${size} ${size}`}
-          className="drop-shadow-[0_0_12px_rgba(255,222,165,0.15)]"
+          className="drop-shadow-[0_0_20px_rgba(255,222,165,0.1)]"
         >
           {paths}
         </svg>
         {/* Center label */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span
-            className="text-lg font-bold text-gold"
+            className="text-2xl font-bold text-gold"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             {finalValue}
           </span>
           <span
-            className="text-[9px] text-white/50"
+            className="text-[10px] text-white/50"
             style={{ fontFamily: "var(--font-body)" }}
           >
             de {total.toLocaleString("es-ES")}
@@ -219,10 +217,9 @@ function PieChart({ exam, index }: { exam: ExamFunnel; index: number }) {
         </div>
       </div>
 
-      {/* Exam name */}
       <Link
         href={`/oposiciones/${exam.slug}`}
-        className="mt-4 text-center text-xs font-semibold text-white/70 transition-colors hover:text-gold"
+        className="mt-4 text-center text-sm font-semibold text-white/70 transition-colors hover:text-gold"
         style={{ fontFamily: "var(--font-body)" }}
       >
         {exam.name}
@@ -256,20 +253,20 @@ export default function DifficultyFunnel() {
             className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Cada gráfico muestra cuántos candidatos superan cada fase del proceso
-            selectivo. La fracción dorada representa a quienes consiguen plaza.
+            Cada gráfico muestra cuántos candidatos superan cada fase. La
+            fracción dorada representa a quienes consiguen plaza.
           </p>
         </motion.div>
 
-        {/* 6 pie charts */}
-        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-8 md:grid-cols-6 md:gap-6">
+        {/* 6 donut charts — 3 columns, 2 rows */}
+        <div className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-10 sm:grid-cols-2 md:max-w-4xl md:grid-cols-3 md:gap-12">
           {examFunnels.map((exam, i) => (
-            <PieChart key={exam.slug} exam={exam} index={i} />
+            <DonutChart key={exam.slug} exam={exam} index={i} />
           ))}
         </div>
 
         {/* Legend */}
-        <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        <div className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           {legendItems.map((item) => (
             <div key={item.label} className="flex items-center gap-2">
               <span className={`h-3 w-3 rounded-full ${item.color}`} />
@@ -283,7 +280,7 @@ export default function DifficultyFunnel() {
           ))}
         </div>
 
-        {/* Elimination callout */}
+        {/* Callout */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
