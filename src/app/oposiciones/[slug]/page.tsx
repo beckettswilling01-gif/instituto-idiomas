@@ -4,7 +4,9 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ExamFAQ } from "@/components/sections/ExamFAQ";
-import PreparationTabs from "@/components/sections/PreparationTabs";
+import WhyPrepareGrid from "@/components/sections/WhyPrepareGrid";
+import ExamStructureAccordion from "@/components/sections/ExamStructureAccordion";
+import MethodologyCards from "@/components/sections/MethodologyCards";
 
 /* ------------------------------------------------------------------ */
 /*  Data types                                                         */
@@ -1281,22 +1283,7 @@ export default async function ExamPage({
                 Lo que nos diferencia en esta oposición
               </h2>
             </div>
-            <div className="space-y-6">
-              {exam.whyPrepare.map((item, i) => (
-                <div key={i} className="flex gap-6 rounded-xl bg-light-gray p-6 lg:p-8">
-                  <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <WhyPrepareGrid items={exam.whyPrepare} />
           </div>
         </section>
 
@@ -1308,46 +1295,12 @@ export default async function ExamPage({
               <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Formato de la prueba de idiomas</h2>
             </div>
 
-            {/* Exam steps — numbered list */}
-            <div className="space-y-4">
-              {exam.examFormat.map((item, i) => (
-                <div key={i} className="flex items-start gap-5 rounded-xl bg-light-gray p-6">
-                  <span
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {i + 1}
-                  </span>
-                  <p className="pt-1 text-base leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>{item}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Requirements — inline below */}
-            <div className="mt-10 grid gap-8 md:grid-cols-2">
-              <div className="rounded-xl bg-light-gray p-8">
-                <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Requisitos lingüísticos</h3>
-                <ul className="space-y-3">
-                  {exam.requirements.map((req, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                      {req}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-xl bg-light-gray p-8">
-                <h3 className="mb-4 text-lg font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>Idiomas de la prueba</h3>
-                <div className="flex flex-wrap gap-3">
-                  {exam.languages.map((lang) => (
-                    <span key={lang} className="rounded-lg bg-navy px-5 py-2.5 text-sm font-bold text-gold">{lang}</span>
-                  ))}
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
-                  {exam.description[2]}
-                </p>
-              </div>
-            </div>
+            <ExamStructureAccordion
+              examFormat={exam.examFormat}
+              requirements={exam.requirements}
+              languages={exam.languages}
+              languageDescription={exam.description[2]}
+            />
           </div>
         </section>
 
@@ -1361,7 +1314,7 @@ export default async function ExamPage({
                 Cada área de preparación tiene su propio enfoque, materiales y criterios de evaluación. Explora cada una.
               </p>
             </div>
-            <PreparationTabs tabs={exam.preparationFeatures} />
+            <MethodologyCards items={exam.preparationFeatures} />
           </div>
         </section>
 
