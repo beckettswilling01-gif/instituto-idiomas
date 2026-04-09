@@ -1377,27 +1377,23 @@ export default async function ExamPage({
           </div>
         </section>
 
-        {/* 3. EXAM FORMAT — clean vertical layout */}
+        {/* 3. EXAM FORMAT — full-width two-column layout */}
         <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-5xl px-6 lg:px-8">
-            <div className="mb-12 text-center">
+          <div className="mx-auto max-w-6xl px-6 lg:px-12">
+            <div className="mb-14">
               <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Estructura del examen</span>
               <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Formato de la prueba de idiomas</h2>
             </div>
-
             <ExamStructureAccordion examFormat={exam.examFormat} />
           </div>
         </section>
 
-        {/* 4. PREPARATION — click-through tabs */}
+        {/* 4. PREPARATION — full-width two-column layout */}
         <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl px-6 lg:px-12">
             <div className="mb-14">
               <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Metodología</span>
               <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Cómo te preparamos</h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
-                Cada área de preparación tiene su propio enfoque, materiales y criterios de evaluación. Explora cada una.
-              </p>
             </div>
             <MethodologyCards items={exam.preparationFeatures} />
           </div>
