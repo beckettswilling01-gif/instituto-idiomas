@@ -2211,29 +2211,6 @@ export default async function ExamPage({
           </div>
         </section>
 
-        {/* 7. LANGUAGES AVAILABLE */}
-        <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gold" style={{ fontFamily: "var(--font-body)" }}>Idiomas</span>
-            <h2 className="mb-10 text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>
-              Idiomas disponibles para esta oposición
-            </h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {exam.languages.map((lang) => (
-                <Link
-                  key={lang}
-                  href={`/idiomas/${languageSlugMap[lang] || lang.toLowerCase()}`}
-                  className="group flex flex-col rounded-xl border border-light-gray bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-md"
-                >
-                  <h3 className="text-xl font-bold text-navy" style={{ fontFamily: "var(--font-heading)" }}>{lang}</h3>
-                  <p className="mt-1 text-sm text-slate-blue">Preparación específica</p>
-                  <span className="mt-4 text-sm font-semibold text-gold transition-colors group-hover:text-gold-hover">Ver programa &rarr;</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* 8. FAQ */}
         <section className="bg-light-gray py-20 lg:py-28">
           <div className="mx-auto max-w-3xl px-6 lg:px-8">
