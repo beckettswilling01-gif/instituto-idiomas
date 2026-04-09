@@ -85,22 +85,22 @@ const examFunnels: ExamFunnel[] = [
   },
 ];
 
-// Colors from TOP (elite/gold) to BOTTOM (mass/dark) — vivid, high contrast
+// Colors from TOP (elite/gold) to BOTTOM (mass/navy) — design system palette
 const segmentColors = [
-  "bg-[#FFD700]",
-  "bg-[#E8A317]",
-  "bg-[#B87A1A]",
-  "bg-[#6B4C1E]",
-  "bg-[#2A1E0E]",
+  "bg-gold",
+  "bg-gold/60",
+  "bg-gold/30",
+  "bg-white/15",
+  "bg-white/6",
 ];
 
 // Legend — top to bottom (winners first)
 const legendItems = [
-  { color: "bg-[#FFD700]", label: "Obtienen plaza" },
-  { color: "bg-[#E8A317]", label: "Superan idiomas" },
-  { color: "bg-[#B87A1A]", label: "Superan escrita" },
-  { color: "bg-[#6B4C1E]", label: "Se presentan" },
-  { color: "bg-[#2A1E0E]", label: "Inscritos" },
+  { color: "bg-gold", label: "Obtienen plaza" },
+  { color: "bg-gold/60", label: "Superan idiomas" },
+  { color: "bg-gold/30", label: "Superan escrita" },
+  { color: "bg-white/15", label: "Se presentan" },
+  { color: "bg-white/6", label: "Inscritos" },
 ];
 
 function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
@@ -129,7 +129,7 @@ function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
       {/* Final number on top */}
       <div className="mb-3 text-center">
         <span
-          className="block text-2xl font-bold text-[#FFD700]"
+          className="block text-2xl font-bold text-gold"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           {finalValue}
@@ -164,7 +164,7 @@ function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
       {/* Exam name below */}
       <Link
         href={`/oposiciones/${exam.slug}`}
-        className="mt-3 text-center text-xs font-semibold text-white/70 transition-colors hover:text-[#FFD700]"
+        className="mt-3 text-center text-xs font-semibold text-white/70 transition-colors hover:text-gold"
         style={{ fontFamily: "var(--font-body)" }}
       >
         {exam.name}
@@ -185,7 +185,7 @@ export default function DifficultyFunnel() {
           transition={{ duration: 0.5, ease }}
           className="text-center"
         >
-          <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.3em] text-[#FFD700]">
+          <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.3em] text-gold">
             La realidad de las oposiciones
           </p>
           <h2
