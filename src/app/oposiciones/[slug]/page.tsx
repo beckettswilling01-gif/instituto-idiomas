@@ -1241,20 +1241,20 @@ export default async function ExamPage({
           </div>
         </section>
 
-        {/* 1b. STATS BAR — full-width with gold dividers */}
+        {/* 1b. LANGUAGES BAR */}
         <section className="bg-navy">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-2 md:grid-cols-4">
-              {exam.stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className={`flex flex-col items-center justify-center px-6 py-10 text-center${
-                    i < exam.stats.length - 1 ? " border-r border-gold/30" : ""
-                  }${i < 2 ? " border-b border-gold/30 md:border-b-0" : ""}`}
-                >
-                  <span className="text-3xl font-bold text-gold md:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>{stat.value}</span>
-                  <p className="mt-2 text-xs uppercase tracking-widest text-white/70" style={{ fontFamily: "var(--font-body)" }}>{stat.label}</p>
-                </div>
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-6 px-6 py-8 md:gap-10">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50" style={{ fontFamily: "var(--font-body)" }}>
+              Idiomas requeridos
+            </span>
+            <div className="flex items-center gap-3">
+              {exam.languages.map((lang, i) => (
+                <span key={lang} className="flex items-center gap-3">
+                  <span className="text-lg font-bold text-gold md:text-xl" style={{ fontFamily: "var(--font-heading)" }}>{lang}</span>
+                  {i < exam.languages.length - 1 && (
+                    <span className="h-4 w-px bg-gold/30" />
+                  )}
+                </span>
               ))}
             </div>
           </div>
@@ -1295,12 +1295,7 @@ export default async function ExamPage({
               <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Formato de la prueba de idiomas</h2>
             </div>
 
-            <ExamStructureAccordion
-              examFormat={exam.examFormat}
-              requirements={exam.requirements}
-              languages={exam.languages}
-              languageDescription={exam.description[2]}
-            />
+            <ExamStructureAccordion examFormat={exam.examFormat} />
           </div>
         </section>
 
