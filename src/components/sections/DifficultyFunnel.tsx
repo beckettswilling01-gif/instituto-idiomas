@@ -85,37 +85,38 @@ const examFunnels: ExamFunnel[] = [
   },
 ];
 
-// Segment colors from top (mass) to bottom (elite)
+// Colors from TOP (elite/gold) to BOTTOM (mass/dark) — vivid, high contrast
 const segmentColors = [
-  "bg-white/15",
-  "bg-white/25",
-  "bg-[#ffdea5]/30",
-  "bg-[#ffdea5]/50",
-  "bg-gold",
+  "bg-[#FFD700]",
+  "bg-[#E8A317]",
+  "bg-[#B87A1A]",
+  "bg-[#6B4C1E]",
+  "bg-[#2A1E0E]",
 ];
 
-// Legend labels matching segment colors (top to bottom)
+// Legend — top to bottom (winners first)
 const legendItems = [
-  { color: "bg-white/15", label: "Inscritos" },
-  { color: "bg-white/25", label: "Se presentan" },
-  { color: "bg-[#ffdea5]/30", label: "Superan escrita" },
-  { color: "bg-[#ffdea5]/50", label: "Superan idiomas" },
-  { color: "bg-gold", label: "Obtienen plaza" },
+  { color: "bg-[#FFD700]", label: "Obtienen plaza" },
+  { color: "bg-[#E8A317]", label: "Superan idiomas" },
+  { color: "bg-[#B87A1A]", label: "Superan escrita" },
+  { color: "bg-[#6B4C1E]", label: "Se presentan" },
+  { color: "bg-[#2A1E0E]", label: "Inscritos" },
 ];
 
 function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
   const total = exam.steps[0].value;
   const finalValue = exam.steps[exam.steps.length - 1].value;
-  const eliminationRate = (((total - finalValue) / total) * 100).toFixed(1);
 
-  // Calculate segment heights based on dropoff at each stage
-  // Each segment = how many people were lost at that stage
+  // Build segments from dropoff between steps, then REVERSE so gold is on top
   const segments = exam.steps.map((step, i) => {
     const nextValue = i < exam.steps.length - 1 ? exam.steps[i + 1].value : 0;
     const dropoff = step.value - nextValue;
-    const heightPct = Math.max((dropoff / total) * 100, 2); // min 2% so gold is visible
+    const heightPct = Math.max((dropoff / total) * 100, 3);
     return { ...step, dropoff, heightPct };
   });
+
+  // Reverse: gold (obtienen plaza) at top, dark (inscritos) at bottom
+  const reversed = [...segments].reverse();
 
   return (
     <motion.div
@@ -125,18 +126,25 @@ function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
       transition={{ delay: index * 0.1, duration: 0.5, ease }}
       className="flex flex-col items-center"
     >
-      {/* Exam name */}
-      <Link
-        href={`/oposiciones/${exam.slug}`}
-        className="mb-3 text-center text-xs font-semibold text-white/70 transition-colors hover:text-gold"
-        style={{ fontFamily: "var(--font-body)" }}
-      >
-        {exam.name}
-      </Link>
+      {/* Final number on top */}
+      <div className="mb-3 text-center">
+        <span
+          className="block text-2xl font-bold text-[#FFD700]"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          {finalValue}
+        </span>
+        <span
+          className="block text-[10px] font-medium text-white/50"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          de {total.toLocaleString("es-ES")}
+        </span>
+      </div>
 
-      {/* Vertical bar */}
+      {/* Vertical bar — gold on top, dark on bottom */}
       <div className="flex h-[280px] w-14 flex-col overflow-hidden rounded-xl md:h-[340px] md:w-16">
-        {segments.map((seg, i) => (
+        {reversed.map((seg, i) => (
           <motion.div
             key={seg.label}
             initial={{ scaleY: 0 }}
@@ -153,21 +161,14 @@ function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
         ))}
       </div>
 
-      {/* Final number + rate */}
-      <div className="mt-3 text-center">
-        <span
-          className="block text-2xl font-bold text-gold"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          {finalValue}
-        </span>
-        <span
-          className="block text-[10px] font-medium text-white/40"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          de {total.toLocaleString("es-ES")}
-        </span>
-      </div>
+      {/* Exam name below */}
+      <Link
+        href={`/oposiciones/${exam.slug}`}
+        className="mt-3 text-center text-xs font-semibold text-white/70 transition-colors hover:text-[#FFD700]"
+        style={{ fontFamily: "var(--font-body)" }}
+      >
+        {exam.name}
+      </Link>
     </motion.div>
   );
 }
@@ -184,7 +185,7 @@ export default function DifficultyFunnel() {
           transition={{ duration: 0.5, ease }}
           className="text-center"
         >
-          <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+          <p className="font-[family-name:var(--font-body)] text-xs font-semibold uppercase tracking-[0.3em] text-[#FFD700]">
             La realidad de las oposiciones
           </p>
           <h2
@@ -197,8 +198,8 @@ export default function DifficultyFunnel() {
             className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Datos representativos por oposición. Cada barra muestra el recorrido
-            desde la inscripción hasta la obtención de plaza.
+            Datos representativos por oposición. El oro en la cima representa a
+            quienes consiguen plaza — la inmensa mayoría queda en el camino.
           </p>
         </motion.div>
 
@@ -213,11 +214,9 @@ export default function DifficultyFunnel() {
         <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           {legendItems.map((item) => (
             <div key={item.label} className="flex items-center gap-2">
+              <span className={`h-3 w-3 rounded-sm ${item.color}`} />
               <span
-                className={`h-3 w-3 rounded-sm ${item.color}`}
-              />
-              <span
-                className="text-xs text-white/50"
+                className="text-xs text-white/60"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {item.label}
