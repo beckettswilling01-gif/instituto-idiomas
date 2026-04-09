@@ -96,7 +96,7 @@ function MetadataGrid({ item }: { item: MethodologyItem }) {
   if (entries.length === 0) return null;
 
   return (
-    <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-3">
+    <div className="mb-6 grid grid-cols-2 gap-3">
       {entries.map((m) => {
         const Icon = m.icon;
         const value = item[m.key as keyof MethodologyItem] as string;
@@ -125,7 +125,7 @@ function MetadataGrid({ item }: { item: MethodologyItem }) {
       })}
       {/* Materials list if present */}
       {item.materials && item.materials.length > 0 && (
-        <div className="col-span-2 flex items-start gap-2 rounded-lg bg-white p-3 lg:col-span-3">
+        <div className="col-span-2 flex items-start gap-2 rounded-lg bg-white p-3">
           <BookOpen size={14} className="mt-0.5 shrink-0 text-gold" />
           <div>
             <span

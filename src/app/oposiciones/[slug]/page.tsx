@@ -264,7 +264,7 @@ const examData: Record<string, ExamData> = {
         stat: "2x",
         statLabel: "sesiones de traducción por semana",
         description: "Práctica intensiva de traducción en ambas direcciones con textos diplomáticos, prensa internacional y documentos del BOE bajo condiciones cronometradas reales del examen.",
-        classSize: "Máximo 5 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "4 horas semanales (2 sesiones de 2h)",
         materials: [
           "Resoluciones del Consejo de Seguridad y Asamblea General de la ONU (documentos oficiales bilingües)",
@@ -286,7 +286,7 @@ const examData: Record<string, ExamData> = {
         stat: "15-20",
         statLabel: "minutos por idioma ante tribunal simulado",
         description: "Entrevistas simuladas sobre política exterior, derecho internacional y relaciones bilaterales con profesionales del sector diplomático que conocen los criterios del tribunal.",
-        classSize: "Máximo 4 alumnos por sesión de simulacro",
+        classSize: "1-on-1 + simulacros en grupo de máximo 4",
         hoursPerWeek: "3 horas semanales (1 sesión grupal + 1 simulacro individual)",
         materials: [
           "Fichas temáticas semanales de actualidad internacional elaboradas por el equipo docente",
@@ -308,7 +308,7 @@ const examData: Record<string, ExamData> = {
         stat: "100%",
         statLabel: "formato oficial del tribunal",
         description: "Técnicas de síntesis y redacción de resúmenes estructurados en lengua extranjera, siguiendo los criterios exactos de evaluación del tribunal.",
-        classSize: "Máximo 6 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "2 horas semanales",
         materials: [
           "Textos propuestos en convocatorias anteriores de la Carrera Diplomática (archivo 2015-2025)",
@@ -330,7 +330,7 @@ const examData: Record<string, ExamData> = {
         stat: "+2,000",
         statLabel: "términos especializados por idioma",
         description: "Glosarios temáticos de organizaciones internacionales, derecho de los tratados, protocolo y correspondencia diplomática en inglés y francés.",
-        classSize: "Máximo 8 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "2 horas semanales integradas en las sesiones de traducción y oral",
         materials: [
           "Glosario propio de +2.000 términos diplomáticos clasificados por campo semántico (derecho internacional, protocolo, organismos)",
@@ -352,7 +352,7 @@ const examData: Record<string, ExamData> = {
         stat: "Semanal",
         statLabel: "evaluación y ajuste de tu plan",
         description: "Plan de trabajo personalizado con evaluación continua, informes de progreso y ajuste de objetivos alineados con tu fecha de examen.",
-        classSize: "Individual (tutorías 1 a 1)",
+        classSize: "Tutoría 1-on-1 exclusiva",
         hoursPerWeek: "1 hora semanal de tutoría individual + seguimiento asíncrono",
         materials: [
           "Informe de progreso semanal por destrezas con gráficas de evolución",
@@ -635,7 +635,7 @@ const examData: Record<string, ExamData> = {
         stat: "2x",
         statLabel: "sesiones semanales de traducción",
         description: "Traducción directa e inversa con textos de comercio exterior, macroeconomía y política monetaria del BCE.",
-        classSize: "Máximo 6 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "4 horas semanales (2 sesiones de 2h)",
         materials: [
           "Informes del World Economic Outlook del FMI y boletines del BCE en formato original",
@@ -657,7 +657,7 @@ const examData: Record<string, ExamData> = {
         stat: "20 min",
         statLabel: "por simulacro de exposición oral",
         description: "Presentaciones orales sobre temas comerciales: defensa de posiciones arancelarias, análisis de mercados y propuestas de internacionalización.",
-        classSize: "Máximo 4 alumnos por sesión de simulacro",
+        classSize: "1-on-1 + simulacros en grupo de máximo 4",
         hoursPerWeek: "3 horas semanales (1 sesión grupal de debate + 1 simulacro individual)",
         materials: [
           "Fichas de debate con posiciones económicas contrapuestas sobre temas de actualidad comercial",
@@ -679,7 +679,7 @@ const examData: Record<string, ExamData> = {
         stat: "+1,500",
         statLabel: "términos comerciales especializados",
         description: "Léxico de negociaciones comerciales: Incoterms, cláusulas contractuales, mecanismos de resolución de controversias y tratados de libre comercio.",
-        classSize: "Máximo 8 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "2 horas semanales integradas en las sesiones de traducción y oratoria",
         materials: [
           "Glosario propio de +1.500 términos de comercio internacional clasificados por ámbito (aranceles, inversión, servicios, propiedad intelectual)",
@@ -701,7 +701,7 @@ const examData: Record<string, ExamData> = {
         stat: "Quincenal",
         statLabel: "simulacros completos de examen",
         description: "Pruebas completas bajo condiciones reales y seguimiento individualizado con informes de progreso por destrezas.",
-        classSize: "Individual (tutorías 1 a 1) + simulacros en grupo de máximo 6",
+        classSize: "Tutoría 1-on-1 + simulacros en grupo de máximo 4",
         hoursPerWeek: "1 hora semanal de tutoría individual + simulacro quincenal de 3 horas",
         materials: [
           "Exámenes completos de convocatorias anteriores reconstruidos a partir de testimonios de opositores",
@@ -972,7 +972,7 @@ const examData: Record<string, ExamData> = {
           { text: "Corrección de registro y terminología", detail: "Retroalimentación sobre léxico comercial, gramática y adecuación al contexto institucional." },
           { text: "Correspondencia comercial oficial", detail: "Dominio del formato de las comunicaciones de las Oficinas Comerciales en el exterior." },
         ],
-        classSize: "Máximo 6 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "4 horas semanales",
         materials: [
           "Informes de mercado del ICEX y publicaciones de OFECOMES",
@@ -994,7 +994,7 @@ const examData: Record<string, ExamData> = {
           { text: "Vocabulario de internacionalización", detail: "Glosarios de exportación, implantación en mercados y cooperación económica bilateral." },
           { text: "Grabación y análisis", detail: "Revisión detallada de cada simulacro oral para medir progreso." },
         ],
-        classSize: "Máximo 4 alumnos",
+        classSize: "1-on-1 o grupos de máximo 3",
         hoursPerWeek: "2 horas semanales",
         materials: [
           "Dossier semanal de actualidad comercial internacional (elaboración propia)",
@@ -1016,7 +1016,7 @@ const examData: Record<string, ExamData> = {
           { text: "Plan adaptado a tu calendario", detail: "Ajuste semanal según tu disponibilidad y proximidad del examen." },
           { text: "Material de práctica autónoma", detail: "Ejercicios complementarios para mantener el ritmo entre sesiones." },
         ],
-        classSize: "Máximo 6 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "3 horas por sesión de simulacro",
         materials: [
           "Exámenes completos de convocatorias anteriores reconstituidos",
@@ -1290,7 +1290,7 @@ const examData: Record<string, ExamData> = {
           { text: "Certificados de exportación", detail: "Práctica con la documentación real que manejan los inspectores del SOIVRE." },
           { text: "Corrección de precisión terminológica", detail: "Retroalimentación centrada en léxico técnico de inspección y comercio exterior." },
         ],
-        classSize: "Máximo 5 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "4 horas semanales",
         materials: [
           "Extractos de reglamentos CE del DOUE en versión bilingüe (EUR-Lex)",
@@ -1312,7 +1312,7 @@ const examData: Record<string, ExamData> = {
           { text: "Vocabulario de inspección y aduanas", detail: "Certificados de conformidad, controles de calidad, etiquetado, trazabilidad." },
           { text: "Normas ISO en idioma original", detail: "Comprensión de ISO 9001, ISO 22000 e ISO 14001 en inglés y francés." },
         ],
-        classSize: "Máximo 4 alumnos",
+        classSize: "1-on-1 o grupos de máximo 3",
         hoursPerWeek: "2 horas semanales",
         materials: [
           "Fichas de escenarios de inspección tipo (alerta RASFF, incumplimiento de etiquetado, fraude de origen)",
@@ -1334,7 +1334,7 @@ const examData: Record<string, ExamData> = {
           { text: "Informes de progreso por destrezas", detail: "Análisis desglosado de tu evolución tras cada evaluación." },
           { text: "Plan adaptado a tu convocatoria", detail: "Ajuste continuo según calendario de examen y disponibilidad." },
         ],
-        classSize: "Máximo 5 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "3 horas por sesión de simulacro",
         materials: [
           "Exámenes completos de convocatorias anteriores del SOIVRE reconstituidos",
@@ -1595,7 +1595,7 @@ const examData: Record<string, ExamData> = {
         stat: "2x",
         statLabel: "sesiones semanales de traducción técnica",
         description: "Normas ISO bilingües, informes de laboratorio, fichas técnicas y hojas de seguridad en inglés y francés.",
-        classSize: "Máximo 5 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "4 horas semanales",
         materials: ["Normas UNE-EN-ISO bilingües", "Informes de laboratorios ENAC", "Fichas SDS reales"],
         mockExamFrequency: "Quincenal",
@@ -1613,7 +1613,7 @@ const examData: Record<string, ExamData> = {
         stat: "15 min",
         statLabel: "por simulacro de exposición oral",
         description: "Redacción de comunicaciones con organismos de normalización y exposición oral técnica ante panel evaluador.",
-        classSize: "Máximo 4 alumnos",
+        classSize: "1-on-1 o grupos de máximo 3",
         hoursPerWeek: "2 horas semanales",
         materials: ["Correspondencia ISO/CEN real", "Informes de no conformidad", "Grabaciones de sesiones anteriores"],
         mockExamFrequency: "Semanal",
@@ -1631,7 +1631,7 @@ const examData: Record<string, ExamData> = {
         stat: "Quincenal",
         statLabel: "simulacros completos de examen",
         description: "Pruebas integrales en condiciones reales: traducción cronometrada, comprensión lectora y exposición oral técnica.",
-        classSize: "Máximo 5 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "3 horas por sesión",
         materials: ["Exámenes de convocatorias anteriores", "Plantillas de corrección del tribunal", "Normas EN de referencia"],
         mockExamFrequency: "Quincenal + evaluación mensual completa",
@@ -1903,7 +1903,7 @@ const examData: Record<string, ExamData> = {
         stat: "2x",
         statLabel: "sesiones semanales de traducción cultural",
         description: "Catálogos de exposiciones, descripciones museográficas, documentación archivística normalizada y textos de crítica artística en inglés, francés e italiano.",
-        classSize: "Máximo 6 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "4 horas semanales",
         materials: ["Catálogos del Prado, Louvre y British Museum", "Descripciones ISAD(G) bilingües", "Publicaciones ICOM/IFLA"],
         mockExamFrequency: "Quincenal",
@@ -1921,7 +1921,7 @@ const examData: Record<string, ExamData> = {
         stat: "+1,200",
         statLabel: "términos patrimoniales especializados",
         description: "Terminología de catalogación (MARC, RDA), gestión de colecciones, préstamo interbibliotecario, museografía y conservación.",
-        classSize: "Máximo 6 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "2 horas semanales",
         materials: ["Glosario ICOM multilingüe", "Tesauro IFLA en 4 idiomas", "Fichas terminológicas ISAD(G)/EAD"],
         feedbackMethod: "Ejercicios de discriminación terminológica con corrección inmediata",
@@ -1938,7 +1938,7 @@ const examData: Record<string, ExamData> = {
         stat: "Mensual",
         statLabel: "evaluaciones completas de progreso",
         description: "Comprensión lectora cronometrada, simulacros completos y seguimiento individualizado con informes de progreso.",
-        classSize: "Máximo 6 alumnos",
+        classSize: "1-on-1 o grupos de máximo 4",
         hoursPerWeek: "3 horas por sesión",
         materials: ["Exámenes de convocatorias anteriores", "Plantillas de corrección", "Textos de nivel de convocatoria"],
         mockExamFrequency: "Mensual + evaluaciones parciales quincenales",
@@ -2186,8 +2186,11 @@ export default async function ExamPage({
         <section className="bg-light-gray py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6 lg:px-12">
             <div className="mb-14">
-              <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Metodología</span>
-              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Cómo te preparamos</h2>
+              <span className="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-gold" style={{ fontFamily: "var(--font-body)" }}>Tu preparación personalizada</span>
+              <h2 className="text-3xl font-bold text-navy lg:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Un plan diseñado para ti</h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-blue" style={{ fontFamily: "var(--font-body)" }}>
+                Cada alumno recibe un itinerario individualizado, con tutoría 1-on-1 y seguimiento continuo adaptado a su nivel, disponibilidad y fecha de examen.
+              </p>
             </div>
             <MethodologyCards items={exam.preparationFeatures} />
           </div>
