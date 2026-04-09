@@ -85,38 +85,104 @@ const examFunnels: ExamFunnel[] = [
   },
 ];
 
-// Colors from TOP (elite/gold) to BOTTOM (mass/navy) — design system palette
-const segmentColors = [
-  "bg-gold",
-  "bg-gold/60",
-  "bg-gold/30",
-  "bg-white/15",
-  "bg-white/6",
+// Slice colors for pie segments — gold for survivors, progressively faded for eliminated
+const sliceColors = [
+  "#ffdea5",     // Obtienen plaza (gold)
+  "rgba(255,222,165,0.6)",  // Superan idiomas
+  "rgba(255,222,165,0.3)",  // Superan escrita
+  "rgba(255,255,255,0.15)", // Se presentan
+  "rgba(255,255,255,0.06)", // No se presentan
 ];
 
-// Legend — top to bottom (winners first)
 const legendItems = [
   { color: "bg-gold", label: "Obtienen plaza" },
   { color: "bg-gold/60", label: "Superan idiomas" },
   { color: "bg-gold/30", label: "Superan escrita" },
   { color: "bg-white/15", label: "Se presentan" },
-  { color: "bg-white/6", label: "Inscritos" },
+  { color: "bg-white/[0.06]", label: "No se presentan" },
 ];
 
-function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
+function PieChart({ exam, index }: { exam: ExamFunnel; index: number }) {
   const total = exam.steps[0].value;
   const finalValue = exam.steps[exam.steps.length - 1].value;
 
-  // Build segments from dropoff between steps, then REVERSE so gold is on top
-  const segments = exam.steps.map((step, i) => {
-    const nextValue = i < exam.steps.length - 1 ? exam.steps[i + 1].value : 0;
-    const dropoff = step.value - nextValue;
-    const heightPct = Math.max((dropoff / total) * 100, 3);
-    return { ...step, dropoff, heightPct };
+  // Build slices from the steps (reversed so gold draws first / on top visually)
+  // Each slice = the number of people at that stage minus the next stage
+  const slices: { label: string; value: number; pct: number }[] = [];
+
+  // "Obtienen plaza" slice
+  slices.push({
+    label: exam.steps[4].label,
+    value: exam.steps[4].value,
+    pct: exam.steps[4].value / total,
+  });
+  // "Superan idiomas" (but didn't get plaza)
+  slices.push({
+    label: exam.steps[3].label,
+    value: exam.steps[3].value - exam.steps[4].value,
+    pct: (exam.steps[3].value - exam.steps[4].value) / total,
+  });
+  // "Superan escrita" (but failed idiomas)
+  slices.push({
+    label: exam.steps[2].label,
+    value: exam.steps[2].value - exam.steps[3].value,
+    pct: (exam.steps[2].value - exam.steps[3].value) / total,
+  });
+  // "Se presentan" (but failed escrita)
+  slices.push({
+    label: exam.steps[1].label,
+    value: exam.steps[1].value - exam.steps[2].value,
+    pct: (exam.steps[1].value - exam.steps[2].value) / total,
+  });
+  // "No se presentan"
+  slices.push({
+    label: "No se presentan",
+    value: exam.steps[0].value - exam.steps[1].value,
+    pct: (exam.steps[0].value - exam.steps[1].value) / total,
   });
 
-  // Reverse: gold (obtienen plaza) at top, dark (inscritos) at bottom
-  const reversed = [...segments].reverse();
+  // Build SVG conic gradient via individual arc paths
+  const size = 120;
+  const cx = size / 2;
+  const cy = size / 2;
+  const r = size / 2 - 2;
+
+  let cumAngle = -90; // start from top
+
+  const paths = slices.map((slice, i) => {
+    const angle = slice.pct * 360;
+    const startAngle = cumAngle;
+    const endAngle = cumAngle + angle;
+    cumAngle = endAngle;
+
+    const startRad = (startAngle * Math.PI) / 180;
+    const endRad = (endAngle * Math.PI) / 180;
+
+    const x1 = cx + r * Math.cos(startRad);
+    const y1 = cy + r * Math.sin(startRad);
+    const x2 = cx + r * Math.cos(endRad);
+    const y2 = cy + r * Math.sin(endRad);
+
+    const largeArc = angle > 180 ? 1 : 0;
+
+    const d = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+
+    return (
+      <motion.path
+        key={slice.label}
+        d={d}
+        fill={sliceColors[i]}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          delay: index * 0.1 + i * 0.08,
+          duration: 0.4,
+          ease,
+        }}
+      />
+    );
+  });
 
   return (
     <motion.div
@@ -126,45 +192,37 @@ function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
       transition={{ delay: index * 0.1, duration: 0.5, ease }}
       className="flex flex-col items-center"
     >
-      {/* Final number on top */}
-      <div className="mb-3 text-center">
-        <span
-          className="block text-2xl font-bold text-gold"
-          style={{ fontFamily: "var(--font-heading)" }}
+      {/* Pie chart */}
+      <div className="relative">
+        <svg
+          width={size}
+          height={size}
+          viewBox={`0 0 ${size} ${size}`}
+          className="drop-shadow-[0_0_12px_rgba(255,222,165,0.15)]"
         >
-          {finalValue}
-        </span>
-        <span
-          className="block text-[10px] font-medium text-white/50"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          de {total.toLocaleString("es-ES")}
-        </span>
+          {paths}
+        </svg>
+        {/* Center label */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span
+            className="text-lg font-bold text-gold"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            {finalValue}
+          </span>
+          <span
+            className="text-[9px] text-white/50"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            de {total.toLocaleString("es-ES")}
+          </span>
+        </div>
       </div>
 
-      {/* Vertical bar — gold on top, dark on bottom */}
-      <div className="flex h-[280px] w-14 flex-col overflow-hidden rounded-xl md:h-[340px] md:w-16">
-        {reversed.map((seg, i) => (
-          <motion.div
-            key={seg.label}
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              delay: index * 0.1 + i * 0.08,
-              duration: 0.5,
-              ease,
-            }}
-            className={`origin-top ${segmentColors[i]}`}
-            style={{ height: `${seg.heightPct}%` }}
-          />
-        ))}
-      </div>
-
-      {/* Exam name below */}
+      {/* Exam name */}
       <Link
         href={`/oposiciones/${exam.slug}`}
-        className="mt-3 text-center text-xs font-semibold text-white/70 transition-colors hover:text-gold"
+        className="mt-4 text-center text-xs font-semibold text-white/70 transition-colors hover:text-gold"
         style={{ fontFamily: "var(--font-body)" }}
       >
         {exam.name}
@@ -198,15 +256,15 @@ export default function DifficultyFunnel() {
             className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Datos representativos por oposición. El oro en la cima representa a
-            quienes consiguen plaza — la inmensa mayoría queda en el camino.
+            Cada gráfico muestra cuántos candidatos superan cada fase del proceso
+            selectivo. La fracción dorada representa a quienes consiguen plaza.
           </p>
         </motion.div>
 
-        {/* 6 vertical bars */}
-        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-6 md:grid-cols-6 md:gap-4">
+        {/* 6 pie charts */}
+        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-8 md:grid-cols-6 md:gap-6">
           {examFunnels.map((exam, i) => (
-            <FunnelBar key={exam.slug} exam={exam} index={i} />
+            <PieChart key={exam.slug} exam={exam} index={i} />
           ))}
         </div>
 
@@ -214,7 +272,7 @@ export default function DifficultyFunnel() {
         <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           {legendItems.map((item) => (
             <div key={item.label} className="flex items-center gap-2">
-              <span className={`h-3 w-3 rounded-sm ${item.color}`} />
+              <span className={`h-3 w-3 rounded-full ${item.color}`} />
               <span
                 className="text-xs text-white/60"
                 style={{ fontFamily: "var(--font-body)" }}
