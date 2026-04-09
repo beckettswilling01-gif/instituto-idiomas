@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckIcon } from "lucide-react";
+import {
+  CheckIcon,
+  Users,
+  Clock,
+  BookOpen,
+  ClipboardCheck,
+  MessageSquare,
+  TrendingUp,
+} from "lucide-react";
 
 interface Capability {
   text: string;
@@ -15,11 +23,25 @@ interface MethodologyItem {
   stat: string;
   statLabel: string;
   capabilities: Capability[];
+  classSize?: string;
+  hoursPerWeek?: string;
+  materials?: string[];
+  mockExamFrequency?: string;
+  feedbackMethod?: string;
+  successMetric?: string;
 }
 
 interface MethodologyCardsProps {
   items: MethodologyItem[];
 }
+
+const metaConfig = [
+  { key: "classSize", icon: Users, label: "Grupo" },
+  { key: "hoursPerWeek", icon: Clock, label: "Dedicación" },
+  { key: "mockExamFrequency", icon: ClipboardCheck, label: "Simulacros" },
+  { key: "feedbackMethod", icon: MessageSquare, label: "Feedback" },
+  { key: "successMetric", icon: TrendingUp, label: "Resultados" },
+] as const;
 
 function CapabilityRow({ item }: { item: Capability }) {
   const [expanded, setExpanded] = useState(false);
@@ -64,6 +86,64 @@ function CapabilityRow({ item }: { item: Capability }) {
         </div>
       </div>
     </button>
+  );
+}
+
+function MetadataGrid({ item }: { item: MethodologyItem }) {
+  const entries = metaConfig.filter(
+    (m) => item[m.key as keyof MethodologyItem],
+  );
+  if (entries.length === 0) return null;
+
+  return (
+    <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-3">
+      {entries.map((m) => {
+        const Icon = m.icon;
+        const value = item[m.key as keyof MethodologyItem] as string;
+        return (
+          <div
+            key={m.key}
+            className="flex items-start gap-2 rounded-lg bg-white p-3"
+          >
+            <Icon size={14} className="mt-0.5 shrink-0 text-gold" />
+            <div>
+              <span
+                className="block text-[10px] font-semibold uppercase tracking-widest text-slate-blue/40"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                {m.label}
+              </span>
+              <span
+                className="text-xs font-medium text-navy"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                {value}
+              </span>
+            </div>
+          </div>
+        );
+      })}
+      {/* Materials list if present */}
+      {item.materials && item.materials.length > 0 && (
+        <div className="col-span-2 flex items-start gap-2 rounded-lg bg-white p-3 lg:col-span-3">
+          <BookOpen size={14} className="mt-0.5 shrink-0 text-gold" />
+          <div>
+            <span
+              className="block text-[10px] font-semibold uppercase tracking-widest text-slate-blue/40"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Materiales
+            </span>
+            <span
+              className="text-xs font-medium text-navy"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              {item.materials.join(" · ")}
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -113,8 +193,9 @@ export default function MethodologyCards({ items }: MethodologyCardsProps) {
             </div>
           </div>
 
-          {/* Right column — description + capabilities */}
+          {/* Right column — metadata + description + capabilities */}
           <div className="md:col-span-8">
+            <MetadataGrid item={item} />
             <p
               className="mb-6 text-base leading-relaxed text-slate-blue"
               style={{ fontFamily: "var(--font-body)" }}

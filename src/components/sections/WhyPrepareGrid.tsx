@@ -6,7 +6,7 @@ import { BookOpen, Target, Users, Award, Clock, Shield } from "lucide-react";
 const ICONS = [BookOpen, Target, Users, Award, Clock, Shield];
 
 interface WhyPrepareGridProps {
-  items: { title: string; description: string }[];
+  items: { title: string; description: string; highlights?: string[] }[];
 }
 
 export default function WhyPrepareGrid({ items }: WhyPrepareGridProps) {
@@ -25,7 +25,7 @@ export default function WhyPrepareGrid({ items }: WhyPrepareGridProps) {
               scale: 1.02,
               boxShadow: "0 20px 40px rgba(0, 14, 36, 0.06)",
             }}
-            className="rounded-2xl bg-light-gray p-8 transition-colors"
+            className="rounded-2xl bg-white p-8 transition-colors"
           >
             <div className="mb-5 flex items-start gap-2">
               <Icon size={48} strokeWidth={1.5} className="text-navy" />
@@ -48,6 +48,20 @@ export default function WhyPrepareGrid({ items }: WhyPrepareGridProps) {
             >
               {item.description}
             </p>
+            {item.highlights && item.highlights.length > 0 && (
+              <ul className="mt-4 space-y-2">
+                {item.highlights.map((h, j) => (
+                  <li
+                    key={j}
+                    className="flex items-start gap-2 text-xs leading-relaxed text-slate-blue"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            )}
           </motion.div>
         );
       })}
