@@ -21,7 +21,7 @@ interface ExamData {
   heroQuote: string;
   description: string[];
   languages: string[];
-  examFormat: string[];
+  examFormat: { title: string; description: string }[];
   requirements: string[];
   stats: { value: string; label: string }[];
   whyPrepare: { title: string; description: string }[];
@@ -70,11 +70,26 @@ const examData: Record<string, ExamData> = {
     ],
     languages: ["Inglés", "Francés"],
     examFormat: [
-      "Traducción directa de texto periodístico o institucional (inglés/francés → español)",
-      "Traducción inversa de texto de actualidad (español → inglés/francés)",
-      "Resumen escrito en el idioma extranjero de un texto propuesto",
-      "Conversación oral ante tribunal sobre temas de actualidad internacional",
-      "Valoración de la fluidez, corrección y registro diplomático",
+      {
+        title: "Traducción directa",
+        description: "Traducción de un texto periodístico o institucional del inglés o francés al español. Se evalúa la fidelidad al original, la precisión terminológica diplomática y la naturalidad del texto resultante.",
+      },
+      {
+        title: "Traducción inversa",
+        description: "Traducción de un texto de actualidad del español al inglés o francés. El tribunal valora el dominio del registro formal, la corrección gramatical y la riqueza léxica en la lengua de destino.",
+      },
+      {
+        title: "Resumen analítico",
+        description: "Redacción de un resumen estructurado en lengua extranjera a partir de un texto propuesto. Se exige capacidad de síntesis, coherencia argumentativa y dominio del registro académico-diplomático.",
+      },
+      {
+        title: "Conversación oral ante tribunal",
+        description: "Entrevista de 15-20 minutos por idioma sobre temas de actualidad internacional, política exterior y relaciones bilaterales. El panel evalúa fluidez, registro diplomático y capacidad argumentativa.",
+      },
+      {
+        title: "Evaluación global de competencia",
+        description: "Valoración integral de la fluidez, corrección y adecuación del registro diplomático a lo largo de todas las pruebas. El tribunal pondera la coherencia del nivel demostrado entre las destrezas escrita y oral.",
+      },
     ],
     requirements: [
       "Nivel C1-C2 acreditado en inglés y francés",
@@ -278,11 +293,26 @@ const examData: Record<string, ExamData> = {
     ],
     languages: ["Inglés", "Francés", "Alemán"],
     examFormat: [
-      "Traducción directa de texto económico-comercial (idioma → español)",
-      "Traducción inversa de texto especializado (español → idioma)",
-      "Análisis y resumen de documentación comercial en lengua extranjera",
-      "Prueba oral: exposición y debate sobre temas de comercio internacional",
-      "Evaluación de terminología económica y registro profesional",
+      {
+        title: "Traducción directa económica",
+        description: "Traducción de un texto económico-comercial del idioma extranjero al español. Los textos proceden de publicaciones como The Economist, informes del FMI o memorandos de la OMC. Se valora la precisión del léxico financiero y comercial.",
+      },
+      {
+        title: "Traducción inversa especializada",
+        description: "Traducción de un texto especializado del español al idioma extranjero. El tribunal evalúa el dominio de la terminología de comercio internacional, balanza de pagos, aranceles y política monetaria.",
+      },
+      {
+        title: "Análisis y resumen documental",
+        description: "Análisis y resumen de documentación comercial en lengua extranjera. Se exige capacidad para extraer datos clave de informes de mercado, sintetizar conclusiones y redactar con registro institucional.",
+      },
+      {
+        title: "Exposición y debate oral",
+        description: "Exposición oral de 20 minutos y debate posterior sobre temas de comercio internacional ante un panel evaluador. Se valora la capacidad de argumentación, la defensa de posiciones económicas y la fluidez en el idioma.",
+      },
+      {
+        title: "Evaluación terminológica",
+        description: "Valoración transversal del dominio de terminología económica y del registro profesional demostrado a lo largo de todas las pruebas. La precisión léxica en contextos de negociación multilateral es determinante.",
+      },
     ],
     requirements: [
       "Nivel C1 mínimo en inglés",
@@ -464,11 +494,26 @@ const examData: Record<string, ExamData> = {
     ],
     languages: ["Inglés", "Francés"],
     examFormat: [
-      "Traducción directa de texto comercial o económico (idioma → español)",
-      "Traducción inversa (español → idioma extranjero)",
-      "Prueba oral sobre temas de comercio exterior y economía",
-      "Comprensión de documentación comercial institucional",
-      "Evaluación de corrección gramatical y adecuación de registro",
+      {
+        title: "Traducción directa comercial",
+        description: "Traducción de un texto comercial o económico del idioma extranjero al español. Se utilizan informes ICEX, documentación de Oficinas Comerciales y notas sectoriales. Se valora la precisión del léxico de comercio exterior.",
+      },
+      {
+        title: "Traducción inversa",
+        description: "Traducción del español al idioma extranjero de un texto relacionado con la internacionalización empresarial. El tribunal evalúa la corrección gramatical, la adecuación del registro institucional y la fluidez del texto resultante.",
+      },
+      {
+        title: "Prueba oral comercial",
+        description: "Conversación oral ante tribunal sobre temas de comercio exterior, estrategia de mercado y relaciones económicas bilaterales. Se valora la capacidad de exposición, la defensa de argumentos y el dominio del vocabulario comercial.",
+      },
+      {
+        title: "Comprensión documental",
+        description: "Comprensión lectora de documentación comercial institucional: informes de mercado, estadísticas de exportación y correspondencia de Oficinas Económicas y Comerciales. Se evalúa la capacidad de extraer información clave.",
+      },
+      {
+        title: "Evaluación de registro y corrección",
+        description: "Valoración global de la corrección gramatical y la adecuación del registro profesional demostrado en el conjunto de las pruebas. El tono institucional y la precisión terminológica son factores diferenciadores.",
+      },
     ],
     requirements: [
       "Nivel B2-C1 en inglés (obligatorio)",
@@ -632,11 +677,26 @@ const examData: Record<string, ExamData> = {
     ],
     languages: ["Inglés", "Francés"],
     examFormat: [
-      "Traducción directa de textos técnicos y normativos (idioma → español)",
-      "Traducción inversa de documentación de inspección (español → idioma)",
-      "Comprensión lectora de reglamentos y normativa internacional",
-      "Prueba oral sobre temas de comercio exterior e inspección",
-      "Terminología específica de calidad, aduanas y regulación",
+      {
+        title: "Traducción directa normativa",
+        description: "Traducción de textos técnicos y normativos del idioma extranjero al español: reglamentos CE, directivas europeas, normas fitosanitarias y documentación de control de calidad. Se exige precisión en la terminología de inspección.",
+      },
+      {
+        title: "Traducción inversa de inspección",
+        description: "Traducción del español al idioma extranjero de documentación de inspección: actas, certificados de conformidad, informes de no conformidad y documentos de despacho aduanero.",
+      },
+      {
+        title: "Comprensión de normativa internacional",
+        description: "Comprensión lectora de reglamentos europeos y normativa internacional en idioma original. Se evalúa la capacidad de identificar disposiciones clave, obligaciones y plazos en textos legislativos extensos.",
+      },
+      {
+        title: "Prueba oral de inspección",
+        description: "Exposición oral ante tribunal sobre temas de comercio exterior, procedimientos de inspección y control de calidad. Se valora la capacidad de argumentar sobre incumplimientos con evidencia técnica.",
+      },
+      {
+        title: "Terminología técnica especializada",
+        description: "Evaluación transversal del dominio de terminología de calidad, aduanas y regulación comercial. La precisión léxica en certificación, trazabilidad y normativa sanitaria es determinante para la calificación.",
+      },
     ],
     requirements: [
       "Nivel B2-C1 en inglés",
@@ -811,11 +871,26 @@ const examData: Record<string, ExamData> = {
     ],
     languages: ["Inglés", "Francés"],
     examFormat: [
-      "Traducción directa de documentación técnica e informes de laboratorio",
-      "Traducción inversa de textos de normativa y especificaciones",
-      "Comprensión de normas internacionales (ISO, EN) en idioma original",
-      "Prueba oral: exposición de informes técnicos en idioma extranjero",
-      "Evaluación de precisión terminológica técnica y científica",
+      {
+        title: "Traducción directa técnica",
+        description: "Traducción de documentación técnica e informes de laboratorio del idioma extranjero al español. Los textos incluyen protocolos de ensayo, fichas de seguridad y especificaciones de producto según normas UNE-EN.",
+      },
+      {
+        title: "Traducción inversa normativa",
+        description: "Traducción del español al idioma extranjero de textos de normativa y especificaciones técnicas. Se evalúa la precisión terminológica en metrología, certificación y procedimientos de ensayo.",
+      },
+      {
+        title: "Comprensión de normas ISO y EN",
+        description: "Comprensión lectora de normas internacionales (ISO 9001, ISO 22000, ISO 14001, normas EN) en su idioma original. Se exige la capacidad de identificar requisitos, alcance y disposiciones técnicas clave.",
+      },
+      {
+        title: "Exposición oral de informes técnicos",
+        description: "Presentación oral de informes técnicos en idioma extranjero ante panel evaluador. El candidato debe exponer resultados de ensayo, defender conclusiones de inspección y argumentar sobre informes de no conformidad.",
+      },
+      {
+        title: "Precisión terminológica técnico-científica",
+        description: "Evaluación global de la precisión terminológica demostrada en todas las pruebas. El dominio del léxico de ingeniería, ensayos de materiales, acreditación y marcado CE es determinante para la calificación final.",
+      },
     ],
     requirements: [
       "Nivel B2-C1 en inglés",
@@ -986,11 +1061,26 @@ const examData: Record<string, ExamData> = {
     ],
     languages: ["Inglés", "Francés", "Alemán", "Italiano"],
     examFormat: [
-      "Traducción directa de texto cultural, histórico o artístico",
-      "Comprensión lectora de documentación bibliotecaria o archivística",
-      "Preguntas sobre terminología del ámbito patrimonial y cultural",
-      "Posible prueba oral según convocatoria",
-      "Evaluación del dominio de registro académico y cultural",
+      {
+        title: "Traducción directa cultural",
+        description: "Traducción de un texto cultural, histórico o artístico del idioma elegido al español. Los textos proceden de catálogos de museos internacionales, publicaciones del ICOM o artículos de historia del arte y patrimonio cultural.",
+      },
+      {
+        title: "Comprensión lectora archivística",
+        description: "Comprensión de documentación bibliotecaria o archivística en lengua extranjera: descripciones normalizadas ISAD(G), registros catalográficos MARC, publicaciones de la IFLA y bibliografía especializada.",
+      },
+      {
+        title: "Terminología patrimonial y cultural",
+        description: "Preguntas específicas sobre terminología del ámbito patrimonial: museografía, conservación preventiva, catalogación, descripción archivística y gestión de colecciones en el idioma elegido.",
+      },
+      {
+        title: "Prueba oral",
+        description: "Posible prueba oral según la convocatoria vigente. Se evalúa la capacidad de comentar textos académicos, describir obras o documentos y argumentar sobre criterios de clasificación y preservación.",
+      },
+      {
+        title: "Registro académico y cultural",
+        description: "Valoración global del dominio del registro académico y cultural demostrado en el conjunto de las pruebas. Se premia la capacidad de moverse con soltura entre textos humanísticos de distintas épocas y tradiciones.",
+      },
     ],
     requirements: [
       "Nivel B2 mínimo en el idioma elegido",
