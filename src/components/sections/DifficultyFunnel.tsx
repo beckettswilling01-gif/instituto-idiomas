@@ -1,23 +1,182 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const funnelSteps = [
-  { label: "Candidatos inscritos", value: "2,400", numeric: 2400 },
-  { label: "Se presentan al examen", value: "1,800", numeric: 1800 },
-  { label: "Superan la fase escrita", value: "320", numeric: 320 },
-  { label: "Superan la prueba de idiomas", value: "90", numeric: 90 },
-  { label: "Obtienen plaza", value: "25", numeric: 25 },
+interface FunnelStep {
+  label: string;
+  value: number;
+}
+
+interface ExamFunnel {
+  name: string;
+  slug: string;
+  steps: FunnelStep[];
+}
+
+const examFunnels: ExamFunnel[] = [
+  {
+    name: "Carrera Diplomática",
+    slug: "carrera-diplomatica",
+    steps: [
+      { label: "Inscritos", value: 2400 },
+      { label: "Se presentan", value: 1800 },
+      { label: "Superan escrita", value: 320 },
+      { label: "Superan idiomas", value: 90 },
+      { label: "Obtienen plaza", value: 25 },
+    ],
+  },
+  {
+    name: "Técnico Comercial",
+    slug: "tecnico-comercial-economista-estado",
+    steps: [
+      { label: "Inscritos", value: 1800 },
+      { label: "Se presentan", value: 1350 },
+      { label: "Superan escrita", value: 280 },
+      { label: "Superan idiomas", value: 75 },
+      { label: "Obtienen plaza", value: 20 },
+    ],
+  },
+  {
+    name: "Diplomado Comercial",
+    slug: "diplomado-comercial-estado",
+    steps: [
+      { label: "Inscritos", value: 1200 },
+      { label: "Se presentan", value: 900 },
+      { label: "Superan escrita", value: 195 },
+      { label: "Superan idiomas", value: 60 },
+      { label: "Obtienen plaza", value: 18 },
+    ],
+  },
+  {
+    name: "Inspector SOIVRE",
+    slug: "inspector-soivre",
+    steps: [
+      { label: "Inscritos", value: 800 },
+      { label: "Se presentan", value: 600 },
+      { label: "Superan escrita", value: 140 },
+      { label: "Superan idiomas", value: 45 },
+      { label: "Obtienen plaza", value: 12 },
+    ],
+  },
+  {
+    name: "Ingeniero SOIVRE",
+    slug: "ingeniero-tecnico-soivre",
+    steps: [
+      { label: "Inscritos", value: 600 },
+      { label: "Se presentan", value: 450 },
+      { label: "Superan escrita", value: 110 },
+      { label: "Superan idiomas", value: 35 },
+      { label: "Obtienen plaza", value: 10 },
+    ],
+  },
+  {
+    name: "Archivos y Bibliotecas",
+    slug: "ayudante-archivos-bibliotecas-museos",
+    steps: [
+      { label: "Inscritos", value: 3500 },
+      { label: "Se presentan", value: 2600 },
+      { label: "Superan escrita", value: 480 },
+      { label: "Superan idiomas", value: 120 },
+      { label: "Obtienen plaza", value: 30 },
+    ],
+  },
 ];
 
-const max = funnelSteps[0].numeric;
+// Segment colors from top (mass) to bottom (elite)
+const segmentColors = [
+  "bg-white/15",
+  "bg-white/25",
+  "bg-[#ffdea5]/30",
+  "bg-[#ffdea5]/50",
+  "bg-gold",
+];
+
+// Legend labels matching segment colors (top to bottom)
+const legendItems = [
+  { color: "bg-white/15", label: "Inscritos" },
+  { color: "bg-white/25", label: "Se presentan" },
+  { color: "bg-[#ffdea5]/30", label: "Superan escrita" },
+  { color: "bg-[#ffdea5]/50", label: "Superan idiomas" },
+  { color: "bg-gold", label: "Obtienen plaza" },
+];
+
+function FunnelBar({ exam, index }: { exam: ExamFunnel; index: number }) {
+  const total = exam.steps[0].value;
+  const finalValue = exam.steps[exam.steps.length - 1].value;
+  const eliminationRate = (((total - finalValue) / total) * 100).toFixed(1);
+
+  // Calculate segment heights based on dropoff at each stage
+  // Each segment = how many people were lost at that stage
+  const segments = exam.steps.map((step, i) => {
+    const nextValue = i < exam.steps.length - 1 ? exam.steps[i + 1].value : 0;
+    const dropoff = step.value - nextValue;
+    const heightPct = Math.max((dropoff / total) * 100, 2); // min 2% so gold is visible
+    return { ...step, dropoff, heightPct };
+  });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: index * 0.1, duration: 0.5, ease }}
+      className="flex flex-col items-center"
+    >
+      {/* Exam name */}
+      <Link
+        href={`/oposiciones/${exam.slug}`}
+        className="mb-3 text-center text-xs font-semibold text-white/70 transition-colors hover:text-gold"
+        style={{ fontFamily: "var(--font-body)" }}
+      >
+        {exam.name}
+      </Link>
+
+      {/* Vertical bar */}
+      <div className="flex h-[280px] w-14 flex-col overflow-hidden rounded-xl md:h-[340px] md:w-16">
+        {segments.map((seg, i) => (
+          <motion.div
+            key={seg.label}
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              delay: index * 0.1 + i * 0.08,
+              duration: 0.5,
+              ease,
+            }}
+            className={`origin-top ${segmentColors[i]}`}
+            style={{ height: `${seg.heightPct}%` }}
+          />
+        ))}
+      </div>
+
+      {/* Final number + rate */}
+      <div className="mt-3 text-center">
+        <span
+          className="block text-2xl font-bold text-gold"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          {finalValue}
+        </span>
+        <span
+          className="block text-[10px] font-medium text-white/40"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          de {total.toLocaleString("es-ES")}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function DifficultyFunnel() {
   return (
     <section className="bg-navy py-20 lg:py-28">
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,63 +191,42 @@ export default function DifficultyFunnel() {
             className="mt-4 text-3xl font-bold text-white md:text-4xl"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Solo 1 de cada 96 candidatos consigue plaza.
+            La prueba de idiomas es donde más candidatos quedan eliminados.
           </h2>
           <p
             className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Datos representativos de la Carrera Diplomática. La prueba de idiomas
-            es donde más candidatos quedan eliminados.
+            Datos representativos por oposición. Cada barra muestra el recorrido
+            desde la inscripción hasta la obtención de plaza.
           </p>
         </motion.div>
 
-        {/* Horizontal bar chart */}
-        <div className="mx-auto mt-14 max-w-3xl space-y-5">
-          {funnelSteps.map((step, i) => {
-            const pct = Math.max((step.numeric / max) * 100, 8);
-            const isLast = i === funnelSteps.length - 1;
-
-            return (
-              <motion.div
-                key={step.label}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease }}
-              >
-                {/* Label row */}
-                <div className="mb-2 flex items-baseline justify-between">
-                  <span
-                    className="text-sm font-medium text-white/70"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {step.label}
-                  </span>
-                  <span
-                    className={`text-lg font-bold ${isLast ? "text-gold" : "text-white"}`}
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {step.value}
-                  </span>
-                </div>
-
-                {/* Bar */}
-                <div className="h-3 w-full overflow-hidden rounded-full bg-white/5">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${pct}%` }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 + 0.2, duration: 0.7, ease }}
-                    className={`h-full rounded-full ${isLast ? "bg-gold" : "bg-white/20"}`}
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* 6 vertical bars */}
+        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-6 md:grid-cols-6 md:gap-4">
+          {examFunnels.map((exam, i) => (
+            <FunnelBar key={exam.slug} exam={exam} index={i} />
+          ))}
         </div>
 
-        {/* Fail rate callout */}
+        {/* Legend */}
+        <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          {legendItems.map((item) => (
+            <div key={item.label} className="flex items-center gap-2">
+              <span
+                className={`h-3 w-3 rounded-sm ${item.color}`}
+              />
+              <span
+                className="text-xs text-white/50"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                {item.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Elimination callout */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,22 +234,8 @@ export default function DifficultyFunnel() {
           transition={{ delay: 0.7, duration: 0.5, ease }}
           className="mt-14 text-center"
         >
-          <div className="inline-flex items-baseline gap-3">
-            <span
-              className="text-5xl font-bold text-gold md:text-6xl"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              98.9%
-            </span>
-            <span
-              className="text-lg text-white/80"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              tasa de eliminación
-            </span>
-          </div>
           <p
-            className="mx-auto mt-4 max-w-lg text-sm text-white/60"
+            className="mx-auto max-w-lg text-sm text-white/60"
             style={{ fontFamily: "var(--font-body)" }}
           >
             La diferencia entre aprobar y suspender no es saber un idioma. Es
